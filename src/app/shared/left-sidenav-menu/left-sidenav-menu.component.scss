@@ -1,0 +1,40 @@
+
+.main-side {
+    text-transform: uppercase;
+    color: #757a7b;
+    font-size: 0.9em;
+    padding-top: 20px;
+    width: 190px;
+    float: left;
+    .main-side-nav {
+        ul {
+            list-style: none;
+            margin-bottom: 5px;
+            li {
+                padding: 10px 15px;
+                a {
+                    color: inherit;
+                }
+                i {
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+    .language-menu {
+        border-top: 1px solid #757a7b;
+        margin: 0 15px;
+        ul {
+            list-style: none;
+            padding-top: 25px;
+            li {
+                a {
+                    color: inherit;
+                }
+                i {
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+}
