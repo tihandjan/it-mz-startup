@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-right-sidenav-menu',
@@ -7,12 +7,10 @@ import { Component, OnInit, Renderer, ElementRef } from '@angular/core';
 })
 export class RightSidenavMenuComponent implements OnInit {
 
-  constructor(
-    private el: ElementRef, 
-    private render: Renderer
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
+
 
 }
