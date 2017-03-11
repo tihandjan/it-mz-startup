@@ -4,6 +4,56 @@ $fa-font-path: "~font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
+* {margin:0;padding:0;}
+
 body {
     font-family: 'Roboto Condensed', sans-serif;
+    background-color: #efefef;
+    color: #3d3d3d;
 }
+
+.container-custom {
+    background-color: #FFF;
+    height: 100vh;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 1200px) {
+    .container-custom {
+        width: 1200px;
+    }
+}
+
+/******************** sprite ********************/
+.sprite {
+    background-image: url('/assets/images/spritesheet.png');
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-Food {
+    width: 32px;
+    height: 32px;
+    background-position: -3px -3px;
+}
+
+.sprite-Like {
+    width: 32px;
+    height: 32px;
+    background-position: -41px -3px;
+}
+
+.sprite-__________ {
+    width: 142px;
+    height: 49px;
+    background-position: -3px -41px;
+}
+
+.sprite-icons_user {
+    width: 32px;
+    height: 32px;
+    background-position: -79px -3px;
+}
+/******************** sprite ********************/

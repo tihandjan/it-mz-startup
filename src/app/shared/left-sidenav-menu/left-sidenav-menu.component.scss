@@ -6,17 +6,24 @@
     padding-top: 20px;
     width: 190px;
     float: left;
+    position: absolute;
     .main-side-nav {
         ul {
             list-style: none;
             margin-bottom: 5px;
             li {
-                padding: 10px 15px;
+                padding: 10px 5px 10px 15px;
                 a {
                     color: inherit;
+                    &:hover {
+                        text-decoration: none;
+                        color: #47336c;
+                    }
                 }
                 i {
-                    margin-right: 15px;
+                    margin-right: 13px;
+                    float: left;
+                    margin-top: -8px;
                 }
             }
         }
@@ -30,10 +37,43 @@
             li {
                 a {
                     color: inherit;
+                    &:hover {
+                        text-decoration: none;
+                        color: #47336c;
+                    }
                 }
                 i {
-                    margin-right: 15px;
+                    margin-right: 13px;
+                    float: left;
+                    margin-top: -8px;
                 }
+            }
+        }
+    }
+    .social {
+        color: #066;
+        margin: 0 auto;
+        margin-top: 33px;
+        a {
+            color: inherit;
+            font-size: 23px;
+            padding: 5px;            
+            &:first-child {
+                margin-left: 61px;
+                margin-right: 6px;
+            }
+            &:nth-child(2) {
+                margin-right: 40px;
+            }
+            &:nth-child(3) {
+                margin-left: 61px;
+                padding-top: 3px;
+            }
+            &:last-child {
+                font-size: 26px;
+            }
+            &:hover {
+                color: #757a7b;
             }
         }
     }

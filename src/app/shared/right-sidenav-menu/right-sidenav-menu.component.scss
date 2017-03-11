@@ -1,0 +1,46 @@
+.right-sidenav {
+    position: absolute;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100%;
+    background-color: #8371a2;
+    z-index: 100;
+    .right-sidenav-wrapper {
+        position: relative;
+        ul {
+            position: absolute;
+            margin: 0;
+            position: absolute;
+            width: 70px;
+            left: -70px;
+            z-index: 2;
+            list-style: none;
+            li {
+                width: 70px;
+                height: 65px;
+                color: #FFF;
+                font-size: 20px;
+                position: relative;
+                &:first-child {
+                    background-color: #8371a2;
+                    i {
+                        left: 41%;
+                    }
+                }
+                &:last-child {
+                    background-color: #47336c;
+                }
+                &:hover {
+                    cursor: pointer;
+                    background-color: #34264f;
+                }
+                i {
+                    position: absolute;
+                    left: 38%;
+                    top: 34%;
+                }
+            }
+        }
+    }
+}

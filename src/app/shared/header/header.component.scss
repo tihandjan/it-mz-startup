@@ -1,12 +1,40 @@
 .header-container {
+    height: 65px;
+    position: relative;
     .logo-area {
-        background-color: #066;
+        background-color: #8371a2;
         height: 65px;
         width: 190px;
+        float: left;
+        &:hover {
+            background-color: #47336c;
+            cursor: pointer;
+        }
        .main-h1 {
-           img {
+           position: relative;
+           margin: 0;
+           a {
+               position: absolute;
+               top: 7px;
+               left: 15px;
+               i {
 
+               }
            }
        }
+    }
+    .bread-crumbs {
+        float: left;
+        margin-top: 20px;
+        margin-left: 15px;
+        text-transform: uppercase;
+        a {
+            margin-left: 5px;
+            color: #8371a2;
+            &:hover {
+                color: #47336c;
+                text-decoration: none;
+            }
+        }
     }
 }
