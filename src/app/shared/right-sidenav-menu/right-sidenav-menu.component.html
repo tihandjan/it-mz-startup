@@ -1,7 +1,7 @@
-<section class="right-sidenav">
+<section class="right-sidenav" [@elementState]="state">
   <div class="right-sidenav-wrapper">
     <ul>
-      <li><i class="fa fa-user"></i></li>
+      <li (click)="toggleMenu()"><i class="fa fa-user"></i></li>
       <li><i class="fa fa-heart"></i></li>
     </ul>
     
