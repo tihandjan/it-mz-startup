@@ -14,10 +14,10 @@ body {
 
 .container-custom {
     background-color: #FFF;
-    height: 100vh;
     padding: 0;
     position: relative;
     overflow: hidden;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
 }
 
 @media (min-width: 1200px) {

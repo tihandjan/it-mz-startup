@@ -1,6 +1,90 @@
-
-.page-wrapper {
-    position: relative;
-    margin-left: 190px;
-    margin-right: 70px;
+.main-content {
+    .page-wrapper {
+        position: relative;
+        margin-left: 184px;
+        margin-right: 70px;
+        .main-article {
+            margin-bottom: 6px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid #FFF;
+            background: #000;
+            a {
+                color: #FFF;
+                &:hover {
+                    img {
+                        opacity: 0.8;
+                    }
+                    .title-small {
+                        top: 0;
+                    }
+                }
+                img {
+                    width: 100%;
+                    transition: .3s ease;
+                }
+            }
+        }
+        .main-article-big {
+            .title {
+                top: 54%;
+                left: 50%;
+                width: 75%;
+                text-align: center;
+                text-transform: uppercase;
+            }
+        }
+        .main-article-small {
+            .main-caption {
+                position: absolute;
+                top: 10px;
+                left: 20px;
+                .title-small {
+                    padding: 5px 10px;
+                    background-color: #fff;
+                    color: #34264f;
+                    font-size: 0.8em;
+                    text-transform: uppercase;
+                    position: relative;
+                    top: -20px;
+                    width: 90%;
+                    transition: .3s ease;
+                }
+                .tag-small {
+                    padding: 5px 10px;
+                    color: #FFF;
+                    background-color: #47336c;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    font-size: 0.8em;
+                    transition: .5s ease;            
+                    &:hover {
+                        background-color: #34264f;
+                    }
+                }
+            }
+        }
+        .tag {
+            padding: 5px 22px;
+            color: #FFF;
+            background-color: #47336c;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 0.8em;
+            border-radius: 10px;
+            position: absolute;
+            top: 32%;
+            left: 50%;
+            transform: translate(-47%, -50%);
+            transition: .5s ease;            
+            &:hover {
+                background-color: #34264f;
+            }
+        }
+        .title {
+            position: absolute;
+            transform: translate(-47%, -50%);
+        }
+    }
 }

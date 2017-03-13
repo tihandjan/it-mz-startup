@@ -1,7 +1,66 @@
-<section class="page-wrapper clearfix">
-  <div class="col">col</div>
-  <div class="col">col</div>
-  <div class="w-100"></div>
-  <div class="col">col</div>
-  <div class="col">col</div>
+<section class="main-content">
+  <div class="page-wrapper clearfix">
+
+    <article class="main-article col-lg-6 main-article-big">
+      <a href="#">
+        <img [src]="top_recipe.image_big" [alt]="top_recipe.title">
+        <a href="#"><span class="tag">Кулиннария</span></a>
+        <h3 class="title">{{ top_recipe.title }}</h3>
+      </a>
+    </article>
+    <article class="main-article col-lg-6 main-article-big">
+      <a href="#">
+        <img [src]="top_article.image_big" [alt]="top_article.title">
+        <a href="#"><span class="tag">Статьи</span></a>
+        <h3 class="title">{{ top_article.title }}</h3>
+      </a>
+    </article>
+    <article *ngFor="let recipe of recipes; let i = index" class="main-article main-article-small col-md-{{ i > 0 ? 3 : 6 }}">
+      <a href="#">
+        <img [src]="i > 0 ? recipe.image_small : recipe.image_long" [alt]="recipe.title">
+        <div class="main-caption">
+          <a class="tag-small">Статьи</a>
+          <h3 class="title-small">{{ recipe.title }}</h3>
+        </div>
+      </a>
+    </article>
+    <article class="main-article col-md-6 main-article-small">
+      <a href="#">
+        <img src="https://dummyimage.com/467x230/b8329d/fff.png" [alt]="">
+      </a>
+    </article>
+    <article class="main-article col-md-6 main-article-small">
+      <a href="#">
+        <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
+        <div class="main-caption">
+          <a class="tag-small">Статьи</a>
+          <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+        </div>
+      </a>
+    </article>
+    <article class="main-article col-md-6 main-article-small">
+      <a href="#">
+        <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
+      </a>
+    </article>
+    <article class="main-article col-md-3 main-article-small">
+      <a href="#">
+        <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
+        <div class="main-caption">
+          <a class="tag-small">Статьи</a>
+          <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+        </div>
+      </a>
+    </article>
+    <article class="main-article col-md-3 main-article-small">
+      <a href="#">
+        <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
+        <div class="main-caption">
+          <a class="tag-small">Статьи</a>
+          <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+        </div>        
+      </a>
+    </article>
+
+  </div>
 </section>
