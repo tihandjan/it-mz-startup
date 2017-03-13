@@ -13,7 +13,7 @@ export class MainComponent implements OnInit {
     {
       title: 'Ceg из горбуши с анчоусами под сладким соусом',
       summary: 'summary',
-      image_big: 'https://dummyimage.com/467x350/000/000.png',
+      image_big: 'https://dummyimage.com/467x350/b8329d/000.png',
       image_long: 'https://dummyimage.com/467x230/000/000.png',
       image_small: 'https://dummyimage.com/230x230/000/000.png'     
     },

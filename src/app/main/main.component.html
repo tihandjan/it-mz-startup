@@ -4,18 +4,18 @@
     <article class="main-article col-lg-6 main-article-big">
       <a href="#">
         <img [src]="top_recipe.image_big" [alt]="top_recipe.title">
-        <a href="#"><span class="tag">Кулиннария</span></a>
+        <a class="tag">Кулиннария</a>
         <h3 class="title">{{ top_recipe.title }}</h3>
       </a>
     </article>
     <article class="main-article col-lg-6 main-article-big">
       <a href="#">
         <img [src]="top_article.image_big" [alt]="top_article.title">
-        <a href="#"><span class="tag">Статьи</span></a>
+        <a class="tag">Статьи</a>
         <h3 class="title">{{ top_article.title }}</h3>
       </a>
     </article>
-    <article *ngFor="let recipe of recipes; let i = index" class="main-article main-article-small col-md-{{ i > 0 ? 3 : 6 }}">
+    <article *ngFor="let recipe of recipes; let i = index" class="main-article main-article-small col-lg-{{ i > 0 ? 3 : 6 }}">
       <a href="#">
         <img [src]="i > 0 ? recipe.image_small : recipe.image_long" [alt]="recipe.title">
         <div class="main-caption">
@@ -24,12 +24,12 @@
         </div>
       </a>
     </article>
-    <article class="main-article col-md-6 main-article-small">
+    <article class="main-article col-lg-6 main-article-small">
       <a href="#">
         <img src="https://dummyimage.com/467x230/b8329d/fff.png" [alt]="">
       </a>
     </article>
-    <article class="main-article col-md-6 main-article-small">
+    <article class="main-article col-lg-6 main-article-small">
       <a href="#">
         <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
         <div class="main-caption">
@@ -38,12 +38,12 @@
         </div>
       </a>
     </article>
-    <article class="main-article col-md-6 main-article-small">
+    <article class="main-article col-lg-6 main-article-small">
       <a href="#">
         <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
       </a>
     </article>
-    <article class="main-article col-md-3 main-article-small">
+    <article class="main-article col-lg-3 main-article-small">
       <a href="#">
         <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
         <div class="main-caption">
@@ -52,7 +52,7 @@
         </div>
       </a>
     </article>
-    <article class="main-article col-md-3 main-article-small">
+    <article class="main-article col-lg-3 main-article-small">
       <a href="#">
         <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
         <div class="main-caption">
