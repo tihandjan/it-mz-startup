@@ -1,0 +1,284 @@
+/******************** sprite ********************/
+.sprite {
+    background-image: url('assets/images/spritesheet.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.sprite--instagram {
+    width: 32px;
+    height: 32px;
+    background-position: -3px -3px;
+}
+
+.sprite--instagram-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -41px -3px;
+}
+
+.sprite-1 {
+    width: 32px;
+    height: 32px;
+    background-position: -79px -3px;
+}
+
+.sprite-1-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -117px -3px;
+}
+
+.sprite-1-hover-1 {
+    width: 32px;
+    height: 32px;
+    background-position: -155px -3px;
+}
+
+.sprite-2 {
+    width: 32px;
+    height: 32px;
+    background-position: -193px -3px;
+}
+
+.sprite-Google-_ {
+    width: 32px;
+    height: 32px;
+    background-position: -3px -41px;
+}
+
+.sprite-Google-_-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -41px -41px;
+}
+
+.sprite-Uroven-slojnosty {
+    width: 15px;
+    height: 15px;
+    background-position: -231px -3px;
+}
+
+.sprite-banky {
+    width: 32px;
+    height: 32px;
+    background-position: -79px -41px;
+}
+
+.sprite-banky-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -117px -41px;
+}
+
+.sprite-deserty {
+    width: 32px;
+    height: 32px;
+    background-position: -155px -41px;
+}
+
+.sprite-deserty-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -193px -41px;
+}
+
+.sprite-facebook-first {
+    width: 20px;
+    height: 20px;
+    background-position: -3px -79px;
+}
+
+.sprite-facebook-second {
+    width: 32px;
+    height: 32px;
+    background-position: -29px -79px;
+}
+
+.sprite-facebook-hover-first {
+    width: 32px;
+    height: 32px;
+    background-position: -67px -79px;
+}
+
+.sprite-facebook-hover-second {
+    width: 20px;
+    height: 20px;
+    background-position: -105px -79px;
+}
+
+.sprite-hat {
+    width: 16px;
+    height: 16px;
+    background-position: -231px -24px;
+}
+
+.sprite-like {
+    width: 20px;
+    height: 20px;
+    background-position: -131px -79px;
+}
+
+.sprite-like-PROFILE {
+    width: 32px;
+    height: 32px;
+    background-position: -157px -79px;
+}
+
+.sprite-like-hover {
+    width: 20px;
+    height: 20px;
+    background-position: -195px -79px;
+}
+
+.sprite-logo {
+    width: 142px;
+    height: 49px;
+    background-position: -3px -117px;
+}
+
+.sprite-money {
+    width: 15px;
+    height: 15px;
+    background-position: -231px -46px;
+}
+
+.sprite-napitki {
+    width: 32px;
+    height: 32px;
+    background-position: -195px -105px;
+}
+
+.sprite-napitki-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -151px -143px;
+}
+
+.sprite-odnoklassniki {
+    width: 20px;
+    height: 20px;
+    background-position: -221px -79px;
+}
+
+.sprite-odnoklassniki-hover {
+    width: 20px;
+    height: 20px;
+    background-position: -189px -143px;
+}
+
+.sprite-salat {
+    width: 32px;
+    height: 32px;
+    background-position: -215px -143px;
+}
+
+.sprite-salat-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -3px -181px;
+}
+
+.sprite-search-PROFILE {
+    width: 32px;
+    height: 32px;
+    background-position: -41px -181px;
+}
+
+.sprite-sous {
+    width: 32px;
+    height: 32px;
+    background-position: -79px -181px;
+}
+
+.sprite-sous-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -117px -181px;
+}
+
+.sprite-time-recept {
+    width: 15px;
+    height: 15px;
+    background-position: -233px -105px;
+}
+
+.sprite-user-PROFILE {
+    width: 32px;
+    height: 32px;
+    background-position: -155px -181px;
+}
+
+.sprite-vipichka {
+    width: 32px;
+    height: 32px;
+    background-position: -193px -181px;
+}
+
+.sprite-vipichka-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -253px -3px;
+}
+
+.sprite-vk-first {
+    width: 32px;
+    height: 32px;
+    background-position: -253px -41px;
+}
+
+.sprite-vk-second {
+    width: 20px;
+    height: 20px;
+    background-position: -247px -79px;
+}
+
+.sprite-vk-hover-first {
+    width: 20px;
+    height: 20px;
+    background-position: -254px -105px;
+}
+
+.sprite-vk-hover-second {
+    width: 32px;
+    height: 32px;
+    background-position: -253px -131px;
+}
+
+.sprite-world {
+    width: 32px;
+    height: 32px;
+    background-position: -253px -169px;
+}
+
+.sprite-world {
+    width: 32px;
+    height: 32px;
+    background-position: -231px -207px;
+}
+
+.sprite-world-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -3px -245px;
+}
+
+.sprite-world-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -41px -245px;
+}
+
+.sprite-zakuski {
+    width: 32px;
+    height: 32px;
+    background-position: -79px -245px;
+}
+
+.sprite-zakuski-hover {
+    width: 32px;
+    height: 32px;
+    background-position: -117px -245px;
+}
+
+/******************** sprite ********************/

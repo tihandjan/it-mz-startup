@@ -18,9 +18,20 @@
                     &:hover {
                         text-decoration: none;
                         color: #47336c;
+                        i {
+                            &:first-child {
+                                display: block;
+                            }
+                            &:last-child {
+                                display: none;
+                            }
+                        }
                     }
                 }
                 i {
+                    &:first-child {
+                        display: none;
+                    }
                     margin-right: 13px;
                     float: left;
                     margin-top: -8px;
@@ -31,6 +42,7 @@
     .language-menu {
         border-top: 1px solid #757a7b;
         margin: 0 15px;
+        font-size: 0.95em;
         ul {
             list-style: none;
             padding-top: 25px;
@@ -40,40 +52,59 @@
                     &:hover {
                         text-decoration: none;
                         color: #47336c;
+                        i {
+                            &:first-child {
+                                display: block;
+                            }
+                            &:last-child {
+                                display: none;
+                            }
+                        }
                     }
                 }
                 i {
+                    &:first-child {
+                        display: none;
+                    }
                     margin-right: 13px;
                     float: left;
-                    margin-top: -8px;
+                    margin-top: -6px;
                 }
             }
         }
     }
     .social {
-        color: #066;
         margin: 0 auto;
+        width: 75px;
+        overflow: hidden;
         margin-top: 33px;
-        a {
-            color: inherit;
-            font-size: 23px;
-            padding: 5px;            
+        a {         
+            i {
+                &:first-child {
+                    display: none;
+                }
+            }   
             &:first-child {
-                margin-left: 61px;
-                margin-right: 6px;
-            }
-            &:nth-child(2) {
-                margin-right: 40px;
+                float: left;
             }
             &:nth-child(3) {
-                margin-left: 61px;
-                padding-top: 3px;
+                float: left;
+            }
+            &:nth-child(2) {
+                float: right;
             }
             &:last-child {
-                font-size: 26px;
+                float: right;
             }
             &:hover {
-                color: #757a7b;
+                i {
+                    &:first-child {
+                        display: inline-block;
+                    }
+                    &:last-child {
+                        display: none;
+                    }
+                }
             }
         }
     }
