@@ -62,5 +62,49 @@
       </a>
     </article>
 
+
+  </div>
+  <div class="page-wrapper next-article-wrapper clearfix">
+    <h4 class="article-section-devider">Статьи</h4>
+
+    <div class="left-article-wrapper col-lg-3">
+      <article class="main-article col-lg-12">
+        <a href="#">
+          <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+        </a>
+      </article>
+      <article class="main-article col-lg-12">
+        <a href="#">
+          <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+        </a>
+      </article>
+    </div>
+
+    <article class="main-article col-lg-6">
+      <a href="#">
+        <img src="https://dummyimage.com/467x366/b8329d/fff.png" [alt]="">
+      </a>
+    </article>
+    <article class="main-article col-lg-3">
+      <a href="#">
+        <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+      </a>
+    </article>
+    <article class="main-article col-lg-3">
+      <a href="#">
+        <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+      </a>
+    </article>
+
+  </div>
+  <div class="page-wrapper">
+    <h4 class="article-section-devider">Рецепты</h4>
+
+    <div class="recipe-selection-wrapper clearfix">
+      <div (click)="onRecipeState('first')" class="col-xs-4 {{ first_recipe_state }}">Новые рецепты</div>
+      <div (click)="onRecipeState('second')" class="col-xs-4 {{ second_recipe_state }}">Популярные</div>
+      <div (click)="onRecipeState('third')" class="col-xs-4 {{ third_recipe_state }}">Рекомендуемые</div>
+      <div class="hover-block" [@buttomState]="buttomState"></div>
+    </div>
   </div>
 </section>

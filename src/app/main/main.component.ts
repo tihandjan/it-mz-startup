@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { 
+  Component, 
+  OnInit,
+  state,
+  style,
+  trigger,
+  animate,
+  transition
+ } from '@angular/core';
 
 import { Recipe } from '../models/recipe';
 import { Article } from '../models/article';
@@ -6,9 +14,29 @@ import { Article } from '../models/article';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  animations: [
+    trigger('buttomState', [
+      state('first', style({
+        left: 0
+      })),
+      state('second', style({
+        left: '132px'
+      })),
+      state('third', style({
+        left: '270px'
+      })),
+      transition('first <=> second', animate('200ms ease-out')),
+      transition('first <=> third', animate('200ms ease-out')),
+      transition('second <=> third', animate('200ms ease-out'))
+    ])
+  ]
 })
 export class MainComponent implements OnInit {
+  buttomState: string = 'first';
+  first_recipe_state: string = 'active';
+  second_recipe_state: string = 'inactive';
+  third_recipe_state: string = 'inactive';
   recipes: Recipe[] = [
     {
       title: 'Ceg из горбуши с анчоусами под сладким соусом',
@@ -43,6 +71,30 @@ export class MainComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onRecipeState(item: string) {
+    this.buttomState = item;
+    switch (item) {
+      case 'first':
+        this.first_recipe_state = 'active';
+        this.second_recipe_state = 'inactive';
+        this.third_recipe_state = 'inactive';
+        break;
+      case 'second':
+        this.first_recipe_state = 'inactive';
+        this.second_recipe_state = 'active';
+        this.third_recipe_state = 'inactive';
+        break;
+      case 'third':
+        this.first_recipe_state = 'inactive';
+        this.second_recipe_state = 'inactive';
+        this.third_recipe_state = 'active';
+        break;
+    
+      default:
+        break;
+    }
   }
 
 }

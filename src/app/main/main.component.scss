@@ -90,6 +90,54 @@
             position: absolute;
             transform: translate(-47%, -50%);
         }
+        .article-section-devider {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+    }
+    .next-article-wrapper {
+        margin-left: 187px;
+        .left-article-wrapper {
+            padding: 0;
+        }
+        .main-article {
+            border-left: 3px solid #FFF;
+            border-bottom: 3px solid #FFF;
+        }
+    }
+    .recipe-selection-wrapper {
+        width: 410px;
+        padding: 8px 5px;
+        margin: 0 auto;
+        white-space: nowrap;
+        background-color: #f1f1f1;
+        border-radius: 20px;
+        font-size: 0.85em;
+        margin-bottom: 30px;
+        text-align: center;
+        position: relative;
+        .hover-block {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 140px;
+            height: 35px;
+            background-color: #47336c;
+            border-radius: 20px;
+            z-index: 1;
+        }
+        .col-xs-4 {
+            z-index: 2;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .active {
+        transition: 500ms;
+            color: #FFF;
+        }
     }
 }
 
@@ -97,6 +145,9 @@
     .main-content {
         .page-wrapper {
             margin-left: 55px;
+        }
+        .next-article-wrapper {
+            margin-left: 58px;
         }
     }
 }
