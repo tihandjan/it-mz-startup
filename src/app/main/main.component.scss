@@ -22,7 +22,7 @@
                 }
                 img {
                     width: 100%;
-                    transition: .3s ease;
+                    transition: 100ms;
                 }
             }
         }
@@ -108,7 +108,7 @@
             .title {
                 top: 48%;
             }
-            .title-small {
+            .title-small-next {
                 top: 82%;
                 left: 50%;
                 width: 75%;
