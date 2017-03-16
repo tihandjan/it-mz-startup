@@ -22,7 +22,7 @@
                 }
                 img {
                     width: 100%;
-                    transition: 100ms;
+                    transition: 200ms;
                 }
             }
         }
@@ -155,19 +155,27 @@
     .third-article-wrapper {
         a {
             color: inherit;
+            &:hover {
+                img {
+                    opacity: 0.8;
+                }
+            }
             .card {
                 padding: 0;
                 border-radius: 0;
                 border: 0;
                 border-left: 3px solid #FFF;
                 margin-bottom: 3px;
+                background-color: #000;
                 img {
                     width: 100%;
                     border-radius: 0;
+                    transition: 200ms;
                 }
                 .card-block {
                     border: 2px solid #f5f5f5;
                     padding: 10px;
+                    background-color: #FFF;
                     .card-title {
                         font-size: 1em;
                         text-align: center;
