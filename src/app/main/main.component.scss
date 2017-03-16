@@ -165,7 +165,7 @@
                 border-radius: 0;
                 border: 0;
                 border-left: 3px solid #FFF;
-                margin-bottom: 3px;
+                margin-bottom: 6px;
                 background-color: #000;
                 img {
                     width: 100%;
@@ -176,9 +176,77 @@
                     border: 2px solid #f5f5f5;
                     padding: 10px;
                     background-color: #FFF;
+                    padding-bottom: 4px;
                     .card-title {
                         font-size: 1em;
                         text-align: center;
+                    }
+                    .time {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-left: -6px;
+                        margin-right: -6px;
+                        .time-col {
+                            color: #006666;
+                            font-size: 0.7em;
+                            padding: 1px;
+                            padding-bottom: 3px;
+                            border: 1px solid #e8e8e8;
+                            border-radius: 15px;
+                            width: 66px;
+                            text-align: center;
+                            i {
+                                position: relative;
+                                top: 3px;
+                                margin-right: 2px;
+                            }
+                        }
+                    }
+                    .devider-line {
+                        border-top: 2px solid #f5f5f5;
+                        margin-top: 14px;
+                        margin-bottom: 14px;
+                        margin-left:-10px;
+                        margin-right:-10px;
+                    }
+                    .social {
+                        padding: 0 11px;
+                        .social-col {
+                            float: right;
+                            font-size: 0.8em;
+                            &:hover {
+                                i {
+                                    &:first-child {
+                                        display: none;
+                                    }
+                                    &:nth-child(2) {
+                                        display: inline-block;
+                                    }
+                                }
+                            }
+                            i {
+                                &:nth-child(2) {
+                                    display: none;
+                                }
+                            }
+                            &:first-child {
+                                float: left;
+                                .like-count {
+                                    position: relative;
+                                    top: -6px;
+                                    color: #BDBDBD;
+                                }
+                            }
+                        }
+                    }
+                    .play {
+                        position: absolute;
+                        top: 35%;
+                        left: 45%;
+                        i {
+                            color: #FFF;
+                            font-size: 1.9em;
+                        }
                     }
                 }
             }
