@@ -37,6 +37,7 @@ export class MainComponent implements OnInit {
   first_recipe_state: string = 'active';
   second_recipe_state: string = 'inactive';
   third_recipe_state: string = 'inactive';
+  test_array: Array<number> = [1,2,3,4,5,6,7,8,9,10,11,12];
   recipes: Recipe[] = [
     {
       title: 'Ceg из горбуши с анчоусами под сладким соусом',
