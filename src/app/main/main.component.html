@@ -1,196 +1,204 @@
-<section class="main-content">
-  <div class="page-wrapper clearfix">
+<div class="container container-custom">
+  <app-header></app-header>
+    <app-left-sidenav-menu></app-left-sidenav-menu>
 
-    <article class="main-article col-lg-6 main-article-big">
-      <a href="#">
-        <img [src]="top_recipe.image_big" [alt]="top_recipe.title">
-        <a class="tag">Кулиннария</a>
-        <h3 class="title">{{ top_recipe.title }}</h3>
-      </a>
-    </article>
-    <article class="main-article col-lg-6 main-article-big">
-      <a href="#">
-        <img [src]="top_article.image_big" [alt]="top_article.title">
-        <a class="tag">Статьи</a>
-        <h3 class="title">{{ top_article.title }}</h3>
-      </a>
-    </article>
-    <article *ngFor="let recipe of recipes; let i = index" class="main-article main-article-small col-lg-{{ i > 0 ? 3 : 6 }}">
-      <a href="#">
-        <img [src]="i > 0 ? recipe.image_small : recipe.image_long" [alt]="recipe.title">
-        <div class="main-caption">
-          <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-          <h3 class="title-small">{{ recipe.title }}</h3>
+      <section class="main-content">
+        <div class="page-wrapper clearfix">
+
+          <article class="main-article col-lg-6 main-article-big">
+            <a href="#">
+              <img [src]="top_recipe.image_big" [alt]="top_recipe.title">
+              <a class="tag">Кулиннария</a>
+              <h3 class="title">{{ top_recipe.title }}</h3>
+            </a>
+          </article>
+          <article class="main-article col-lg-6 main-article-big">
+            <a href="#">
+              <img [src]="top_article.image_big" [alt]="top_article.title">
+              <a class="tag">Статьи</a>
+              <h3 class="title">{{ top_article.title }}</h3>
+            </a>
+          </article>
+          <article *ngFor="let recipe of recipes; let i = index" class="main-article main-article-small col-lg-{{ i > 0 ? 3 : 6 }}">
+            <a href="#">
+              <img [src]="i > 0 ? recipe.image_small : recipe.image_long" [alt]="recipe.title">
+              <div class="main-caption">
+                <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
+                <h3 class="title-small">{{ recipe.title }}</h3>
+              </div>
+            </a>
+          </article>
+          <article class="main-article col-lg-6 main-article-small">
+            <a href="#">
+              <img src="https://dummyimage.com/467x230/b8329d/fff.png" [alt]="">
+            </a>
+          </article>
+          <article class="main-article col-lg-6 main-article-small">
+            <a href="#">
+              <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
+              <div class="main-caption">
+                <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
+                <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+              </div>
+            </a>
+          </article>
+          <article class="main-article col-lg-6 main-article-small">
+            <a href="#">
+              <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
+            </a>
+          </article>
+          <article class="main-article col-lg-3 main-article-small">
+            <a href="#">
+              <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
+              <div class="main-caption">
+                <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
+                <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+              </div>
+            </a>
+          </article>
+          <article class="main-article col-lg-3 main-article-small">
+            <a href="#">
+              <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
+              <div class="main-caption">
+                <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
+                <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+              </div>        
+            </a>
+          </article>
+
+
         </div>
-      </a>
-    </article>
-    <article class="main-article col-lg-6 main-article-small">
-      <a href="#">
-        <img src="https://dummyimage.com/467x230/b8329d/fff.png" [alt]="">
-      </a>
-    </article>
-    <article class="main-article col-lg-6 main-article-small">
-      <a href="#">
-        <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
-        <div class="main-caption">
-          <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-          <h3 class="title-small">Запеченная горбуша в моянезе</h3>
-        </div>
-      </a>
-    </article>
-    <article class="main-article col-lg-6 main-article-small">
-      <a href="#">
-        <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
-      </a>
-    </article>
-    <article class="main-article col-lg-3 main-article-small">
-      <a href="#">
-        <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
-        <div class="main-caption">
-          <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-          <h3 class="title-small">Запеченная горбуша в моянезе</h3>
-        </div>
-      </a>
-    </article>
-    <article class="main-article col-lg-3 main-article-small">
-      <a href="#">
-        <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
-        <div class="main-caption">
-          <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-          <h3 class="title-small">Запеченная горбуша в моянезе</h3>
-        </div>        
-      </a>
-    </article>
+        <div class="page-wrapper next-article-wrapper clearfix">
+          <h4 class="article-section-devider">Статьи</h4>
 
-
-  </div>
-  <div class="page-wrapper next-article-wrapper clearfix">
-    <h4 class="article-section-devider">Статьи</h4>
-
-    <div class="left-article-wrapper col-lg-3">
-      <article class="main-article col-lg-12">
-        <a href="#">
-          <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
-          <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3> 
-        </a>
-      </article>
-      <article class="main-article col-lg-12">
-        <a href="#">
-          <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
-          <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3>          
-        </a>
-      </article>
-    </div>
-
-    <article class="main-article col-lg-6 main-article-big">
-      <a href="#">
-        <img src="https://dummyimage.com/467x366/b8329d/b8329d.png" [alt]="">
-        <a class="tag">Статьи</a>
-        <h3 class="title">Cуп из горбуши и шпинатом</h3>
-      </a>
-    </article>
-    <article class="main-article col-lg-3">
-      <a href="#">
-        <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
-        <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3> 
-      </a>
-    </article>
-    <article class="main-article col-lg-3">
-      <a href="#">
-        <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
-        <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3> 
-      </a>
-    </article>
-
-  </div>
-  <div class="page-wrapper">
-    <h4 class="article-section-devider">Рецепты</h4>
-
-    <div class="recipe-selection-wrapper hidden-550 clearfix">
-      <div (click)="onRecipeState('first')" class="col-xs-4 {{ first_recipe_state }}">Новые рецепты</div>
-      <div (click)="onRecipeState('second')" class="col-xs-4 {{ second_recipe_state }}">Популярные</div>
-      <div (click)="onRecipeState('third')" class="col-xs-4 {{ third_recipe_state }}">Рекомендуемые</div>
-      <div class="hover-block" [@buttomState]="buttomState"></div>
-    </div>
-  </div>
-
-  <div class="page-wrapper third-article-wrapper next-article-wrapper clearfix" >
-    <a href="#" *ngFor="let i of [1,2,3,4,5,6,7,8]">
-      <article class="card col-lg-3">
-        <img class="card-img-top" src="https://dummyimage.com/230x230/b8329d/fff.png" alt="Card image cap">
-        <div class="card-block">
-          <h4 class="card-title">Утинные ножки с овощами грудинкой и белой фасолью</h4>
-          <div class="time">
-            <div class="time-col"><i class="sprite sprite-time"></i><span class="text">35 мин</span></div>
-            <div class="time-col"><i class="sprite sprite-uroven-slojnosti"></i><span class="text">сложно</span></div>
-            <div class="time-col"><i class="sprite sprite-kaloriy"></i><span class="text">125 ккал</span></div>
+          <div class="left-article-wrapper col-lg-3">
+            <article class="main-article col-lg-12">
+              <a href="#">
+                <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+                <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3> 
+              </a>
+            </article>
+            <article class="main-article col-lg-12">
+              <a href="#">
+                <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+                <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3>          
+              </a>
+            </article>
           </div>
-          <div class="devider-line"></div>
-          <div class="social clearfix">
-            <div class="social-col">
-              <i class="sprite sprite-like-grey"></i>
-              <i class="sprite sprite-like-red"></i>
-              <span class="like-count">21</span>
-            </div>
-            <div class="social-col">
-              <i class="sprite sprite-facebook-small"></i>
-              <i class="sprite sprite-facebook-small-hover"></i>
-            </div>
-            <div class="social-col">
-              <i class="sprite sprite-odnoklassniki-small"></i>
-              <i class="sprite sprite-odnoklassniki-small-hover"></i>
-            </div>
-            <div class="social-col">
-              <i class="sprite sprite-vk-small"></i>
-              <i class="sprite sprite-vk-small-hover"></i>
-            </div>
+
+          <article class="main-article col-lg-6 main-article-big">
+            <a href="#">
+              <img src="https://dummyimage.com/467x366/b8329d/b8329d.png" [alt]="">
+              <a class="tag">Статьи</a>
+              <h3 class="title">Cуп из горбуши и шпинатом</h3>
+            </a>
+          </article>
+          <article class="main-article col-lg-3">
+            <a href="#">
+              <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+              <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3> 
+            </a>
+          </article>
+          <article class="main-article col-lg-3">
+            <a href="#">
+              <img src="https://dummyimage.com/230x180/b8329d/fff.png" [alt]="">
+              <h3 class="title-small-next">Cуп из горбуши и шпинатом</h3> 
+            </a>
+          </article>
+
+        </div>
+        <div class="page-wrapper">
+          <h4 class="article-section-devider">Рецепты</h4>
+
+          <div class="recipe-selection-wrapper hidden-550 clearfix">
+            <div (click)="onRecipeState('first')" class="col-xs-4 {{ first_recipe_state }}">Новые рецепты</div>
+            <div (click)="onRecipeState('second')" class="col-xs-4 {{ second_recipe_state }}">Популярные</div>
+            <div (click)="onRecipeState('third')" class="col-xs-4 {{ third_recipe_state }}">Рекомендуемые</div>
+            <div class="hover-block" [@buttomState]="buttomState"></div>
           </div>
         </div>
-      </article>
-    </a>
-  </div>
 
-  <div class="page-wrapper">
-    <h4 class="article-section-devider">Видео рецепты</h4>
-  </div>
-
-  <div class="page-wrapper third-article-wrapper next-article-wrapper clearfix" >
-    <a href="#" *ngFor="let i of [1,2,3,4]">
-      <article class="card col-lg-3">
-        <img class="card-img-top" src="https://dummyimage.com/230x230/b8329d/fff.png" alt="Card image cap">
-        <div class="card-block">
-          <h4 class="card-title">Утинные ножки с овощами грудинкой и белой фасолью</h4>
-          <span class="play"><i class="fa fa-play"></i></span>
+        <div class="page-wrapper third-article-wrapper next-article-wrapper clearfix" >
+          <a href="#" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+            <article class="card col-lg-3">
+              <img class="card-img-top" src="https://dummyimage.com/230x230/b8329d/fff.png" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Утинные ножки с овощами грудинкой и белой фасолью</h4>
+                <div class="time">
+                  <div class="time-col"><i class="sprite sprite-time"></i><span class="text">35 мин</span></div>
+                  <div class="time-col"><i class="sprite sprite-uroven-slojnosti"></i><span class="text">сложно</span></div>
+                  <div class="time-col"><i class="sprite sprite-kaloriy"></i><span class="text">125 ккал</span></div>
+                </div>
+                <div class="devider-line"></div>
+                <div class="social clearfix">
+                  <div class="social-col">
+                    <i class="sprite sprite-like-grey"></i>
+                    <i class="sprite sprite-like-red"></i>
+                    <span class="like-count">21</span>
+                  </div>
+                  <div class="social-col">
+                    <i class="sprite sprite-facebook-small"></i>
+                    <i class="sprite sprite-facebook-small-hover"></i>
+                  </div>
+                  <div class="social-col">
+                    <i class="sprite sprite-odnoklassniki-small"></i>
+                    <i class="sprite sprite-odnoklassniki-small-hover"></i>
+                  </div>
+                  <div class="social-col">
+                    <i class="sprite sprite-vk-small"></i>
+                    <i class="sprite sprite-vk-small-hover"></i>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </a>
         </div>
-      </article>
-    </a>
-  </div>
 
-  <div class="page-wrapper">
-    <h4 class="article-section-devider">#горячаяподборка</h4>
-  </div>
-
-  <div class="page-wrapper hashtag-wrapper clearfix">
-    <article class="main-article col-lg-3 main-article-big" *ngFor="let i of [1,2,3,4]">
-      <a href="#">
-        <img src="https://dummyimage.com/230x400/{{i}}/{{i}}.png" [alt]="">
-        <h3 class="title">Утинные ножки с овощами грудинкой и белой фасолью</h3>
-      </a>
-    </article>
-  </div>
-
-  <div class="page-wrapper">
-    <h4 class="article-section-devider">топ авторов</h4>
-  </div>
-
-  <div class="page-wrapper users-wrapper clearfix">
-    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-4 user-col" *ngFor="let i of test_array">
-      <a href="#">
-        <div class="image-container">
-          <img src="https://dummyimage.com/55x55/{{i}}/{{i}}.png" alt="users avatars">
+        <div class="page-wrapper">
+          <h4 class="article-section-devider">Видео рецепты</h4>
         </div>
-      </a>
-    </div>
-  </div>
 
-</section>
+        <div class="page-wrapper third-article-wrapper next-article-wrapper clearfix" >
+          <a href="#" *ngFor="let i of [1,2,3,4]">
+            <article class="card col-lg-3">
+              <img class="card-img-top" src="https://dummyimage.com/230x230/b8329d/fff.png" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Утинные ножки с овощами грудинкой и белой фасолью</h4>
+                <span class="play"><i class="fa fa-play"></i></span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+        <div class="page-wrapper">
+          <h4 class="article-section-devider">#горячаяподборка</h4>
+        </div>
+
+        <div class="page-wrapper hashtag-wrapper clearfix">
+          <article class="main-article col-lg-3 main-article-big" *ngFor="let i of [1,2,3,4]">
+            <a href="#">
+              <img src="https://dummyimage.com/230x400/{{i}}/{{i}}.png" [alt]="">
+              <h3 class="title">Утинные ножки с овощами грудинкой и белой фасолью</h3>
+            </a>
+          </article>
+        </div>
+
+        <div class="page-wrapper">
+          <h4 class="article-section-devider">топ авторов</h4>
+        </div>
+
+        <div class="page-wrapper users-wrapper clearfix">
+          <div class="col-lg-1 col-md-3 col-sm-4 col-xs-4 user-col" *ngFor="let i of test_array">
+            <a href="#">
+              <div class="image-container">
+                <img src="https://dummyimage.com/55x55/{{i}}/{{i}}.png" alt="users avatars">
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+
+    <app-right-sidenav-menu></app-right-sidenav-menu>
+</div>

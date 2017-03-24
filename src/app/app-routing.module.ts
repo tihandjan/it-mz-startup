@@ -5,6 +5,9 @@ import { MainComponent } from './main/main.component';
 const routes: Routes = [
   {
     path: '', component: MainComponent
+  },
+  {
+    path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule'
   }
 ];
 
