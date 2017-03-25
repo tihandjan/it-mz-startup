@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AdminAuthService } from '../../services/admin-auth';
 
@@ -9,25 +10,43 @@ import { AdminAuthService } from '../../services/admin-auth';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  userData = {
-    email: '',
-    password: ''
-  }
+  loginForm: FormGroup;
+  errors: boolean = false;
   constructor(
     private auth: AdminAuthService,
     private router: Router
-  ) { }
+  ) {
+    this.loginForm = new FormGroup({
+      'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
+      'password': new FormControl('', Validators.required)
+    })
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(this.auth.userSignedIn$) {
+      this.router.navigate(['/admin/dashboard'])
+    }
+  }
 
   logIn() {
-    this.auth.adminLogIn(this.userData).subscribe(
+    this.auth.adminLogIn(this.loginForm.value).subscribe(
       res => {
-        this.router.navigate(['/admin/dashboard']);            
+          if(res.status == 200) {
+            this.router.navigate(['/admin/dashboard']);            
+          }
+          this.errors = false;
       },
       err => {
-        console.log(err)
+          this.errors = true;
+          console.log(err);
       }
+    )
+  }
+
+  logOut() {
+    this.auth.adminLogOut().subscribe(
+      res => console.log(res),
+      err => console.log(err)
     )
   }
 

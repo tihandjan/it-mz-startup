@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { Angular2TokenService } from 'angular2-token';
 
 import { AdminAuthService } from '../services/admin-auth';
 
@@ -7,16 +8,16 @@ import { AdminAuthService } from '../services/admin-auth';
 export class AdminGuard implements CanActivate {
 
     constructor(
-        private auth: AdminAuthService,
-        private router: Router
+        private auth: Angular2TokenService,
+        private router: Router,
+        private adminAuth: AdminAuthService
     ) { }
 
     canActivate() {
-        if(this.auth.userSignedIn$){
-            this.router.navigate(['/admin/dashboard']);            
+        if(this.adminAuth.userSignedIn$){  
             return true;
         }else{           
-            this.router.navigate(['/admin/login']);
+            this.router.navigate(['/admin/login']); 
             return false;
         }
     }

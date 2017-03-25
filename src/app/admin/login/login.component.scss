@@ -1,0 +1,36 @@
+.login-wrapper {
+    background: #34264F; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#34264F, #8371a2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#34264F, #8371a2);/* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#34264F, #8371a2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#34264F, #8371a2); /* Standard syntax */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    .form-wrapper {
+        width: 400px;
+        margin: 0 auto;
+        margin-top: 200px;
+        .alert {
+            margin-bottom: 0.6rem;
+        }
+        .admin {
+            text-align: center;
+            color: #FFF;
+        }
+        .btn-submit {
+            width: 100%;
+            color: #FFF;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .login-wrapper {
+        .form-wrapper {
+            width: 320px;
+        }
+    }
+}

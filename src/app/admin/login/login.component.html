@@ -1,10 +1,27 @@
-<form #f (ngSubmit)="logIn()">
-  <input type="text" 
-          name="email" 
-         [(ngModel)]="userData.email">
-  <input type="text"
-          name="password"  
-          [(ngModel)]="userData.password">
+<div class="login-wrapper">
+        <div class="form-wrapper">
+        <div class="alert alert-danger" *ngIf="errors">Логин или Пароль неверны</div>
+          <h3 class="admin">Admin</h3>
+          <form [formGroup]="loginForm" #f (ngSubmit)="logIn()">
+            <div class="form-group">
+              <input type="email" 
+                class="form-control"
+                placeholder="Login"
+                formControlName="email"
+                >
 
-  <button type="submit">Send</button>
-</form>
+            </div>
+            <div class="form-group">
+              <input type="password"
+                class="form-control"
+                placeholder="Password"
+                formControlName="password"
+                >
+            </div>
+            <div class="form-group">
+              <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary btn-submit">Войти</button>
+            </div>
+          </form>
+        </div>
+
+</div>

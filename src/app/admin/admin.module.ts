@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Angular2TokenService } from 'angular2-token';
 import { AdminRoutingModule } from './admin-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminComponent } from './admin.component';
 import { AdminAuthService } from '../services/admin-auth';
@@ -14,7 +14,8 @@ import { LoginComponent } from './login/login.component';
     imports: [
         AdminRoutingModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     exports: [],
     declarations: [

@@ -8,19 +8,15 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AdminAuthService {
-    userSignedIn$: Subject<boolean> = new Subject();
+    userSignedIn$:Subject<boolean> = new Subject();
 
-    constructor(
-        private auth: Angular2TokenService
-    ) { 
-        auth.init(environment.base_url);
-        auth.validateToken().subscribe(
-            res => res.status == 200 ? this.userSignedIn$.next(res.json().success) : this.userSignedIn$.next(false)
-        )
+    constructor(private authService:Angular2TokenService) {
+        this.authService.init(environment.base_url);
+        this.userSignedIn$.next(this.authService.userSignedIn());
     }
 
-    adminLogIn(signInData: {email: string, password:string}): Observable<Response> {
-        return this.auth.signIn(signInData).map(
+    adminLogIn(signInData): Observable<Response> {
+        return this.authService.signIn(signInData).map(
             res => {
                 this.userSignedIn$.next(true);
                 return res;
@@ -29,7 +25,7 @@ export class AdminAuthService {
     }
 
     adminLogOut(): Observable<Response> {
-        return this.auth.signOut().map(
+        return this.authService.signOut().map(
             res => {
                 this.userSignedIn$.next(false);
                 return res;
