@@ -10,6 +10,8 @@ import { LeftSidenavMenuComponent } from './shared/left-sidenav-menu/left-sidena
 import { RightSidenavMenuComponent } from './shared/right-sidenav-menu/right-sidenav-menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { AdminAuthService } from './services/admin-auth';
+import { Angular2TokenService } from 'angular2-token';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { HeaderComponent } from './shared/header/header.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AdminAuthService, Angular2TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

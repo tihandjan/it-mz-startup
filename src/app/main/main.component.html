@@ -1,3 +1,4 @@
+<a class="btn btn-primary" [routerLink]="['/admin/dashboard']" style="border-radius: 0;position:absolute;right:0;top:0" *ngIf="adminAuth.adminSignedIn()">Admin</a>
 <div class="container container-custom">
   <app-header></app-header>
     <app-left-sidenav-menu></app-left-sidenav-menu>
@@ -24,7 +25,7 @@
               <img [src]="i > 0 ? recipe.image_small : recipe.image_long" [alt]="recipe.title">
               <div class="main-caption">
                 <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-                <h3 class="title-small">{{ recipe.title }}</h3>
+                <h3 class="title-small"><span>{{ recipe.title }}</span></h3>
               </div>
             </a>
           </article>
@@ -38,7 +39,7 @@
               <img src="https://dummyimage.com/467x230/000/fff.png" [alt]="">
               <div class="main-caption">
                 <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-                <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+                <h3 class="title-small"><span>Запеченная горбуша в моянезе</span></h3>
               </div>
             </a>
           </article>
@@ -52,7 +53,7 @@
               <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
               <div class="main-caption">
                 <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-                <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+                <h3 class="title-small"><span>Запеченная горбуша в моянезе</span></h3>
               </div>
             </a>
           </article>
@@ -61,7 +62,7 @@
               <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
               <div class="main-caption">
                 <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
-                <h3 class="title-small">Запеченная горбуша в моянезе</h3>
+                <h3 class="title-small"><span>Запеченная горбуша в моянезе</span></h3>
               </div>        
             </a>
           </article>

@@ -10,7 +10,10 @@ import { environment } from '../../environments/environment';
 export class AdminAuthService {
     userSignedIn$:Subject<boolean> = new Subject();
 
-    constructor(private authService:Angular2TokenService) {
+    constructor(
+        private authService:Angular2TokenService,
+        router: Router
+    ) {
         this.authService.init(environment.base_url);
         this.userSignedIn$.next(this.authService.userSignedIn());
     }
@@ -31,5 +34,9 @@ export class AdminAuthService {
                 return res;
             }
         )
+    }
+
+    adminSignedIn() {
+        return this.authService.userSignedIn();
     }
 }

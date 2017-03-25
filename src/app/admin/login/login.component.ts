@@ -32,20 +32,20 @@ export class LoginComponent implements OnInit {
     this.auth.adminLogIn(this.loginForm.value).subscribe(
       res => {
           if(res.status == 200) {
-            this.router.navigate(['/admin/dashboard']);            
+            this.errors = false;
+            location.reload();
           }
-          this.errors = false;
       },
       err => {
           this.errors = true;
           console.log(err);
-      }
+      }          
     )
   }
 
   logOut() {
     this.auth.adminLogOut().subscribe(
-      res => console.log(res),
+      res => this.router.navigate(['/']),
       err => console.log(err)
     )
   }

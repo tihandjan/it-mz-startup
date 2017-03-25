@@ -10,6 +10,7 @@ import {
 
 import { Recipe } from '../models/recipe';
 import { Article } from '../models/article';
+import { AdminAuthService } from '../services/admin-auth';
 
 @Component({
   selector: 'app-main',
@@ -69,7 +70,9 @@ export class MainComponent implements OnInit {
       image_long: 'https://dummyimage.com/467x230/000/000.png',
       image_small: 'https://dummyimage.com/230x230/000/000.png'
     };
-  constructor() { }
+  constructor(
+    private adminAuth: AdminAuthService
+  ) { }
 
   ngOnInit() {
   }

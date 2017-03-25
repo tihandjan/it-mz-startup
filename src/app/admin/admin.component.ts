@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
+import { Router } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 @Component({
@@ -8,7 +8,11 @@ import { environment } from '../../environments/environment';
     templateUrl: 'admin.component.html'
 })
 export class AdminComponent implements OnInit {
-    constructor() {}
+    constructor(
+        private router: Router
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.router.navigate(['/admin/dashboard'])
+    }
 }
