@@ -12,4 +12,8 @@ export class LeftSidenavMenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  open($event) {
+    console.log($event)
+  }
+
 }
