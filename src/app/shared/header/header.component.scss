@@ -1,19 +1,6 @@
 .header-container {
     height: 65px;
     position: relative;
-    .open-main-menu {
-        position: absolute;
-        top: 5px;
-        left: 8px;
-        display: none;
-        i {
-            color: #47336c;
-            font-size: 2em;
-        }
-        &:hover {
-            cursor: pointer;
-        }
-    }
     .logo-area {
         background-color: #8371a2;
         height: 65px;

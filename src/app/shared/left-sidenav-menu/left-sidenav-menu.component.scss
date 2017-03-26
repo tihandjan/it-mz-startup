@@ -1,4 +1,16 @@
-
+.open-main-menu {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    display: none;
+    i {
+        color: #47336c;
+        font-size: 2em;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
 .main-side {
     text-transform: uppercase;
     color: #757a7b;
@@ -107,5 +119,36 @@
                 }
             }
         }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-side {
+        left: 0 !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .open-main-menu {
+        display: inline;
+        position: fixed;
+        z-index: 3;
+    }
+    .white-line {
+        display: inline;
+        background-color: #FFF;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        z-index: 2;
+    }
+    .main-side {
+        left: -190px;
+        background-color: #FFF;
+        z-index: 120;
+        height: 100vh;
+        position: fixed
     }
 }

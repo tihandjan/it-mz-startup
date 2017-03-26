@@ -1,5 +1,8 @@
-
-<section class="main-side" (menuOpen)="open($event)">
+<div class="white-line"></div>
+<div class="open-main-menu" (click)="openMenu()">
+    <i class="fa fa-bars"></i>
+</div>
+<section class="main-side" [@elementState]="state">
     <nav class="main-side-nav">
         <ul>
             <li><a href="#"><i class="sprite sprite-1-hover-1"></i><i class="sprite sprite-1"></i> первые блюда</a></li>
