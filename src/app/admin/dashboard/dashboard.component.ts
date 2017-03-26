@@ -18,12 +18,4 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  signOut() {
-    this.auth.adminLogOut().subscribe(
-      res => {
-        this.router.navigate(['/']);
-      },
-      err => console.log(err)
-    )
-  }
 }

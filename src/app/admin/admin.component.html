@@ -34,7 +34,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar has-image" data-color="purple" style="background:url(/app/admin/assets/img/sidebar-5.jpg);opacity:0.8;">
+    <div [@elementState]="state" class="sidebar has-image" data-color="purple" style="background:url(/app/admin/assets/img/sidebar-5.jpg);">
         
     <!--
 
@@ -95,7 +95,7 @@
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
+                    <button (click)="openMenu()" type="button" class="navbar-toggle">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
