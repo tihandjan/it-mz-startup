@@ -9,7 +9,7 @@
           <article class="main-article col-lg-6 main-article-big">
             <a href="#">
               <img [src]="top_recipe.image_big" [alt]="top_recipe.title">
-              <a class="tag">Кулиннария</a>
+              <a class="tag" [routerLink]="['/recipes']">Кулиннария</a>
               <h3 class="title">{{ top_recipe.title }}</h3>
             </a>
           </article>

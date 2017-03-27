@@ -3,13 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { LeftSidenavMenuComponent } from './shared/left-sidenav-menu/left-sidenav-menu.component';
-import { RightSidenavMenuComponent } from './shared/right-sidenav-menu/right-sidenav-menu.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { AdminAuthService } from './services/admin-auth';
 import { UserAuthService } from './services/user-auth';
 import { Angular2TokenService } from 'angular2-token';
@@ -17,18 +14,15 @@ import { Angular2TokenService } from 'angular2-token';
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    LeftSidenavMenuComponent,
-    RightSidenavMenuComponent,
-    FooterComponent,
-    HeaderComponent
+    MainComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [AdminAuthService, Angular2TokenService, UserAuthService],
   bootstrap: [AppComponent]

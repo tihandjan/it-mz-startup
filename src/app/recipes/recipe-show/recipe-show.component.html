@@ -1,3 +1,30 @@
-<p>
-  recipe-show works!
-</p>
+<section class="main-content">
+  <div class="page-wrapper clearfix">
+    <div class="left-section">
+      <div class="img-wrapper">
+        <img src="https://dummyimage.com/706x320/b8329d/fff.png" [alt]="">
+        <div class="author-wrapper clearfix">
+          <div class="author-name">
+            <div class="name">Жиробас Жир</div>
+            <div class="count">41 рецепт</div>
+          </div>
+          <div class="author-avatar">
+            <img src="https://dummyimage.com/320x320/34264f/fff.png" [alt]="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-section">
+      <article class="main-article main-article-small" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+        <a href="#">
+          <img src="https://dummyimage.com/230x230/000/fff.png" [alt]="">
+          <div class="main-caption">
+            <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
+            <h3 class="title-small"><span>Запеченная горбуша в моянезе</span></h3>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+

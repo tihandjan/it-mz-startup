@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Angular2TokenService } from 'angular2-token';
 
 import { AdminAuthService } from '../../services/admin-auth';
 
@@ -15,8 +14,7 @@ export class LoginComponent implements OnInit {
   errors: boolean = false;
   constructor(
     private auth: AdminAuthService,
-    private router: Router,
-    private _generalAuth: Angular2TokenService
+    private router: Router
   ) {
     this.loginForm = new FormGroup({
       'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
@@ -26,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this._generalAuth.currentUserType == 'ADMIN' && this._generalAuth.userSignedIn()) {
+    if(this.auth.isAdmin()) {
       this.router.navigate(['/admin/dashboard'])
     }
   }

@@ -5,15 +5,15 @@
 <section class="main-side" [@elementState]="state">
     <nav class="main-side-nav">
         <ul>
-            <li><a href="#"><i class="sprite sprite-1-hover-1"></i><i class="sprite sprite-1"></i> первые блюда</a></li>
-            <li><a href="#"><i class="sprite sprite-1-hover"></i><i class="sprite sprite-2"></i> вторые блюда</a></li>
-            <li><a href="#"><i class="sprite sprite-salat-hover"></i><i class="sprite sprite-salat"></i> салаты</a></li>
-            <li><a href="#"><i class="sprite sprite-zakuski-hover"></i><i class="sprite sprite-zakuski"></i> закуски</a></li>
-            <li><a href="#"><i class="sprite sprite-sous-hover"></i><i class="sprite sprite-sous"></i> соусы</a></li>
-            <li><a href="#"><i class="sprite sprite-vipichka-hover"></i><i class="sprite sprite-vipichka"></i> выпечка</a></li>
-            <li><a href="#"><i class="sprite sprite-napitki-hover"></i><i class="sprite sprite-napitki"></i> напитки</a></li>
-            <li><a href="#"><i class="sprite sprite-deserty-hover"></i><i class="sprite sprite-deserty"></i> десерты</a></li>
-            <li><a href="#"><i class="sprite sprite-banky-hover"></i><i class="sprite sprite-banky"></i> консервация</a></li>
+            <li><a [routerLink]="['/recipes', 'first-meal']"><i class="sprite sprite-1-hover-1"></i><i class="sprite sprite-1"></i> первые блюда</a></li>
+            <li><a [routerLink]="['/recipes', 'second-course']"><i class="sprite sprite-1-hover"></i><i class="sprite sprite-2"></i> вторые блюда</a></li>
+            <li><a [routerLink]="['/recipes', 'salads']"><i class="sprite sprite-salat-hover"></i><i class="sprite sprite-salat"></i> салаты</a></li>
+            <li><a [routerLink]="['/recipes', 'snacks']"><i class="sprite sprite-zakuski-hover"></i><i class="sprite sprite-zakuski"></i> закуски</a></li>
+            <li><a [routerLink]="['/recipes', 'sauces']"><i class="sprite sprite-sous-hover"></i><i class="sprite sprite-sous"></i> соусы</a></li>
+            <li><a [routerLink]="['/recipes', 'bakery']"><i class="sprite sprite-vipichka-hover"></i><i class="sprite sprite-vipichka"></i> выпечка</a></li>
+            <li><a [routerLink]="['/recipes', 'beverages']"><i class="sprite sprite-napitki-hover"></i><i class="sprite sprite-napitki"></i> напитки</a></li>
+            <li><a [routerLink]="['/recipes', 'dessert']"><i class="sprite sprite-deserty-hover"></i><i class="sprite sprite-deserty"></i> десерты</a></li>
+            <li><a [routerLink]="['/recipes', 'preservation']"><i class="sprite sprite-banky-hover"></i><i class="sprite sprite-banky"></i> консервация</a></li>
         </ul>
     </nav>
     <nav class="language-menu">
