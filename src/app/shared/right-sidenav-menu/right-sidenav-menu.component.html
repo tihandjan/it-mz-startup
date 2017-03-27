@@ -4,6 +4,22 @@
       <li (click)="toggleMenu()"><i class="fa fa-user"></i></li>
       <li><i class="fa fa-heart"></i></li>
     </ul>
+
+    <form [formGroup]="userForm" (ngSubmit)="userRegistration()">
+      <div class="form-group">
+        <input type="email" formControlName="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="password" formControlName="password" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="password" formControlName="passwordConfirmation" class="form-control">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-info">Регистрация</button>
+      </div>
+    </form>
+        <button (click)="logOut()" class="btn btn-info">Выйти</button>
     
   </div>
 </section>

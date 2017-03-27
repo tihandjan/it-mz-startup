@@ -10,7 +10,7 @@ import {
 
 import { Recipe } from '../models/recipe';
 import { Article } from '../models/article';
-import { AdminAuthService } from '../services/admin-auth';
+import { Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'app-main',
@@ -71,7 +71,7 @@ export class MainComponent implements OnInit {
       image_small: 'https://dummyimage.com/230x230/000/000.png'
     };
   constructor(
-    private adminAuth: AdminAuthService
+    private auth: Angular2TokenService
   ) { }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,6 +11,7 @@ import { RightSidenavMenuComponent } from './shared/right-sidenav-menu/right-sid
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AdminAuthService } from './services/admin-auth';
+import { UserAuthService } from './services/user-auth';
 import { Angular2TokenService } from 'angular2-token';
 
 @NgModule({
@@ -26,9 +27,10 @@ import { Angular2TokenService } from 'angular2-token';
     BrowserModule,
     FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [AdminAuthService, Angular2TokenService],
+  providers: [AdminAuthService, Angular2TokenService, UserAuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,7 +18,7 @@ export class AdminAuthService {
         this.userSignedIn$.next(this.authService.userSignedIn());
     }
 
-    adminLogIn(signInData): Observable<Response> {
+    adminLogIn(signInData: {email: string, password: string, userType: string}): Observable<Response> {
         return this.authService.signIn(signInData).map(
             res => {
                 this.userSignedIn$.next(true);
@@ -36,7 +36,7 @@ export class AdminAuthService {
         )
     }
 
-    adminSignedIn() {
-        return this.authService.userSignedIn();
+    isAdmin(): boolean {
+        return (this.authService.currentUserType == 'ADMIN' && this.authService.userSignedIn()) ? true : false
     }
 }
