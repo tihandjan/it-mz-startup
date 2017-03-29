@@ -1,11 +1,11 @@
+import { Component, OnInit } from '@angular/core';
 import {
-   Component, OnInit, 
-   style,
-   state,
-   trigger,
-   animate,
-   transition
-} from '@angular/core';
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 @Component({
   selector: 'app-left-sidenav-menu',

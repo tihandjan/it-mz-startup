@@ -1,12 +1,12 @@
+import { Component, OnInit } from '@angular/core';
 import {
-   Component, 
-   OnInit,
-   trigger,
-   state,
-   animate,
-   style,
-   transition
-} from '@angular/core';
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+
 import { UserAuthService } from '../../services/user-auth';
 import { Angular2TokenService } from 'angular2-token';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
