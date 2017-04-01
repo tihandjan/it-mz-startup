@@ -4,22 +4,85 @@
       <li (click)="toggleMenu()"><i class="fa fa-user"></i></li>
       <li><i class="fa fa-heart"></i></li>
     </ul>
+    <span *ngIf="!_auth.userSignedIn()">
+      <div class="registration-wrapper" [ngClass]="{active: registration}">
+        <div class="enter text-center">Регистрация</div>
+        <div class="enter-tips text-center">Авторизируйтесь с помощью одной из соцсетей</div>
+        <div class="fb-auth-btn clearfix">
+          <i>Регистрация через</i>
+          <i class="fa fa-facebook"></i>
+          <div class="vert-line"></div>
+        </div>
+        <div class="enter-line">
+          <div class="enter-sign">Регистрация</div>
+        </div>
 
-    <form [formGroup]="userForm" (ngSubmit)="userRegistration()">
-      <div class="form-group">
-        <input type="email" formControlName="email" class="form-control">
+        <form [formGroup]="userRegForm" class="registration-form" (ngSubmit)="userRegistration()">
+          <div class="form-group">
+            <input type="email" formControlName="email" class="form-control">
+            <label for="email">почта</label>
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="password" class="form-control">
+            <label for="email">пароль</label>          
+            <i class="fa fa-lock"></i>          
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="passwordConfirmation" class="form-control">
+            <label for="email">повторите пароль</label>          
+            <i class="fa fa-lock"></i>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-purple">Регистрация</button>
+          </div>
+          <div class="form-group forgot-password clearfix">
+            <span class="pull-left" (click)="toggleForm()">Есть аккаунт?</span>
+            <span class="pull-right">Забыли пароль?</span>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <input type="password" formControlName="password" class="form-control">
+
+      <div class="registration-wrapper" [ngClass]="{active: !registration}">
+        <div class="enter text-center">Вход</div>
+        <div class="enter-tips text-center">Авторизируйтесь с помощью одной из соцсетей</div>
+        <div class="fb-auth-btn clearfix">
+          <i>Войти через</i>
+          <i class="fa fa-facebook"></i>
+          <div class="vert-line"></div>
+        </div>
+        <div class="enter-line">
+          <div class="enter-sign">вход</div>
+        </div>
+
+        <form [formGroup]="userSignInForm" class="registration-form" (ngSubmit)="userRegistration()">
+          <div class="form-group">
+            <input type="email" formControlName="email" class="form-control">
+            <label for="email">почта</label>
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="password" class="form-control">
+            <label for="email">пароль</label>          
+            <i class="fa fa-lock"></i>          
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-purple">войти</button>
+          </div>
+          <div class="form-group forgot-password clearfix">
+            <span class="pull-left" (click)="toggleForm()">Регистрация</span>
+            <span class="pull-right">Забыли пароль?</span>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <input type="password" formControlName="passwordConfirmation" class="form-control">
+
+    </span>
+
+    <span *ngIf="_auth.userSignedIn()">
+      <div class="">
+        <button (click)="logOut()" class="btn btm-purple">Выйти</button>
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-info">Регистрация</button>
-      </div>
-    </form>
-        <button (click)="logOut()" class="btn btn-info">Выйти</button>
+    </span>
     
   </div>
 </section>

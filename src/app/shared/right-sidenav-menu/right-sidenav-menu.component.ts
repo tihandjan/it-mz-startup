@@ -29,15 +29,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RightSidenavMenuComponent implements OnInit {
   state: string = 'inactive';
-  userForm: FormGroup;
+  userRegForm: FormGroup;
+  userSignInForm: FormGroup;
+  registration: boolean = false;
   constructor(
     private userAuth: UserAuthService,
     private _auth: Angular2TokenService
   ) {
-    this.userForm = new FormGroup({
+    this.userRegForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern('')]),
       password: new FormControl('', [Validators.required]),
       passwordConfirmation: new FormControl('', [Validators.required]),
+      userType: new FormControl('USER')
+    });
+    this.userSignInForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.pattern('')]),
+      password: new FormControl('', [Validators.required]),
       userType: new FormControl('USER')
     })
   }
@@ -49,7 +56,18 @@ export class RightSidenavMenuComponent implements OnInit {
   }
 
   userRegistration() {
-    this.userAuth.userRegistration(this.userForm.value).subscribe(
+    this.userAuth.userRegistration(this.userRegForm.value).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  userSignIn() {
+    this.userAuth.userLogIn(this.userSignInForm.value).subscribe(
       res => {
         console.log(res);
       },
@@ -68,5 +86,8 @@ export class RightSidenavMenuComponent implements OnInit {
     )
   }
 
+  toggleForm() {
+    this.registration = !this.registration;
+  }
 
 }

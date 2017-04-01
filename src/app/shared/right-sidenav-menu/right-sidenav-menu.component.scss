@@ -42,6 +42,114 @@
                 }
             }
         }
+        .registration-wrapper {
+            padding: 30px;
+            color: #FFF;
+            display: none;
+            .enter {
+                    font-size: 1.4em;
+                    text-transform: uppercase;
+                    margin-bottom: 8px;
+            }
+            .enter-tips {
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+            .fb-auth-btn {
+                padding: 5px;
+                background-color: #21609E;
+                border: 1px solid #FFF;
+                position: relative;
+                transition: 200ms;
+                margin-bottom: 50px;
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.9;
+                }
+                i {
+                    &:first-child {
+                        float: left;
+                        width: 180px;
+                        text-align: center;
+                        font-style: normal;
+                    }
+                    &:nth-child(2) {
+                        float: right;
+                        font-size: 1.5em;
+                        padding-right: 5px;
+                    }
+                }
+                .vert-line {
+                    border-left: 1px solid #FFF;
+                    height: 35px;
+                    position: absolute;
+                    top: 0;
+                    right: 35px;
+                }
+            }
+            .enter-line {
+                border-top: 1px solid #FFF;
+                .enter-sign {
+                    font-size: 1.2em;
+                    text-transform: uppercase;
+                    position: relative;
+                    top: -14px;
+                    width: 60%;
+                    margin: 0 auto;
+                    text-align: center;
+                    background-color: #8371A2;
+                }
+            }
+            .registration-form {
+                .form-group {
+                    position: relative;
+                    margin-bottom: 0;
+                    input {
+                        background-color: transparent;
+                        color: #FFF;
+                        box-shadow: 0;
+                        border-radius: 0;
+                        border-color: transparent;
+                        border-bottom: 1px solid #FFF;
+                        padding-left: 30px;
+                        padding-bottom: 3px;
+                    }
+                    i {
+                        position: absolute;
+                        left: 10px;
+                        top: 10px;
+                    }
+                    label {
+                        font-family: -webkit-pictograph;
+                        margin-bottom: 0;
+                    }
+                    .btn-purple {
+                        width: 100%;
+                        background-color: #47336c;
+                        transition: 200ms;
+                        border-radius: 0;
+                        color: #FFF;    
+                        margin-top: 15px;
+                        margin-bottom: 8px;
+                        &:hover {
+                            background-color: #34264F;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .forgot-password {
+                    font-size: 0.9em;
+                    span {
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .active {
+            display: block;
+        }
     }
 }
 

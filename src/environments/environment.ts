@@ -8,6 +8,7 @@ export const environment = {
   base_url: {
     apiBase: 'http://localhost:3000/api',
     signOutPath: 'auth/sign_out',
+    signInPath: 'auth/sign_in',
     userTypes: [
         { name: 'ADMIN', path: 'admin' },
         { name: 'USER', path: 'user' }
