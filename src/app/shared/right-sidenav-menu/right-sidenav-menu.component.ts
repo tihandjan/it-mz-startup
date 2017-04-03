@@ -37,10 +37,10 @@ export class RightSidenavMenuComponent implements OnInit {
     private _auth: Angular2TokenService
   ) {
     this.userRegForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern('')]),
-      password: new FormControl('', [Validators.required]),
-      passwordConfirmation: new FormControl('', [Validators.required]),
-      userType: new FormControl('USER')
+      'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
+      'password': new FormControl('', Validators.required),
+      'passwordConfirmation': new FormControl('', [Validators.required]),
+      'userType': new FormControl('USER')
     });
     this.userSignInForm = new FormGroup({
       'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
