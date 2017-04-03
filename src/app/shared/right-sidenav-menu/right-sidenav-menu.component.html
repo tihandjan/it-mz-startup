@@ -34,7 +34,7 @@
             <i class="fa fa-lock"></i>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-purple">Регистрация</button>
+            <button type="submit" class="btn btn-purple" [disabled]="!userRegForm.valid" [ngClass]="{ 'btn-purple-active': userRegForm.valid }">Регистрация</button>
           </div>
           <div class="form-group forgot-password clearfix">
             <span class="pull-left" (click)="toggleForm()">Есть аккаунт?</span>
@@ -55,7 +55,7 @@
           <div class="enter-sign">вход</div>
         </div>
 
-        <form [formGroup]="userSignInForm" class="registration-form" (ngSubmit)="userRegistration()">
+        <form [formGroup]="userSignInForm" class="registration-form" (ngSubmit)="userSignIn()">
           <div class="form-group">
             <input type="email" formControlName="email" class="form-control">
             <label for="email">почта</label>
@@ -67,7 +67,7 @@
             <i class="fa fa-lock"></i>          
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-purple">войти</button>
+            <button type="submit" class="btn btn-purple" [ngClass]="{ 'btn-purple-active': userSignInForm.valid }" [disabled]="!userSignInForm.valid">войти</button>
           </div>
           <div class="form-group forgot-password clearfix">
             <span class="pull-left" (click)="toggleForm()">Регистрация</span>
