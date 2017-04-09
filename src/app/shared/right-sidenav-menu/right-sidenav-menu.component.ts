@@ -32,6 +32,8 @@ export class RightSidenavMenuComponent implements OnInit {
   userRegForm: FormGroup;
   userSignInForm: FormGroup;
   registration: boolean = false;
+  regErrors: any;
+  loginErrors: any;
   constructor(
     private userAuth: UserAuthService,
     private _auth: Angular2TokenService
@@ -58,9 +60,10 @@ export class RightSidenavMenuComponent implements OnInit {
   userRegistration() {
     this.userAuth.userRegistration(this.userRegForm.value).subscribe(
       res => {
-        console.log(res);
+        console.log(res.json());
       },
       err => {
+        this.regErrors = err.json().errors;
         console.log(err);
       }
     )
@@ -72,6 +75,7 @@ export class RightSidenavMenuComponent implements OnInit {
         console.log(res);
       },
       err => {
+        this.loginErrors = err.json().errors;        
         console.log(err);
       }
     )
