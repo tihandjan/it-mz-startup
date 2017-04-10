@@ -12,11 +12,13 @@ import { MainComponent } from './main/main.component';
 import { AdminAuthService } from './services/admin-auth';
 import { UserAuthService } from './services/user-auth';
 import { Angular2TokenService } from 'angular2-token';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
