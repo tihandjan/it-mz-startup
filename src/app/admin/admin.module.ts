@@ -13,6 +13,7 @@ import { UserComponent } from './user/user.component';
 import { IconsComponent } from './icons/icons.component';
 import { TablesComponent } from './tables/tables.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { RecipiesComponent } from './recipies/recipies.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
         UserComponent,
         IconsComponent,
         TablesComponent,
-        NotificationsComponent
+        NotificationsComponent,
+        RecipiesComponent
     ],
     providers: [Angular2TokenService, AdminGuard, AdminAuthService],
 })

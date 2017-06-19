@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { IconsComponent } from './icons/icons.component';
 import { TablesComponent } from './tables/tables.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { RecipiesComponent } from './recipies/recipies.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
           { path: 'icons', component: IconsComponent },
           { path: 'tables', component: TablesComponent },
           { path: 'notifications', component: NotificationsComponent },
+          { path: 'recipies', component: RecipiesComponent }
       ]
   },
   {
