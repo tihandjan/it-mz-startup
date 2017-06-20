@@ -1,0 +1,15 @@
+export interface Recipe {
+    title: string,
+    summary: string,
+    image: any,
+    time: number,
+    portion: number,
+    complexity: number,
+    calories: number,
+    fats: number,
+    proteins: number,
+    carbohydrates: number,
+    publish: string,
+    rating: number,
+    user_id: number,
+}
