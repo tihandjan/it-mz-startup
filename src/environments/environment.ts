@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   base_url: {
-    apiBase: 'http://localhost:3000/api',
+    apiBase: 'http://localhost:3000/api/v1',
     signOutPath: 'auth/sign_out',
     signInPath: 'auth/sign_in',
     userTypes: [
@@ -14,5 +14,5 @@ export const environment = {
         { name: 'USER', path: 'user' }
     ]
   },
-  root_url: 'http://localhost:3000/api'
+  root_url: 'http://localhost:3000/api/v1'
 };

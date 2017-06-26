@@ -112,23 +112,6 @@ a {
                 }
             }
         }
-        .tag {
-            padding: 3px 20px;
-            color: #FFF;
-            background-color: #47336c;
-            text-transform: uppercase;
-            font-weight: 500;
-            font-size: 0.8em;
-            border-radius: 10px;
-            position: absolute;
-            top: 32%;
-            left: 50%;
-            transform: translate(-47%, -50%);
-            transition: .5s ease;            
-            &:hover {
-                background-color: #34264f;
-            }
-        }
         .title {
             position: absolute;
             transform: translate(-47%, -50%);
@@ -142,9 +125,6 @@ a {
     }
     .next-article-wrapper {
         margin-left: 187px;
-        .left-article-wrapper {
-            padding: 0;
-        }
         .main-article {
             border-left: 3px solid #FFF;
             border-bottom: 3px solid #FFF;

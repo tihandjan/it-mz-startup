@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { AdminAuthService } from './services/admin-auth';
 import { UserAuthService } from './services/user-auth';
+import { RecipeService } from './services/recipe';
 import { Angular2TokenService } from 'angular2-token';
 import { TruncatePipe } from './pipes/truncate.pipe';
 
@@ -29,7 +30,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     SharedModule,
     BrowserAnimationsModule
   ],
-  providers: [AdminAuthService, Angular2TokenService, UserAuthService],
+  providers: [AdminAuthService, Angular2TokenService, UserAuthService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
