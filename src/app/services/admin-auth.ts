@@ -11,15 +11,15 @@ export class AdminAuthService {
     userSignedIn$:Subject<boolean> = new Subject();
 
     constructor(
-        private authService:Angular2TokenService,
+        private auth: Angular2TokenService,
         router: Router
     ) {
-        this.authService.init(environment.base_url);
-        this.userSignedIn$.next(this.authService.userSignedIn());
+        this.auth.init(environment.base_url);
+        this.userSignedIn$.next(this.auth.userSignedIn());
     }
 
     adminLogIn(signInData: {email: string, password: string, userType: string}): Observable<Response> {
-        return this.authService.signIn(signInData).map(
+        return this.auth.signIn(signInData).map(
             res => {
                 this.userSignedIn$.next(true);
                 return res;
@@ -28,7 +28,7 @@ export class AdminAuthService {
     }
 
     adminLogOut(): Observable<Response> {
-        return this.authService.signOut().map(
+        return this.auth.signOut().map(
             res => {
                 this.userSignedIn$.next(false);
                 return res;
@@ -37,6 +37,6 @@ export class AdminAuthService {
     }
 
     isAdmin(): boolean {
-        return (this.authService.currentUserType == 'ADMIN' && this.authService.userSignedIn()) ? true : false
+        return (this.auth.currentUserType == 'ADMIN' && this.auth.userSignedIn()) ? true : false
     }
 }
