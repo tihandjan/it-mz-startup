@@ -1,13 +1,38 @@
 <div class="content">
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="card">
-                        <form >
-                          <input type="number" class="form-control">
-                        </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary" [routerLink]="['new']">Создать рецепт</button>
+
+                        <table class="table">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Заголовок</th>
+                                    <th>Автор</th>
+                                    <th>Картинка</th>
+                                    <th>Одобрить</th>
+                                    <th>Редактировать</th>
+                                    <th>Удалить</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let recipe of recipies">
+                                    <th scope="row">1</th>
+                                    <td>{{ recipe.title }}</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

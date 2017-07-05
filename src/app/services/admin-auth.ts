@@ -39,4 +39,15 @@ export class AdminAuthService {
     isAdmin(): boolean {
         return (this.auth.currentUserType == 'ADMIN' && this.auth.userSignedIn()) ? true : false
     }
+
+    get tokens() {
+        return {
+            accessToken: this.auth.currentAuthData['accessToken'],
+            client: this.auth.currentAuthData['client'],
+            uid: this.auth.currentAuthData['uid'],
+            expiry: this.auth.currentAuthData['expiry'],
+            tokenType: this.auth.currentAuthData['tokenType'],
+        }
+    }
+
 }

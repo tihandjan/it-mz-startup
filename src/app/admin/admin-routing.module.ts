@@ -10,6 +10,7 @@ import { IconsComponent } from './icons/icons.component';
 import { TablesComponent } from './tables/tables.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { RecipiesComponent } from './recipies/recipies.component';
+import { NewRecipeComponent } from './recipies/new-recipe.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
           { path: 'icons', component: IconsComponent },
           { path: 'tables', component: TablesComponent },
           { path: 'notifications', component: NotificationsComponent },
-          { path: 'recipies', component: RecipiesComponent }
+          { path: 'recipies', component: RecipiesComponent },
+          { path: 'recipies/new', component: NewRecipeComponent }
       ]
   },
   {

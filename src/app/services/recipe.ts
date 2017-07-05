@@ -5,18 +5,20 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx'
 import { environment } from '../../environments/environment';
 import { Recipe } from '../interfaces/recipe'
+import { AdminAuthService } from '../services/admin-auth'
 import { Angular2TokenService } from 'angular2-token';
 
 @Injectable()
 export class RecipeService {
-  baseUrl: any = environment.base_url.apiBase
+  baseUrl: any = environment.root_url
   constructor(
     private http: Http,
-    private _tokenService: Angular2TokenService
+    private _tokenService: Angular2TokenService,
+    private adminAuth: AdminAuthService
   ) { }
 
   getRecipies(): Observable<Recipe[]> {
-    return this.http.get(this.baseUrl + '/recipies')
+    return this.http.get(this.baseUrl + '/recipes')
             .map(
               (response: Response) => <Recipe[]>response.json()
             )
@@ -24,16 +26,18 @@ export class RecipeService {
   }
 
   createRecipe(recipe: Recipe): Observable<Recipe> {
+    let tokens = this.adminAuth.tokens;
     let headers = new Headers(); 
+    alert(tokens.expiry)
     headers.append('Accept','application/json'); 
-    headers.append('access-token', this._tokenService.currentAuthData['accessToken']); 
-    headers.append('client', this._tokenService.currentAuthData['client']); 
-    headers.append('uid', this._tokenService.currentAuthData['uid']); 
-    headers.append('expiry', this._tokenService.currentAuthData['expiry']); 
-    headers.append('token-type', this._tokenService.currentAuthData['tokenType']);
+    headers.append('access-token', tokens.accessToken); 
+    headers.append('client', tokens.client); 
+    headers.append('uid', tokens.uid); 
+    headers.append('expiry', tokens.expiry); 
+    headers.append('token-type', tokens.tokenType);
     headers.append('content-type', 'application/json');
     let requestOptions = new RequestOptions({headers: headers});
-    return this.http.post(this.baseUrl + '/recipe', JSON.stringify(recipe), requestOptions).map(
+    return this.http.post(this.baseUrl + '/recipes', JSON.stringify(recipe), requestOptions).map(
       (response: Response) => response.json()
     )
   }

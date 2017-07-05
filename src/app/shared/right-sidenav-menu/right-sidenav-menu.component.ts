@@ -34,6 +34,7 @@ export class RightSidenavMenuComponent implements OnInit {
   registration: boolean = false;
   regErrors: any;
   loginErrors: any;
+  user_signed_in: boolean;
   constructor(
     private userAuth: UserAuthService,
     private _auth: Angular2TokenService
@@ -51,7 +52,9 @@ export class RightSidenavMenuComponent implements OnInit {
     })
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user_signed_in = this._auth.userSignedIn() && this._auth.currentUserType == 'USER'
+  }
 
   toggleMenu() {
     this.state = this.state === 'inactive' ? 'active' : 'inactive';
@@ -60,7 +63,7 @@ export class RightSidenavMenuComponent implements OnInit {
   userRegistration() {
     this.userAuth.userRegistration(this.userRegForm.value).subscribe(
       res => {
-        console.log(res.json());
+        this.user_signed_in = true
       },
       err => {
         this.regErrors = err.json().errors;
@@ -72,7 +75,7 @@ export class RightSidenavMenuComponent implements OnInit {
   userSignIn() {
     this.userAuth.userLogIn(this.userSignInForm.value).subscribe(
       res => {
-        console.log(res);
+        this.user_signed_in = true
       },
       err => {
         this.loginErrors = err.json().errors;        
@@ -84,7 +87,7 @@ export class RightSidenavMenuComponent implements OnInit {
   logOut() {
     this.userAuth.userLogOut().subscribe(
       res => {
-        console.log(res); 
+        this.user_signed_in = false 
       } ,
       err => console.log(err)
     )

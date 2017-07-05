@@ -14,6 +14,8 @@ import { IconsComponent } from './icons/icons.component';
 import { TablesComponent } from './tables/tables.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { RecipiesComponent } from './recipies/recipies.component';
+import { NewRecipeComponent } from './recipies/new-recipe.component';
+
 
 @NgModule({
     imports: [
@@ -31,7 +33,8 @@ import { RecipiesComponent } from './recipies/recipies.component';
         IconsComponent,
         TablesComponent,
         NotificationsComponent,
-        RecipiesComponent
+        RecipiesComponent,
+        NewRecipeComponent
     ],
     providers: [Angular2TokenService, AdminGuard, AdminAuthService],
 })

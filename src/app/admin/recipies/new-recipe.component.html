@@ -1,0 +1,35 @@
+<div class="content">
+    <div class="container-fluid new-recipe-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" [routerLink]="['/admin/recipies']">Назад к списку</button>
+                </div>
+                <form [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
+                    <div class="form-group">
+                        <div class="label-group clearfix">
+                            <label class="first">название рецепта</label>
+                            <label class="second">обязательно</label>
+                        </div>
+                        <input type="text" formControlName="title" class="form-control">
+                        <label class="tip-label">Впишите название рецепта, например: Tушенный кролик с картофелем и розмарином</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="label-group clearfix">
+                            <label class="first">история к рецепту - описание</label>
+                            <label class="second"><span class="no">не </span>обязательно</label>
+                        </div>
+                        <input type="text" class="form-control" formControlName="summary">
+                        <label class="tip-label">Опишите краткое содержание блюда</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" formControlName="time">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Опубликовать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,51 @@
 .content {
     padding: 30px 15px;
     min-height: calc(100% - 123px);
+    .new-recipe-container {
+        .btn-group {
+            width: 100%;
+            margin-bottom: 30px;
+            .btn {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+        .form-group {
+            .form-control {
+                background-color: #E5E5E5;
+                border-radius: 0;
+                padding: 12px;
+                height: 50px;
+                font-size: 16px;
+                color: #777;
+            }
+            .btn {
+                border-radius: 0;
+            }
+            .tip-label {
+                font-size: 13px;
+                color: #904849;
+                font-weight: 500;
+            }
+            .label-group {
+                text-transform: uppercase;
+                .first {
+                    color: #333333;
+                    font-size: 17px;
+                    float: left;
+                    line-height:0.9;
+                    font-weight: 500;
+                }
+                .second {
+                    color: #787878;
+                    font-size: 13px;
+                    float: right;
+                    font-weight: 500; 
+                    .no {
+                        color: #904849;
+                    }                   
+                }
+            }
+        }
+    }
 }

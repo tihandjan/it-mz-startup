@@ -4,7 +4,7 @@
       <li (click)="toggleMenu()"><i class="fa fa-user"></i></li>
       <li><i class="fa fa-heart"></i></li>
     </ul>
-    <span *ngIf="!_auth.userSignedIn()">
+    <span *ngIf="!user_signed_in">
       <div class="registration-wrapper" [ngClass]="{active: registration}">
         <div class="enter text-center">Регистрация</div>
         <div class="enter-tips text-center">Авторизируйтесь с помощью одной из соцсетей</div>
@@ -82,7 +82,7 @@
 
     </span>
 
-    <span *ngIf="_auth.userSignedIn()">
+    <span *ngIf="user_signed_in">
       <div class="">
         <button (click)="logOut()" class="btn btm-purple">Выйти</button>
       </div>

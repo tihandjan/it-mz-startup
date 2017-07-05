@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import 'rxjs/add/operator/takeUntil';
+import { Subject } from 'rxjs/Subject';
+import { RecipeService } from '../../services/recipe';
+import { Recipe } from '../../interfaces/recipe';
 
 @Component({
   selector: 'app-recipies',
   templateUrl: './recipies.component.html',
   styleUrls: ['./recipies.component.scss']
 })
-export class RecipiesComponent implements OnInit {
+export class RecipiesComponent implements OnInit, OnDestroy {
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  recipies: Array<Recipe>;
 
-  constructor() { }
+  constructor(
+    private recipeService: RecipeService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getRecipies();
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  getRecipies() {
+    this.recipeService.getRecipies()
+        .takeUntil(this.ngUnsubscribe)
+        .subscribe(
+          res => this.recipies = res,
+          error => console.log(error)
+        )
   }
 
 }
