@@ -41,4 +41,14 @@ export class UserAuthService {
             }
         )
     }
+
+    get tokens() {
+        return {
+            accessToken: this.auth.currentAuthData['accessToken'],
+            client: this.auth.currentAuthData['client'],
+            uid: this.auth.currentAuthData['uid'],
+            expiry: this.auth.currentAuthData['expiry'],
+            tokenType: this.auth.currentAuthData['tokenType'],
+        }
+    }
 }

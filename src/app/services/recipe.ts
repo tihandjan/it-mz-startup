@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx'
 import { environment } from '../../environments/environment';
-import { Recipe } from '../interfaces/recipe'
-import { AdminAuthService } from '../services/admin-auth'
+import { Recipe } from '../interfaces/recipe';
+import { UserAuthService } from '../services/user-auth';
 import { Angular2TokenService } from 'angular2-token';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class RecipeService {
   constructor(
     private http: Http,
     private _tokenService: Angular2TokenService,
-    private adminAuth: AdminAuthService
+    private userAuth: UserAuthService
   ) { }
 
   getRecipies(): Observable<Recipe[]> {
@@ -26,9 +26,8 @@ export class RecipeService {
   }
 
   createRecipe(recipe: Recipe): Observable<Recipe> {
-    let tokens = this.adminAuth.tokens;
-    let headers = new Headers(); 
-    alert(tokens.expiry)
+    let tokens = this.userAuth.tokens;
+    let headers = new Headers();
     headers.append('Accept','application/json'); 
     headers.append('access-token', tokens.accessToken); 
     headers.append('client', tokens.client); 
