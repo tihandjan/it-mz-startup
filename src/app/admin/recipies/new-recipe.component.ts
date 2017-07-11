@@ -1,5 +1,6 @@
 import { HeaderComponent } from '../../shared/header/header.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Recipe } from '../../interfaces/recipe';
 import { FileItem, FileUploader, FileUploaderOptions } from 'ng2-file-upload';
@@ -16,8 +17,12 @@ export class NewRecipeComponent implements OnInit {
     url: any = environment.root_url
     errors: any;
     public uploader: FileUploader = new FileUploader({});
+    public filePreviewPath: SafeUrl;
+
     constructor(
-        private adminAuth: AdminAuthService
+        private adminAuth: AdminAuthService,
+        private rd: Renderer2,
+        private sanitizer: DomSanitizer
     ) { }
 
     ngOnInit() {
@@ -26,7 +31,6 @@ export class NewRecipeComponent implements OnInit {
             'title': new FormControl('', Validators.required),
             'summary': new FormControl('', Validators.required),
             'time': new FormControl('', Validators.required),
-            'portion': new FormControl('', Validators.required),
             'complexity': new FormControl('', Validators.required),
             'publish': new FormControl('', Validators.required),
             'porsion': new FormControl('', Validators.required),
@@ -46,11 +50,13 @@ export class NewRecipeComponent implements OnInit {
             form.append('title', this.recipeForm.value.title);
             form.append('summary', this.recipeForm.value.summary);
             form.append('time', this.recipeForm.value.time);
-            form.append('portion', this.recipeForm.value.portion);
             form.append('complexity', this.recipeForm.value.complexity);
             form.append('publish', this.recipeForm.value.publish);
             form.append('porsion', this.recipeForm.value.porsion);
         };
+        this.uploader.onAfterAddingFile = (fileItem) => {
+          this.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
+        }
         this.uploader.onErrorItem = ((item:FileItem, response:string, status:number, headers:any):any => {
             this.errors = JSON.parse(response);
         });
@@ -58,6 +64,7 @@ export class NewRecipeComponent implements OnInit {
 
     createRecipe() {
         this.uploader.uploadAll();
+        console.log(this.errors)
     }
 
 }
