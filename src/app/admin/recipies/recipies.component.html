@@ -19,8 +19,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let recipe of recipies">
-                                    <th scope="row">1</th>
+                                <tr *ngFor="let recipe of recipies; let i = index">
+                                    <th scope="row">{{i+1}}</th>
                                     <td>{{ recipe.title }}</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
