@@ -39,11 +39,11 @@
                                     <label class="first">добавить фотографию блюда</label>
                                     <label class="second">обязательно</label>
                                 </div>
-                                <div class="image-container" (click)="imageUp.click()">
+                                <div class="image-container" (click)="input.click()">
                                     <img [src]="filePreviewPath" width="100%" *ngIf="filePreviewPath" />
                                     <i class="fa fa-camera-retro" [ngClass]="{'transp-cam': filePreviewPath}"></i>
                                 </div>
-                                <input #imageUp type="file" ng2FileSelect="options" [uploader]="uploader" class="form-control hidden" />
+                                <input type="file" (change)="fileChange(input)" #input class="form-control hidden" />
                             </div>
                             <div class="alert alert-danger" *ngIf="errors && errors.image">
                                 <span >Image {{ errors.image[0] }}</span>
@@ -57,7 +57,7 @@
                                 <div class="label-group clearfix">
                                     <label class="second">обязательно</label>
                                 </div>
-                                <label for="porsion" class="dark-label">Время приготовления</label>
+                                <label for="time" class="dark-label">Время приготовления</label>
                                 <input type="number" class="form-control-short" formControlName="time">
                             </div>
                             <div class="alert alert-danger" *ngIf="errors && errors.time">
@@ -73,7 +73,7 @@
                                 <input type="number" id="porsion" formControlName="porsion" class="form-control-short">
                             </div>
                             <div class="alert alert-danger" *ngIf="errors && errors.porsion">
-                                <span >Time {{ errors.porsion[0] }}</span>
+                                <span >Porsion {{ errors.porsion[0] }}</span>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" [disabled]="!recipeForm.valid" class="btn btn-primary">Опубликовать</button>
+                        <button type="submit"  class="btn btn-primary">Опубликовать</button>
                     </div>
                 </form>
             </div>

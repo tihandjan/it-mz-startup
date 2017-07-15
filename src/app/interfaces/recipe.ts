@@ -4,7 +4,7 @@ export interface Recipe {
     summary: string,
     image: any,
     time: number,
-    portion: number,
+    porsion: number,
     complexity: number,
     calories: number,
     fats: number,
