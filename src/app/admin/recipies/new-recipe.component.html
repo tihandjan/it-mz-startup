@@ -58,7 +58,10 @@
                                     <label class="second">обязательно</label>
                                 </div>
                                 <label for="time" class="dark-label">Время приготовления</label>
-                                <input type="number" class="form-control-short" formControlName="time">
+                                <div class="small-input-wrapper">
+                                    <input type="number" class="form-control-short" formControlName="time"> 
+                                    <span class="tip">Минут</span>
+                                </div>                                
                             </div>
                             <div class="alert alert-danger" *ngIf="errors && errors.time">
                                 <span >Time {{ errors.time[0] }}</span>
@@ -70,7 +73,10 @@
                                     <label class="second">обязательно</label>
                                 </div>
                                 <label for="porsion" class="dark-label">Количество порций</label>
-                                <input type="number" id="porsion" formControlName="porsion" class="form-control-short">
+                                <div class="small-input-wrapper">
+                                    <input type="number" id="porsion" formControlName="porsion" class="form-control-short">
+                                    <span class="tip">Порций</span>
+                                </div> 
                             </div>
                             <div class="alert alert-danger" *ngIf="errors && errors.porsion">
                                 <span >Porsion {{ errors.porsion[0] }}</span>
@@ -82,14 +88,14 @@
                                     <label class="second">обязательно</label>
                                 </div>
                                 <select class="form-control" formControlName="complexity">
-                                    <option selected="selected">Сложность готовки</option>
+                                    <option>Сложность готовки</option>
                                     <option value="easy">Легко</option>
                                     <option value="medium">Средне</option>
                                     <option value="hard">Сложно</option>
                                 </select>
                             </div>
                             <div class="alert alert-danger" *ngIf="errors && errors.complexity">
-                                <span >Time {{ errors.complexity[0] }}</span>
+                                <span >{{ errors.complexity[0] }}</span>
                             </div>
                         </div>
                     </div>
@@ -99,6 +105,15 @@
                     </div>
                     <div class="alert alert-danger" *ngIf="errors && errors.publish">
                         <span >Time {{ errors.publish[0] }}</span>
+                    </div>
+
+                    <div formArrayName="steps">
+                        <div *ngFor="let st of recipeForm.get('steps').controls;let i = index">
+                            <div formGroupName="{{i}}">
+                                <input type="number" formControlName="step" class="form-control">
+                            </div>
+                        </div>
+                        <div class="btn btn-primary" (click)="onAddStep()">Add</div>
                     </div>
 
                     <div class="form-group">

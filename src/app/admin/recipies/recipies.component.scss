@@ -59,6 +59,22 @@
                 width: 100%;
                 text-align: center;
             }
+            .small-input-wrapper {
+                padding: 20px 10px;
+                border: 1px solid #E5E5E5;
+                justify-content: space-around;
+                display: flex;
+                .form-control-short {
+                    font-size: 18px;
+                    padding: 8px 20px;
+                    border: 1px solid #E5E5E5;
+                    max-width: 165px;
+                }
+                .tip {
+                    font-size: 18px;
+                    line-height: 3;
+                }
+            }
         }
         .alert {
             margin-top: -18px;

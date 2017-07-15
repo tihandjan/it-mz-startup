@@ -1,7 +1,7 @@
 import { HeaderComponent } from '../../shared/header/header.component';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Recipe } from '../../interfaces/recipe';
 import { environment } from '../../../environments/environment';
 import { RecipeService } from '../../services/recipe';
@@ -28,10 +28,12 @@ export class NewRecipeComponent implements OnInit {
             'title': new FormControl('', Validators.required),
             'summary': new FormControl('', Validators.required),
             'time': new FormControl('', Validators.required),
-            'complexity': new FormControl('', Validators.required),
+            'complexity': new FormControl('Сложность готовки', Validators.required),
             'publish': new FormControl('', Validators.required),
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
+            'steps': new FormArray([
+            ])
         });
     }
 
@@ -41,6 +43,14 @@ export class NewRecipeComponent implements OnInit {
             err => this.errors = err.json(),
             () => this.recipeForm.reset()
         )
+    }
+
+    onAddStep() {
+        const formG = new FormGroup({
+            'step': new FormControl('lol')
+        });
+        (<FormArray>this.recipeForm.get('steps')).push(formG);
+        console.log(this.recipeForm.value)
     }
 
     fileChange(input){
