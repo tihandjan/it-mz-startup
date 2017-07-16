@@ -1,3 +1,4 @@
+import { ValidateFn } from 'codelyzer/walkerFactory/walkerFn';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
@@ -16,6 +17,7 @@ export class NewRecipeComponent implements OnInit {
     url: any = environment.root_url
     errors: any;
     public filePreviewPath: SafeUrl;
+    formGroupNumber: any;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
@@ -32,8 +34,7 @@ export class NewRecipeComponent implements OnInit {
             'publish': new FormControl('', Validators.required),
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
-            'steps': new FormArray([
-            ])
+            'steps': new FormArray([])
         });
     }
 
@@ -47,22 +48,30 @@ export class NewRecipeComponent implements OnInit {
 
     onAddStep() {
         const formG = new FormGroup({
-            'step': new FormControl('lol')
+            'step': new FormControl(null, Validators.required),
+            'image': new FormControl(null, Validators.required),
+            'content': new FormControl(null, Validators.required),
         });
         (<FormArray>this.recipeForm.get('steps')).push(formG);
-        console.log(this.recipeForm.value)
     }
 
-    fileChange(input){
+    fileChange(input, index){
         this.readFiles(input.files);
+        this.formGroupNumber = index;
     }
 
     readFile(file, reader, callback){
         reader.onload = () => {
             callback(reader.result);
-            this.recipeForm.value.image = reader.result;
+            this.formGroupNumber == undefined ? this.addImageToForm(reader.result) : this.addImageToNestedForm(reader.result)
+        }
+        reader.readAsDataURL(file);
     }
-    reader.readAsDataURL(file);
+    addImageToForm(result) {
+        this.recipeForm.get('image').setValue(result)
+    }
+    addImageToNestedForm(result) {
+        (<FormArray>this.recipeForm.get('steps')).controls[this.formGroupNumber].value.image = result;
     }
     readFiles(files, index=0){
         // Create the file reader
