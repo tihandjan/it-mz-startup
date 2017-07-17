@@ -69,6 +69,14 @@ export class NewRecipeComponent implements OnInit {
         (<FormArray>this.recipeForm.get('steps')).removeAt(i);
     }
 
+    addImageToForm(result) {
+        this.recipeForm.get('image').setValue(result)
+    }
+
+    addImageToNestedForm(result) {
+        (<FormArray>this.recipeForm.get('steps')).controls[this.formGroupNumber].get('image').setValue(result);
+    }
+
     fileChange(input, index){
         this.readFiles(input.files);
         this.formGroupNumber = index;
@@ -80,14 +88,6 @@ export class NewRecipeComponent implements OnInit {
             this.formGroupNumber == undefined ? this.addImageToForm(reader.result) : this.addImageToNestedForm(reader.result)
         }
         reader.readAsDataURL(file);
-    }
-
-    addImageToForm(result) {
-        this.recipeForm.get('image').setValue(result)
-    }
-
-    addImageToNestedForm(result) {
-        (<FormArray>this.recipeForm.get('steps')).controls[this.formGroupNumber].get('image').setValue(result);
     }
 
     readFiles(files, index=0){
