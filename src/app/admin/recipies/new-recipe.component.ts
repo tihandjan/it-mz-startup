@@ -17,7 +17,8 @@ export class NewRecipeComponent implements OnInit {
     url: any = environment.root_url
     errors: any;
     public filePreviewPath: SafeUrl;
-    formGroupNumber: any;
+    formGroupNumber: any = undefined;
+    submitting: boolean = false;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
@@ -36,23 +37,36 @@ export class NewRecipeComponent implements OnInit {
             'image': new FormControl('', Validators.required),
             'steps': new FormArray([])
         });
+        this.onAddStep(1);
     }
 
     createRecipe() {
         this.recipeService.createRecipe(this.recipeForm.value, 'admin').subscribe(
-            res => console.log(res), 
+            res => {
+                console.log(res);
+                this.submitting = true
+            }, 
             err => this.errors = err.json(),
-            () => this.recipeForm.reset()
+            () => {
+                this.recipeForm.reset();
+                this.errors = '';
+                this.submitting = false;
+            }
         )
     }
 
-    onAddStep() {
+    onAddStep(i) {
         const formG = new FormGroup({
-            'step': new FormControl(null, Validators.required),
-            'image': new FormControl(null, Validators.required),
+            'step': new FormControl(i, Validators.required),
+            'image': new FormControl(null),
             'content': new FormControl(null, Validators.required),
         });
         (<FormArray>this.recipeForm.get('steps')).push(formG);
+        console.log(this.recipeForm.value);
+    }
+
+    onRemoveStep(i) {
+        (<FormArray>this.recipeForm.get('steps')).removeAt(i);
     }
 
     fileChange(input, index){
@@ -67,23 +81,28 @@ export class NewRecipeComponent implements OnInit {
         }
         reader.readAsDataURL(file);
     }
+
     addImageToForm(result) {
         this.recipeForm.get('image').setValue(result)
     }
+
     addImageToNestedForm(result) {
-        (<FormArray>this.recipeForm.get('steps')).controls[this.formGroupNumber].value.image = result;
+        (<FormArray>this.recipeForm.get('steps')).controls[this.formGroupNumber].get('image').setValue(result);
     }
+
     readFiles(files, index=0){
         // Create the file reader
         let reader = new FileReader();
         
         // If there is a file
-        if(index in files){
+        if (index in files){
             // Start reading this file
             this.readFile(files[index], reader, (result) =>{
-              this.filePreviewPath = result
+              if (this.formGroupNumber == undefined) {
+                  this.filePreviewPath = result;
+              }
             });
-        }else{
+        } else {
             // When all files are done This forces a change detection
             this.changeDetectorRef.detectChanges();
         }

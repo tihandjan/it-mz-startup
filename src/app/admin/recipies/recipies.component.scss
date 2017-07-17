@@ -19,8 +19,14 @@
                 font-size: 16px;
                 color: #777;
             }
+            .form-control-textarea {
+                height: inherit;
+            }
             .btn {
                 border-radius: 0;
+            }
+            .step-btn {
+                margin-right: 10px;
             }
             .tip-label {
                 font-size: 13px;
@@ -46,6 +52,13 @@
                     }                   
                 }
             }
+            .steps-label-group {
+                margin-bottom: 15px;
+                .first {
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+            }
             .form-control-short {
                 width: 100%;
             }
@@ -62,13 +75,14 @@
             .small-input-wrapper {
                 padding: 20px 10px;
                 border: 1px solid #E5E5E5;
-                justify-content: space-around;
+                justify-content: flex-start;
                 display: flex;
                 .form-control-short {
                     font-size: 18px;
                     padding: 8px 20px;
                     border: 1px solid #E5E5E5;
                     max-width: 165px;
+                    margin-right: 8px;
                 }
                 .tip {
                     font-size: 18px;
@@ -95,6 +109,10 @@
             .transp-cam {
                 opacity: 0.7;
             }
+        }
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
         }
     }
 }
