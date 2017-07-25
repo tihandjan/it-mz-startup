@@ -1,5 +1,3 @@
-import { errorComparator } from 'tslint/lib/test/lintError';
-import { HeaderComponent } from '../shared/header/header.component';
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx'

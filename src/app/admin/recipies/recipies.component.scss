@@ -32,11 +32,6 @@
             .btn-submit {
                 width: 100%;
             }
-            .tip-label {
-                font-size: 13px;
-                color: #904849;
-                font-weight: 500;
-            }
             .form-control-short {
                 width: 100%;
             }
@@ -68,6 +63,25 @@
                     line-height: 3;
                 }
             }
+        }
+        .form-group-ingredients {
+            display: flex;
+            justify-content: flex-start;
+            .form-control-amount {
+                width: 75px;
+            }
+            .form-control {
+                margin-right: 15px;
+                max-width: 250px;
+            }
+            .btn {
+                line-height: 2.2;
+            }
+        }
+        .tip-label {
+            font-size: 13px;
+            color: #904849;
+            font-weight: 500;
         }
         .label-group {
             text-transform: uppercase;

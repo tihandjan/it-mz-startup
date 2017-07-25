@@ -1,28 +1,32 @@
-import { ValidateFn } from 'codelyzer/walkerFactory/walkerFn';
-import { HeaderComponent } from '../../shared/header/header.component';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Recipe } from '../../interfaces/recipe';
+import { Ingredient } from '../../interfaces/ingredient';
 import { environment } from '../../../environments/environment';
 import { RecipeService } from '../../services/recipe';
+import { IngredientService } from '../../services/ingredient';
+import { Subject } from "rxjs/Subject";
 
 @Component({
     selector: 'app-new-recipe',
     templateUrl: './new-recipe.component.html',
     styleUrls: ['./recipies.component.scss']
 })
-export class NewRecipeComponent implements OnInit {
+export class NewRecipeComponent implements OnInit, OnDestroy {
     recipeForm: FormGroup;
     url: any = environment.root_url
     errors: any;
     public filePreviewPath: SafeUrl;
     formGroupNumber: any = undefined;
     submitting: boolean = false;
+    ingredients;
+    private ngUnsubscribe: Subject<void> = new Subject<void>();
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
-        private recipeService: RecipeService
+        private recipeService: RecipeService,
+        private ingredientService: IngredientService
 
     ) { }
 
@@ -35,9 +39,17 @@ export class NewRecipeComponent implements OnInit {
             'publish': new FormControl('', Validators.required),
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
-            'steps': new FormArray([])
+            'steps': new FormArray([]),
+            'recipes_ingredients': new FormArray([]),
         });
         this.onAddStep(1);
+        this.onAddRecipeIngredient();
+        this.getIngredients();
+    }
+
+    ngOnDestroy() {
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
     }
 
     createRecipe() {
@@ -46,9 +58,12 @@ export class NewRecipeComponent implements OnInit {
                 console.log(res);
                 this.submitting = true
             }, 
-            err => this.errors = err.json(),
+            err => {
+                this.errors = err.json();
+                console.log(this.errors)
+            },
             () => {
-                this.recipeForm.reset();
+                // this.recipeForm.reset();
                 this.errors = '';
                 this.submitting = false;
             }
@@ -62,11 +77,23 @@ export class NewRecipeComponent implements OnInit {
             'content': new FormControl(null, Validators.required),
         });
         (<FormArray>this.recipeForm.get('steps')).push(formG);
-        console.log(this.recipeForm.value);
     }
 
     onRemoveStep(i) {
         (<FormArray>this.recipeForm.get('steps')).removeAt(i);
+    }
+
+    onAddRecipeIngredient() {
+        const riFormG = new FormGroup({
+            'amount': new FormControl(0, Validators.required),
+            'unit': new FormControl('грамм', Validators.required),
+            'ingredient_id': new FormControl(null, Validators.required),
+        });
+        (<FormArray>this.recipeForm.get('recipes_ingredients')).push(riFormG);
+    }
+
+    onRemoveRecipeIngredient(i): void {
+        (<FormArray>this.recipeForm.get('recipes_ingredients')).removeAt(i);
     }
 
     addImageToForm(result) {
@@ -106,6 +133,17 @@ export class NewRecipeComponent implements OnInit {
             // When all files are done This forces a change detection
             this.changeDetectorRef.detectChanges();
         }
+    }
+
+    getIngredients(): void {
+        this.ingredientService.getIngredients()
+            .takeUntil(this.ngUnsubscribe)
+            .subscribe(
+                response => {
+                    this.ingredients = response;
+                },
+                error => console.log(error)
+        )
     }
 
 }

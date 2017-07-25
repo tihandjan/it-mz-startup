@@ -7,6 +7,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AdminComponent } from './admin.component';
 import { AdminAuthService } from '../services/admin-auth';
+import { IngredientService } from '../services/ingredient';
 import { AdminGuard } from '../guards/admin.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -38,6 +39,6 @@ import { NewRecipeComponent } from './recipies/new-recipe.component';
         NewRecipeComponent,
         FileSelectDirective
     ],
-    providers: [Angular2TokenService, AdminGuard, AdminAuthService],
+    providers: [Angular2TokenService, AdminGuard, AdminAuthService, IngredientService],
 })
 export class AdminModule { }
