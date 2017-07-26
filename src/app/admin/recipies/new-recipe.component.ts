@@ -1,3 +1,4 @@
+import { FormGroupDirective } from '@angular/forms/src/directives';
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
@@ -17,10 +18,11 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     recipeForm: FormGroup;
     url: any = environment.root_url
     errors: any;
-    public filePreviewPath: SafeUrl;
     formGroupNumber: any = undefined;
     submitting: boolean = false;
-    ingredients;
+    ingredients: Ingredient[];
+    ingredients_for_select: Array<object>;
+    public filePreviewPath: SafeUrl;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
 
     constructor(
@@ -41,6 +43,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             'image': new FormControl('', Validators.required),
             'steps': new FormArray([]),
             'recipes_ingredients': new FormArray([]),
+            'ingredients': new FormArray([])
         });
         this.onAddStep(1);
         this.onAddRecipeIngredient();
@@ -55,7 +58,6 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     createRecipe() {
         this.recipeService.createRecipe(this.recipeForm.value, 'admin').subscribe(
             res => {
-                console.log(res);
                 this.submitting = true
             }, 
             err => {
@@ -83,7 +85,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         (<FormArray>this.recipeForm.get('steps')).removeAt(i);
     }
 
-    onAddRecipeIngredient() {
+    onAddRecipeIngredient(): void {
         const riFormG = new FormGroup({
             'amount': new FormControl(0, Validators.required),
             'unit': new FormControl('грамм', Validators.required),
@@ -92,8 +94,21 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         (<FormArray>this.recipeForm.get('recipes_ingredients')).push(riFormG);
     }
 
+    onAddNewRecipeIngredient(): void {
+        const ingNewFormG = new FormGroup({
+            'name': new FormControl(null, Validators.required),
+            'amount': new FormControl(0, Validators.required),
+            'unit': new FormControl('грамм', Validators.required),
+        });
+        (<FormArray>this.recipeForm.get('ingredients')).push(ingNewFormG);
+    }
+
     onRemoveRecipeIngredient(i): void {
         (<FormArray>this.recipeForm.get('recipes_ingredients')).removeAt(i);
+    }
+
+    onRemoveNewRecipeIngredient(i): void {
+        (<FormArray>this.recipeForm.get('ingredients')).removeAt(i);
     }
 
     addImageToForm(result) {
@@ -141,9 +156,18 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             .subscribe(
                 response => {
                     this.ingredients = response;
+                    this.ingredients_for_select = response.map(
+                        res => {
+                            return {id: res.id, text: res.name}
+                        }
+                    );
                 },
                 error => console.log(error)
         )
+    }
+
+    public refreshValue(value:any, index:number):void {
+        (<FormArray>this.recipeForm.get('recipes_ingredients')).controls[index].get('ingredient_id').setValue(value.id)
     }
 
 }

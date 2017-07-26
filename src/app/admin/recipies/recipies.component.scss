@@ -73,10 +73,17 @@
             .form-control {
                 margin-right: 15px;
                 max-width: 250px;
+                height: 40px;
+                padding: 8px;
             }
-            .btn {
-                line-height: 2.2;
+            .form-control-select {
+                margin-right: 15px;
+                width: 250px;
             }
+        }
+        .ingredients-btn-group {
+            display: flex;
+            justify-content: space-between;
         }
         .tip-label {
             font-size: 13px;

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Angular2TokenService } from 'angular2-token';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FileSelectDirective } from 'ng2-file-upload';
+import {SelectModule} from 'ng2-select';
 
 import { AdminComponent } from './admin.component';
 import { AdminAuthService } from '../services/admin-auth';
@@ -24,7 +24,8 @@ import { NewRecipeComponent } from './recipies/new-recipe.component';
         AdminRoutingModule,
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SelectModule
     ],
     exports: [],
     declarations: [
@@ -36,8 +37,7 @@ import { NewRecipeComponent } from './recipies/new-recipe.component';
         TablesComponent,
         NotificationsComponent,
         RecipiesComponent,
-        NewRecipeComponent,
-        FileSelectDirective
+        NewRecipeComponent
     ],
     providers: [Angular2TokenService, AdminGuard, AdminAuthService, IngredientService],
 })
