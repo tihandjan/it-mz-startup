@@ -1,3 +1,10 @@
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #777;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #777;
+}
+
 .content {
     padding: 30px 15px;
     min-height: calc(100% - 123px);
@@ -68,7 +75,7 @@
             display: flex;
             justify-content: flex-start;
             .form-control-amount {
-                width: 75px;
+                width: 125px;
             }
             .form-control {
                 margin-right: 15px;

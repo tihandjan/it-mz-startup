@@ -24,6 +24,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     ingredients_for_select: Array<object>;
     public filePreviewPath: SafeUrl;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
+    ingredientForm: FormGroup;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
@@ -42,9 +43,16 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
             'steps': new FormArray([]),
-            'recipes_ingredients': new FormArray([]),
-            'ingredients': new FormArray([])
+            'recipes_ingredients': new FormArray([])
         });
+
+        this.ingredientForm = new FormGroup({
+            'name': new FormControl('', Validators.required),
+            'fats': new FormControl(null),
+            'proteins': new FormControl(null),
+            'carbohydrates': new FormControl(null),
+            'calories': new FormControl(null),
+        })
         this.onAddStep(1);
         this.onAddRecipeIngredient();
         this.getIngredients();
@@ -53,6 +61,13 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.ngUnsubscribe.next();
         this.ngUnsubscribe.complete();
+    }
+
+    createIngredient() {
+        this.ingredientService.createIngredient(this.ingredientForm.value, 'admin').subscribe(
+            res => console.log(res),
+            err => console.log(err)
+        )
     }
 
     createRecipe() {
@@ -87,28 +102,15 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
 
     onAddRecipeIngredient(): void {
         const riFormG = new FormGroup({
-            'amount': new FormControl(0, Validators.required),
+            'amount': new FormControl(null, Validators.required),
             'unit': new FormControl('грамм', Validators.required),
             'ingredient_id': new FormControl(null, Validators.required),
         });
         (<FormArray>this.recipeForm.get('recipes_ingredients')).push(riFormG);
     }
 
-    onAddNewRecipeIngredient(): void {
-        const ingNewFormG = new FormGroup({
-            'name': new FormControl(null, Validators.required),
-            'amount': new FormControl(0, Validators.required),
-            'unit': new FormControl('грамм', Validators.required),
-        });
-        (<FormArray>this.recipeForm.get('ingredients')).push(ingNewFormG);
-    }
-
     onRemoveRecipeIngredient(i): void {
         (<FormArray>this.recipeForm.get('recipes_ingredients')).removeAt(i);
-    }
-
-    onRemoveNewRecipeIngredient(i): void {
-        (<FormArray>this.recipeForm.get('ingredients')).removeAt(i);
     }
 
     addImageToForm(result) {
