@@ -25,6 +25,9 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     public filePreviewPath: SafeUrl;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
     ingredientForm: FormGroup;
+    ingredient_form_is_visible: boolean = false;
+    ingredients_errors: any;
+    new_ingredient_name: string;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
@@ -65,8 +68,14 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
 
     createIngredient() {
         this.ingredientService.createIngredient(this.ingredientForm.value, 'admin').subscribe(
-            res => console.log(res),
-            err => console.log(err)
+            res => {
+                this.ingredient_form_is_visible = false;
+                this.ingredientForm.reset();
+                this.new_ingredient_name = res.name;
+                this.ingredients_errors = '';
+                this.getIngredients();
+            },
+            err => this.ingredients_errors = err.json()
         )
     }
 
