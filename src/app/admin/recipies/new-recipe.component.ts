@@ -6,6 +6,8 @@ import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Recipe } from '../../interfaces/recipe';
 import { Category } from '../../interfaces/category';
+import { SubCategory } from '../../interfaces/sub_category';
+import { Country } from '../../interfaces/country';
 import { Ingredient } from '../../interfaces/ingredient';
 import { environment } from '../../../environments/environment';
 import { RecipeService } from '../../services/recipe';
@@ -33,6 +35,8 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     ingredients_errors: any;
     new_ingredient_name: string;
     categories: Category[];
+    countries: Country[] = [{id: 1, name: 'Ukraine'}]
+    sub_categories: SubCategory[] = [{id: 1, name: 'Кексы'}]
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
@@ -51,6 +55,8 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
             'category_id': new FormControl('Выберите категорию', Validators.required),
+            'sub_category_id': new FormControl('Вид блюда', Validators.required),
+            'country_id': new FormControl('Кухня какой страны'),
             'steps': new FormArray([]),
             'recipes_ingredients': new FormArray([])
         });
@@ -201,7 +207,9 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     }
 
     getCategories(): void {
-        this.categoryService.getCategories().subscribe(
+        this.categoryService.getCategories()
+        .takeUntil(this.ngUnsubscribe)
+        .subscribe(
             res => this.categories = res,
             err => console.log(err)
         )

@@ -66,6 +66,37 @@
                                 <span >{{ errors.category_id[0] }}</span>
                             </div>
                         </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="second"><span class="no">не </span>обязательно</label>
+                                </div>
+                                <select class="form-control" formControlName="sub_category_id">
+                                    <option *ngIf="categories">Вид блюда "{{categories[0].name}}"</option>
+                                    <option *ngFor="let sub_cat of sub_categories" value="{{sub_cat.id}}">{{sub_cat.name}}</option>
+                                </select>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="errors && errors.sub_category_id">
+                                <span >{{ errors.sub_category_id[0] }}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="second"><span class="no">не </span>обязательно</label>
+                                </div>
+                                <select class="form-control" formControlName="country_id">
+                                    <option>Кухня какой страны</option>
+                                    <option *ngFor="let country of countries" value="{{country.id}}">{{country.name}}</option>
+                                </select>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="errors && errors.country_id">
+                                <span >{{ errors.country[0] }}</span>
+                            </div>
+                        </div>
+                        
                         <div class="col-md-4">
                             <div class="form-group">
                                 <div class="label-group clearfix">
