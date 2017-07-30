@@ -5,10 +5,12 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Recipe } from '../../interfaces/recipe';
+import { Category } from '../../interfaces/category';
 import { Ingredient } from '../../interfaces/ingredient';
 import { environment } from '../../../environments/environment';
 import { RecipeService } from '../../services/recipe';
 import { IngredientService } from '../../services/ingredient';
+import { CategoryService } from '../../services/category';
 import { Subject } from "rxjs/Subject";
 
 @Component({
@@ -30,12 +32,13 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     ingredient_form_is_visible: boolean = false;
     ingredients_errors: any;
     new_ingredient_name: string;
+    categories: Category[];
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
         private recipeService: RecipeService,
-        private ingredientService: IngredientService
-
+        private ingredientService: IngredientService,
+        private categoryService: CategoryService
     ) { }
 
     ngOnInit() {
@@ -47,6 +50,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             'publish': new FormControl('', Validators.required),
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
+            'category_id': new FormControl('Выберите категорию', Validators.required),
             'steps': new FormArray([]),
             'recipes_ingredients': new FormArray([])
         });
@@ -62,6 +66,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         this.onAddStep(1);
         this.onAddRecipeIngredient();
         this.getIngredients();
+        this.getCategories();
     }
 
     ngOnDestroy() {
@@ -193,6 +198,13 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
 
     public refreshValue(value:any, index:number):void {
         (<FormArray>this.recipeForm.get('recipes_ingredients')).controls[index].get('ingredient_id').setValue(value.id)
+    }
+
+    getCategories(): void {
+        this.categoryService.getCategories().subscribe(
+            res => this.categories = res,
+            err => console.log(err)
+        )
     }
 
 }

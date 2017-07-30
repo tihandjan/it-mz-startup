@@ -8,6 +8,7 @@ import {SelectModule} from 'ng2-select';
 import { AdminComponent } from './admin.component';
 import { AdminAuthService } from '../services/admin-auth';
 import { IngredientService } from '../services/ingredient';
+import { CategoryService } from '../services/category';
 import { AdminGuard } from '../guards/admin.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
@@ -21,11 +22,7 @@ import { NewRecipeComponent } from './recipies/new-recipe.component';
 
 @NgModule({
     imports: [
-        AdminRoutingModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        SelectModule
+        AdminRoutingModule, CommonModule, FormsModule, ReactiveFormsModule, SelectModule
     ],
     exports: [],
     declarations: [
@@ -39,6 +36,6 @@ import { NewRecipeComponent } from './recipies/new-recipe.component';
         RecipiesComponent,
         NewRecipeComponent
     ],
-    providers: [Angular2TokenService, AdminGuard, AdminAuthService, IngredientService],
+    providers: [Angular2TokenService, AdminGuard, AdminAuthService, IngredientService, CategoryService],
 })
 export class AdminModule { }
