@@ -13,4 +13,7 @@ export interface Recipe {
     publish: string,
     rating: number,
     user_id: number,
+    category_id: number,
+    sub_category_id: number,
+    country_id: number,
 }

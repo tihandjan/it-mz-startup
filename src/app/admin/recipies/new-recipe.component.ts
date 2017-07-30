@@ -1,3 +1,5 @@
+import { consoleTestResultHandler } from 'tslint/lib/test';
+import { isUndefined } from 'util';
 import { FormGroupDirective } from '@angular/forms/src/directives';
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
@@ -55,6 +57,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             'proteins': new FormControl(null),
             'carbohydrates': new FormControl(null),
             'calories': new FormControl(null),
+            'image': new FormControl(''),
         })
         this.onAddStep(1);
         this.onAddRecipeIngredient();
@@ -89,7 +92,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
                 console.log(this.errors)
             },
             () => {
-                // this.recipeForm.reset();
+                this.recipeForm.reset();
                 this.errors = '';
                 this.submitting = false;
             }
@@ -130,15 +133,26 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         (<FormArray>this.recipeForm.get('steps')).controls[this.formGroupNumber].get('image').setValue(result);
     }
 
+    addImageToIngredient(result) {
+        this.ingredientForm.get('image').setValue(result);
+    }
+
     fileChange(input, index){
         this.readFiles(input.files);
         this.formGroupNumber = index;
+        console.log(this.ingredientForm.value)
     }
 
     readFile(file, reader, callback){
         reader.onload = () => {
             callback(reader.result);
-            this.formGroupNumber == undefined ? this.addImageToForm(reader.result) : this.addImageToNestedForm(reader.result)
+            if (this.formGroupNumber == undefined) {
+                this.addImageToForm(reader.result);
+            } else if(this.formGroupNumber == 'ingr') {
+                this.addImageToIngredient(reader.result);
+            } else {
+                this.addImageToNestedForm(reader.result);
+            }
         }
         reader.readAsDataURL(file);
     }

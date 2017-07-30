@@ -140,17 +140,14 @@
                     </div>
                     
                     <form [formGroup]="ingredientForm" *ngIf='ingredient_form_is_visible'>
-                        <div class="label-group clearfix">
-                        <label class="first">ингредиенты</label>
-                        <label class="second">обязательно</label>
-                    </div>
-                    <label class="tip-label">Указывайте жиры, белки, углеводы и калории в расчете на один грамм.</label>
+                        <label class="tip-label">Указывайте жиры, белки, углеводы и калории в расчете на один грамм.</label>
                         <div class="form-group form-group-ingredients">
                             <input type="text" formControlName="name" class="form-control" placeholder="Название">
                             <input type="number" formControlName="fats" class="form-control" placeholder="Жиры">
                             <input type="number" formControlName="proteins" class="form-control" placeholder="Белки">
                             <input type="number" formControlName="carbohydrates" class="form-control" placeholder="Углеводы">
                             <input type="number" formControlName="calories" class="form-control" placeholder="Калории">
+                            <input type="file" (change)="fileChange(inp, 'ingr')" #inp class="form-control">
                         </div>
                         <div class="alert alert-danger" *ngIf="ingredients_errors && ingredients_errors.name">
                             <span >Имя {{ ingredients_errors.name[0] }}</span>
@@ -184,7 +181,7 @@
                                             <label class="first">фото</label>
                                             <label class="second"><span class="no">не </span>обязательно</label>
                                         </div>
-                                        <input type="file" (change)="fileChange(input, i)" #input class="form-control" >
+                                        <input type="file" (change)="fileChange(input, i)" #input class="form-control">
                                     </div>
                                     <div class="form-group col-md-8">
                                         <div class="label-group clearfix">
