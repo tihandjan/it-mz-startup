@@ -1,19 +1,20 @@
-import { consoleTestResultHandler } from 'tslint/lib/test';
-import { isUndefined } from 'util';
-import { FormGroupDirective } from '@angular/forms/src/directives';
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
+import { Subject } from "rxjs/Subject";
+
 import { Recipe } from '../../interfaces/recipe';
 import { Category } from '../../interfaces/category';
 import { SubCategory } from '../../interfaces/sub_category';
 import { Country } from '../../interfaces/country';
 import { Ingredient } from '../../interfaces/ingredient';
-import { environment } from '../../../environments/environment';
+
 import { RecipeService } from '../../services/recipe';
 import { IngredientService } from '../../services/ingredient';
 import { CategoryService } from '../../services/category';
-import { Subject } from "rxjs/Subject";
+import { CountryService } from '../../services/country';
+
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-new-recipe',
@@ -25,7 +26,6 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     url: any = environment.root_url
     errors: any;
     formGroupNumber: any = undefined;
-    submitting: boolean = false;
     ingredients: Ingredient[];
     ingredients_for_select: Array<object>;
     public filePreviewPath: SafeUrl;
@@ -35,14 +35,16 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     ingredients_errors: any;
     new_ingredient_name: string;
     categories: Category[];
-    countries: Country[] = [{id: 1, name: 'Ukraine'}]
-    sub_categories: SubCategory[] = [{id: 1, name: 'Кексы'}]
+    countries: Country[];
+    sub_categories: SubCategory[];
+    selected_category_name: string;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
         private recipeService: RecipeService,
         private ingredientService: IngredientService,
-        private categoryService: CategoryService
+        private categoryService: CategoryService,
+        private countryService: CountryService,
     ) { }
 
     ngOnInit() {
@@ -55,7 +57,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
             'category_id': new FormControl('Выберите категорию', Validators.required),
-            'sub_category_id': new FormControl('Вид блюда', Validators.required),
+            'sub_category_id': new FormControl('Вид блюда'),
             'country_id': new FormControl('Кухня какой страны'),
             'steps': new FormArray([]),
             'recipes_ingredients': new FormArray([])
@@ -73,6 +75,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         this.onAddRecipeIngredient();
         this.getIngredients();
         this.getCategories();
+        this.getCountries();
     }
 
     ngOnDestroy() {
@@ -96,7 +99,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     createRecipe() {
         this.recipeService.createRecipe(this.recipeForm.value, 'admin').subscribe(
             res => {
-                this.submitting = true
+                true
             }, 
             err => {
                 this.errors = err.json();
@@ -105,7 +108,6 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             () => {
                 this.recipeForm.reset();
                 this.errors = '';
-                this.submitting = false;
             }
         )
     }
@@ -151,7 +153,6 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     fileChange(input, index){
         this.readFiles(input.files);
         this.formGroupNumber = index;
-        console.log(this.ingredientForm.value)
     }
 
     readFile(file, reader, callback){
@@ -206,13 +207,36 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         (<FormArray>this.recipeForm.get('recipes_ingredients')).controls[index].get('ingredient_id').setValue(value.id)
     }
 
+    onCategoryChange(event): void {
+        let data = this.findCategoryById(event.target.value)
+        this.sub_categories = data[0]['sub_categories']
+        this.selected_category_name = data[0].name
+    }
+
+    findCategoryById(id: number): Category[] {
+        return this.categories.filter(
+            cat => cat.id == id
+        )
+    }
+
     getCategories(): void {
         this.categoryService.getCategories()
         .takeUntil(this.ngUnsubscribe)
         .subscribe(
-            res => this.categories = res,
+            res => {
+                this.categories = res;
+            },
             err => console.log(err)
         )
+    }
+
+    getCountries(): void {
+        this.countryService.getCountry()
+            .takeUntil(this.ngUnsubscribe)
+            .subscribe(
+                (res: Country[]) => this.countries = res,
+                err => console.log(err)
+            )
     }
 
 }

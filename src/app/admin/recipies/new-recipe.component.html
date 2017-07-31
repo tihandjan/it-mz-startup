@@ -57,8 +57,8 @@
                                 <div class="label-group clearfix">
                                     <label class="second">обязательно</label>
                                 </div>
-                                <select class="form-control" formControlName="category_id">
-                                    <option>Выберите категорию</option>
+                                <select class="form-control" formControlName="category_id" (change)="onCategoryChange($event)">
+                                    <option disabled>Выберите категорию</option>
                                     <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
                                 </select>
                             </div>
@@ -70,10 +70,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <div class="label-group clearfix">
+                                    <label class="first" *ngIf="selected_category_name">"{{selected_category_name}}"</label>
                                     <label class="second"><span class="no">не </span>обязательно</label>
                                 </div>
                                 <select class="form-control" formControlName="sub_category_id">
-                                    <option *ngIf="categories">Вид блюда "{{categories[0].name}}"</option>
+                                    <option *ngIf="!selected_category_name">Вид блюда</option>
                                     <option *ngFor="let sub_cat of sub_categories" value="{{sub_cat.id}}">{{sub_cat.name}}</option>
                                 </select>
                             </div>

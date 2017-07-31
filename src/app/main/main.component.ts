@@ -11,26 +11,14 @@ import {
 import { Recipe } from '../models/recipe';
 import { Article } from '../models/article';
 import { Angular2TokenService } from 'angular2-token';
+import { btnTriggerFilter } from "./animations";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
   animations: [
-    trigger('buttomState', [
-      state('first', style({
-        left: 0
-      })),
-      state('second', style({
-        left: '132px'
-      })),
-      state('third', style({
-        left: '270px'
-      })),
-      transition('first <=> second', animate('200ms ease-out')),
-      transition('first <=> third', animate('200ms ease-out')),
-      transition('second <=> third', animate('200ms ease-out'))
-    ])
+    btnTriggerFilter
   ]
 })
 export class MainComponent implements OnInit {

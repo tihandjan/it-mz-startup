@@ -19,9 +19,9 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let recipe of recipies; let i = index">
-                            <th scope="row">{{i+1}}</th>
+                            <th scope="row">{{recipe.id}}</th>
                             <td>{{ recipe.title }}</td>
-                            <td>Otto</td>
+                            <td>{{ recipe.user?.name }}</td>
                             <td><img [src]="'http://localhost:3000' + recipe.image.square.url" alt=""></td>
                             <td>@mdo</td>
                             <td>@mdo</td>
