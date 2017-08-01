@@ -106,7 +106,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
                 console.log(this.errors)
             },
             () => {
-                this.recipeForm.reset();
+                // this.recipeForm.reset();
                 this.errors = '';
             }
         )
