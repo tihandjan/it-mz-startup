@@ -8,6 +8,8 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { CategoriesComponent } from '../categories/categories.component';
 import { RecipeShowComponent } from './recipe-show/recipe-show.component';
 
+import { CategoryService } from "../services/category";
+
 @NgModule({
     imports: [
         CommonModule,
@@ -16,6 +18,6 @@ import { RecipeShowComponent } from './recipe-show/recipe-show.component';
     ],
     exports: [],
     declarations: [RecipeComponent, RecipesComponent, CategoriesComponent, RecipeShowComponent],
-    providers: [],
+    providers: [CategoryService],
 })
 export class RecipeModule { }

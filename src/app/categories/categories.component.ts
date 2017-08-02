@@ -4,6 +4,7 @@ import { Subject } from "rxjs/Rx";
 
 import { CategoryService } from "../services/category";
 import { Category } from "../interfaces/category";
+import { Recipe } from "../interfaces/recipe";
 
 @Component({
   selector: 'app-categories',
@@ -12,6 +13,8 @@ import { Category } from "../interfaces/category";
 })
 export class CategoriesComponent implements OnInit {
   ngUnSubscribe: Subject<void> = new Subject<void>();
+  category: Category;
+  recipes: Recipe[];
 
   constructor(
     private router: ActivatedRoute,
@@ -19,11 +22,26 @@ export class CategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getCategory();
   }
 
   ngOnDestroy() {
     this.ngUnSubscribe.next();
     this.ngUnSubscribe.complete();
+  }
+
+  getCategory(): void {
+    let request = this.router.params.flatMap(
+      (params: Params) => this.categoryService.getCategory(params['category'])
+    )
+    request.takeUntil(this.ngUnSubscribe).subscribe(
+      res => {
+        this.category = res;
+        this.recipes = res['recipes']
+        console.log(res)
+        console.log(res['recipes'])
+      }
+    )
   }
 
 }
