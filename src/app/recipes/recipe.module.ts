@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { RecipeComponent } from './recipe.component';
 import { RecipesComponent } from './recipes/recipes.component';
-import { CategoriesComponent } from './categories/categories.component';
+import { CategoriesComponent } from '../categories/categories.component';
 import { RecipeShowComponent } from './recipe-show/recipe-show.component';
 
 @NgModule({

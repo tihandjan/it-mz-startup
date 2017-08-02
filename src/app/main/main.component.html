@@ -6,13 +6,13 @@
       <section class="main-content">
         <div class="page-wrapper clearfix row">
           <article *ngFor="let recipe of top_recipe" class="main-article col-lg-6 main-article-big">
-            <a href="#">
+            <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]">
               <img [src]="'http://localhost:3000/' + recipe.image.thumb.url" [alt]="recipe.title">
               <h3 class="title">{{ recipe.title }}</h3>
             </a>
           </article>
           <article *ngFor="let recipe of top_recipe_second_line; let i = index" class="main-article main-article-small col-lg-{{ i > 0 ? 3 : 6 }}">
-            <a href="#">
+            <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]">
               <img [src]="'http://localhost:3000/' + (i > 0 ? recipe.image.square.url : recipe.image.long.url)" [alt]="recipe.title">
               <div class="main-caption">
                 <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="page-wrapper third-article-wrapper next-article-wrapper clearfix row" >
-          <a href="#" class=" col-md-6" *ngFor="let recipe of recipes">
+          <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]" class=" col-md-6" *ngFor="let recipe of recipes">
             <article class="card card-side clearfix">
               <img class="card-img-top" [src]="'http://localhost:3000/' + recipe.image.square.url" [alt]="recipe.title">
               <div class="author clearfix">

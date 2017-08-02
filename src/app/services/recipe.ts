@@ -25,6 +25,13 @@ export class RecipeService {
             .catch(this.handleError);
   }
 
+  getRecipe(slug: string): Observable<Recipe> {
+    return this.http.get(this.baseUrl + '/recipes/' + slug).map(
+      (res: Response) => <Recipe>res.json()
+    )
+    .catch(this.handleError)
+  }
+
   createRecipe(recipe: Recipe, user_type: string): Observable<Recipe> {
     let tokens;
     if (user_type == 'admin')

@@ -1,4 +1,5 @@
 export interface SubCategory {
     id: number,
-    name: string
+    name: string,
+    slug: string,
 }

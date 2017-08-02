@@ -17,4 +17,9 @@ export interface Recipe {
     category_id: number,
     sub_category_id: number,
     country_id: number,
+    category: {
+        id: number,
+        name: string,
+        slug: string,
+    }
 }

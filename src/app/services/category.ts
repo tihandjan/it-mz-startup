@@ -18,6 +18,13 @@ export class CategoryService {
         .catch(this.handleError);
     }
 
+    getCategory(slug: string): Observable<Category> {
+        return this.http.get(this.root_url + '/categories/' + slug).map(
+            (res: Response) => <Category>res.json()
+        )
+        .catch(this.handleError)
+    }
+
     private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
