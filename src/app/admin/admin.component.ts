@@ -15,7 +15,7 @@ import { AdminAuthService } from '../services/admin-auth';
     moduleId: module.id,
     selector: 'app-admin',
     templateUrl: 'admin.component.html',
-    styleUrls: ['admin.component.scss'],
+    styleUrls: ['admin.component.scss', 'shared.css'],
     animations: [
         trigger('elementState', [
             state('active', style({

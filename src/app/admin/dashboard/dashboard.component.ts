@@ -6,7 +6,7 @@ import { AdminAuthService } from '../../services/admin-auth';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss', '../shared.css']
 })
 export class DashboardComponent implements OnInit {
 

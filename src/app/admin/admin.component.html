@@ -10,31 +10,15 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-
-    <!-- Bootstrap core CSS     -->
-    <link href="/app/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="/app/admin/assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="/app/admin/assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="/app/admin/assets/css/demo.css" rel="stylesheet" />
-
-
     <!--     Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="/app/admin/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 
 </head>
 <body>
 
 <div class="wrapper">
-    <div [@elementState]="state" class="sidebar has-image" data-color="purple" style="background:url(/app/admin/assets/img/sidebar-5.jpg);">
+    <div [@elementState]="state" class="sidebar has-image" data-color="purple" style="background:url(assets/images/sidebar-5.jpg);">
         
     <!--
 
@@ -53,43 +37,37 @@
             <ul class="nav">
                 <li>
                     <a [routerLink]="['dashboard']">
-                        <i class="pe-7s-home"></i>
+                        <i class="fa fa-home"></i>
                         <p>Панель Управления</p>
                     </a>
                 </li>
                 <li>
                     <a [routerLink]="['users']">
-                        <i class="pe-7s-user"></i>
+                        <i class="fa fa-user"></i>
                         <p>Профиль пользователя</p>
                     </a>
                 </li>
                 <li>
                     <a [routerLink]="['tables']">
-                        <i class="pe-7s-note2"></i>
+                        <i class="fa fa-truck"></i>
                         <p>Таблицы</p>
                     </a>
                 </li>
                 <li>
-                    <a [routerLink]="['icons']">
-                        <i class="pe-7s-science"></i>
-                        <p>Иконки</p>
-                    </a>
-                </li>
-                <li>
                     <a [routerLink]="['notifications']">
-                        <i class="pe-7s-bell"></i>
+                        <i class="fa fa-bell"></i>
                         <p>Оповещения</p>
                     </a>
                 </li>
                 <li>
                     <a [routerLink]="['recipies']">
-                        <i class="pe-7s-wine"></i>
+                        <i class="fa fa-truck"></i>
                         <p>Рецепты</p>
                     </a>
                 </li>
                 <li class="active active-pro">
                     <a [routerLink]="['/']">
-                        <i class="pe-7s-rocket"></i>
+                        <i class="fa fa-backward"></i>
                         <p>вернуться на сайт</p>
                     </a>
                 </li>

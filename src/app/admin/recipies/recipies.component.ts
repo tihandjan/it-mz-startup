@@ -7,7 +7,7 @@ import { Recipe } from '../../interfaces/recipe';
 @Component({
   selector: 'app-recipies',
   templateUrl: './recipies.component.html',
-  styleUrls: ['./recipies.component.scss']
+  styleUrls: ['./recipies.component.scss', '../shared.css']
 })
 export class RecipiesComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();

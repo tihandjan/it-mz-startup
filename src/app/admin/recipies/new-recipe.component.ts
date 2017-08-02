@@ -19,7 +19,7 @@ import { environment } from '../../../environments/environment';
 @Component({
     selector: 'app-new-recipe',
     templateUrl: './new-recipe.component.html',
-    styleUrls: ['./recipies.component.scss']
+    styleUrls: ['./recipies.component.scss', '../shared.css']
 })
 export class NewRecipeComponent implements OnInit, OnDestroy {
     recipeForm: FormGroup;
