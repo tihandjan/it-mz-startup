@@ -211,6 +211,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         let data = this.findCategoryById(event.target.value)
         this.sub_categories = data[0]['sub_categories']
         this.selected_category_name = data[0].name
+        console.log(data[0]['sub_categories'])
     }
 
     findCategoryById(id: number): Category[] {

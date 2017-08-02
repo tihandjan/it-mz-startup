@@ -37,9 +37,7 @@ export class CategoriesComponent implements OnInit {
     request.takeUntil(this.ngUnSubscribe).subscribe(
       res => {
         this.category = res;
-        this.recipes = res['recipes']
-        console.log(res)
-        console.log(res['recipes'])
+        this.recipes = res['recipes'];
       }
     )
   }
