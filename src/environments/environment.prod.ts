@@ -10,5 +10,5 @@ export const environment = {
         { name: 'USER', path: 'user' }
     ]
   },
-  root_url: 'https://it-mz-startup.herokuapp.com'
+  root_url: 'https://it-mz-startup.herokuapp.com/api/v1'
 };
