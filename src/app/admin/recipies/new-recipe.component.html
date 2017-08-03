@@ -165,7 +165,7 @@
                     <div formArrayName='recipes_ingredients'>
                         <div *ngFor="let ri of recipeForm.get('recipes_ingredients').controls; let i = index">
                             <div class="form-group form-group-ingredients" formGroupName="{{i}}">
-                                <ng-select 
+                                <ng-select
                                     class="form-control-select"
                                     [items]="ingredients_for_select"
                                     (data)="refreshValue($event, i)"

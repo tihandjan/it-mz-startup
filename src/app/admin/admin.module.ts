@@ -14,7 +14,6 @@ import { AdminGuard } from '../guards/admin.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
-import { IconsComponent } from './icons/icons.component';
 import { TablesComponent } from './tables/tables.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { RecipiesComponent } from './recipies/recipies.component';
@@ -32,7 +31,6 @@ import { AdminComponent } from './admin.component';
         DashboardComponent,
         LoginComponent,
         UserComponent,
-        IconsComponent,
         TablesComponent,
         NotificationsComponent,
         RecipiesComponent,
