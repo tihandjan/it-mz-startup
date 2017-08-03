@@ -56,7 +56,7 @@
                 </div>
                 <p class="card-text">
                   <span *ngFor="let ing of recipe.ingredients; let i = index;">
-                    <span *ngIf="i <= 8">{{ ing.name }}{{ i + 1 >= recipe.ingredients.length ? '' : ', ' }}</span>
+                    <span *ngIf="i <= 15">{{ ing.name }}{{ i + 1 >= recipe.ingredients.length ? '' : ', ' }}</span>
                   </span>
                 </p>
                 <div class="social clearfix">
