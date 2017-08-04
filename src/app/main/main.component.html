@@ -5,7 +5,7 @@
 
       <section class="main-content">
         <div class="page-wrapper clearfix row">
-          <article *ngFor="let recipe of top_recipe" class="main-article col-lg-6 main-article-big">
+          <article [@showState]="i+1" *ngFor="let recipe of top_recipe;let i = index" class="main-article col-lg-6 main-article-big">
             <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]">
               <img [src]="recipe.image.thumb.url" [alt]="recipe.title">
               <h3 class="title">{{ recipe.title }}</h3>

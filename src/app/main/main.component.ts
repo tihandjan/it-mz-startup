@@ -15,14 +15,15 @@ import { Recipe } from '../models/recipe';
 import { Article } from '../models/article';
 
 import { RecipeService } from "../services/recipe";
-import { btnTriggerFilter } from "./animations";
+import { btnTriggerFilter, showElements } from "./animations";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
   animations: [
-    btnTriggerFilter
+    btnTriggerFilter,
+    showElements
   ]
 })
 export class MainComponent implements OnInit, OnDestroy {
