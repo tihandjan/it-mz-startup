@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let recipe of recipies; let i = index">
+                        <tr @showTrigger *ngFor="let recipe of recipies; let i = index">
                             <th scope="row">{{recipe.id}}</th>
                             <td>{{ recipe.title }}</td>
                             <td>{{ recipe.user?.name }}</td>

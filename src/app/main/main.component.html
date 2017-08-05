@@ -5,13 +5,13 @@
 
       <section class="main-content">
         <div class="page-wrapper clearfix row">
-          <article [@showState]="i+1" *ngFor="let recipe of top_recipe;let i = index" class="main-article col-lg-6 main-article-big">
+          <article @showState *ngFor="let recipe of top_recipe;let i = index" class="main-article col-lg-6 main-article-big">
             <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]">
               <img [src]="recipe.image.thumb.url" [alt]="recipe.title">
               <h3 class="title">{{ recipe.title }}</h3>
             </a>
           </article>
-          <article *ngFor="let recipe of top_recipe_second_line; let i = index" class="main-article main-article-small col-lg-{{ i > 0 ? 3 : 6 }}">
+          <article @showState *ngFor="let recipe of top_recipe_second_line; let i = index" class="main-article main-article-small col-lg-{{ i > 0 ? 3 : 6 }}">
             <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]">
               <img [src]="(i > 0 ? recipe.image.square.url : recipe.image.long.url)" [alt]="recipe.title">
               <div class="main-caption">

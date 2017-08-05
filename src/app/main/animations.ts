@@ -21,24 +21,11 @@ export const btnTriggerFilter = trigger('buttomState', [
       transition('second <=> third', animate('200ms ease-out'))
     ]);
 export const showElements = trigger('showState', [
-  state('0', style({
-
-  })),
-  state('1', style({
-
-  })),
-  transition('void => 1', [
+  transition(':enter', [
     style({
-      left: '-500px',
+      transform: 'scale(0)',
       opacity: 0
     }),
-    animate(300)
-  ]),
-  transition('void => 2', [
-    style({
-      left: '500px',
-      opacity: 0
-    }),
-    animate(300)
+    animate('350ms ease-out')
   ])
 ])

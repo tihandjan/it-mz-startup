@@ -3,11 +3,15 @@ import 'rxjs/add/operator/takeUntil';
 import { Subject } from 'rxjs/Subject';
 import { RecipeService } from '../../services/recipe';
 import { Recipe } from '../../interfaces/recipe';
+import { fadeInTrigger } from "./animations";
 
 @Component({
   selector: 'app-recipies',
   templateUrl: './recipies.component.html',
-  styleUrls: ['./recipies.component.scss', '../shared.css']
+  styleUrls: ['./recipies.component.scss', '../shared.css'],
+  animations: [
+    fadeInTrigger
+  ]
 })
 export class RecipiesComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
