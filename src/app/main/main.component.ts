@@ -1,12 +1,7 @@
 import { 
   Component, 
   OnInit,
-  OnDestroy,
-  state,
-  style,
-  trigger,
-  animate,
-  transition
+  OnDestroy
  } from '@angular/core';
 import { Angular2TokenService } from 'angular2-token';
 import { Subject } from "rxjs/Rx";

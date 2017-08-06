@@ -3,7 +3,9 @@ import {
   style,
   trigger,
   animate,
-  transition
+  transition, 
+  group,
+  keyframes
  } from '@angular/core';
  
 export const btnTriggerFilter = trigger('buttomState', [
@@ -26,6 +28,14 @@ export const showElements = trigger('showState', [
       transform: 'scale(0)',
       opacity: 0
     }),
-    animate('350ms ease-out')
+    group([
+      animate('350ms ease-out', style({
+        transform: 'scale(1)'
+      })),
+      animate('500ms ease-out', keyframes([
+        style({opacity: 0}),
+        style({opacity: 1})
+      ]))
+    ])  
   ])
 ])

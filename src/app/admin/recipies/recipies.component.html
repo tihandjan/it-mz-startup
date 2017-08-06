@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr @showTrigger *ngFor="let recipe of recipies; let i = index">
+                        <tr @showTrigger (@showTrigger.done)="onAnimationDone($event, i)" *ngFor="let recipe of displayedRecipies; let i = index">
                             <th scope="row">{{recipe.id}}</th>
                             <td>{{ recipe.title }}</td>
                             <td>{{ recipe.user?.name }}</td>
