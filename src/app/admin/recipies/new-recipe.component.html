@@ -163,7 +163,7 @@
                     </div>
                     <label class="tip-label">пожалуйста, выбирайте ингредиенты из списка, добавляйте новый ингредиент, только если он не обнаружен в списке, не указывайте в качестве ингредиентов названия готовых блюд.</label>
                     <div formArrayName='recipes_ingredients'>
-                        <div *ngFor="let ri of recipeForm.get('recipes_ingredients').controls; let i = index">
+                        <div @slideStateTrigger *ngFor="let ri of recipeForm.get('recipes_ingredients').controls; let i = index">
                             <div class="form-group form-group-ingredients" formGroupName="{{i}}">
                                 <ng-select
                                     class="form-control-select"
@@ -185,7 +185,7 @@
                         </div>
                     </div>
                     
-                    <form [formGroup]="ingredientForm" *ngIf='ingredient_form_is_visible'>
+                    <form [formGroup]="ingredientForm" @slideStateTrigger *ngIf='ingredient_form_is_visible'>
                         <label class="tip-label">Указывайте жиры, белки, углеводы и калории в расчете на один грамм.</label>
                         <div class="form-group form-group-ingredients">
                             <input type="text" formControlName="name" class="form-control" placeholder="Название">
@@ -216,7 +216,7 @@
                     </div>
 
                     <div formArrayName="steps">
-                        <div *ngFor="let st of recipeForm.get('steps').controls;let i = index">
+                        <div @slideStateTrigger *ngFor="let st of recipeForm.get('steps').controls;let i = index">
                             <div class="form-group">
                                 <div class="label-group steps-label-group clearfix">
                                     <label class="first">шаг {{i + 1}}</label>

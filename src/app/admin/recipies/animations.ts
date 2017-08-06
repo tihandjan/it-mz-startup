@@ -21,3 +21,19 @@ export const fadeInTrigger = trigger('showTrigger',[
         ]))
     ])
 ])
+
+export const slideElement = trigger('slideStateTrigger', [
+    transition(':enter', [
+        style({
+            transform: 'translateX(-100%)',
+            opacity: 0
+        }),
+        animate('350ms ease-out')
+    ]),
+    transition(':leave', [
+        animate('350ms ease-out', style({
+            opacity: 0,
+            transform: 'translateX(-100%)',
+        }))
+    ])
+])

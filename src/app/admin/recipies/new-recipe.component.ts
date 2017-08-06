@@ -15,11 +15,15 @@ import { CategoryService } from '../../services/category';
 import { CountryService } from '../../services/country';
 
 import { environment } from '../../../environments/environment';
+import { slideElement } from './animations'
 
 @Component({
     selector: 'app-new-recipe',
     templateUrl: './new-recipe.component.html',
-    styleUrls: ['./recipies.component.scss', '../shared.css']
+    styleUrls: ['./recipies.component.scss', '../shared.css'],
+    animations: [
+        slideElement
+    ]
 })
 export class NewRecipeComponent implements OnInit, OnDestroy {
     recipeForm: FormGroup;
