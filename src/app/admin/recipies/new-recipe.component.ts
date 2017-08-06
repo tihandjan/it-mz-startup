@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy, HostBinding } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Subject } from "rxjs/Subject";
@@ -16,16 +16,19 @@ import { CountryService } from '../../services/country';
 
 import { environment } from '../../../environments/environment';
 import { slideElement } from './animations'
+import { routerAnimation } from "../../shared/animations/router-animation";
 
 @Component({
     selector: 'app-new-recipe',
     templateUrl: './new-recipe.component.html',
     styleUrls: ['./recipies.component.scss', '../shared.css'],
     animations: [
-        slideElement
+        slideElement,
+        routerAnimation
     ]
 })
 export class NewRecipeComponent implements OnInit, OnDestroy {
+    @HostBinding('@routerState') routerAnimation = true
     recipeForm: FormGroup;
     url: any = environment.root_url
     errors: any;

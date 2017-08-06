@@ -1,16 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { Subject } from "rxjs/Rx";
 
 import { RecipeService } from "../../services/recipe";
 import { Recipe } from "../../interfaces/recipe";
 
+import { routerAnimation } from "../../shared/animations/router-animation";
+
 @Component({
   selector: 'app-recipe-show',
   templateUrl: './recipe-show.component.html',
-  styleUrls: ['./recipe-show.component.scss']
+  styleUrls: ['./recipe-show.component.scss'],
+  animations: [
+    routerAnimation
+  ]
 })
 export class RecipeShowComponent implements OnInit, OnDestroy {
+  @HostBinding('@routerState') routerAnimation = true;
   recipe: Recipe;
   ngUnSubscribe: Subject<void> = new Subject<void>();
   constructor(
