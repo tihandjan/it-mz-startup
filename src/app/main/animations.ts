@@ -25,14 +25,14 @@ export const btnTriggerFilter = trigger('buttomState', [
 export const showElements = trigger('showState', [
   transition(':enter', [
     style({
-      transform: 'scale(0)',
+      transform: 'translateY(45px)',
       opacity: 0
     }),
     group([
-      animate('350ms ease-out', style({
-        transform: 'scale(1)'
+      animate('400ms ease-out', style({
+        transform: 'translateY(0)'
       })),
-      animate('500ms ease-out', keyframes([
+      animate('650ms ease-out', keyframes([
         style({opacity: 0}),
         style({opacity: 1})
       ]))

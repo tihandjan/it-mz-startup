@@ -8,14 +8,14 @@
           <article @showState *ngFor="let recipe of top_recipe;let i = index" class="main-article col-lg-6 main-article-big">
             <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]">
               <img [src]="recipe.image.thumb.url" [alt]="recipe.title">
-              <h3 class="title">{{ recipe.title }}</h3>
+              <h3 class="title"><span class="label">Блюдо дня</span>{{ recipe.title }}<i class="sprite sprite-main-recipe"></i></h3>
             </a>
           </article>
           <article @showState *ngFor="let recipe of top_recipe_second_line; let i = index" class="main-article main-article-small col-lg-{{ i > 0 ? 3 : 6 }}">
             <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]">
               <img [src]="(i > 0 ? recipe.image.square.url : recipe.image.long.url)" [alt]="recipe.title">
               <div class="main-caption">
-                <a class="tag-small"><i class="sprite sprite-hat"></i> Статьи</a>
+                <a class="tag-small"><i class="sprite sprite-drop-recipe"></i> Статьи</a>
                 <h3 class="title-small"><span>{{ recipe.title }}</span></h3>
               </div>
             </a>
@@ -51,7 +51,7 @@
                 <h4 class="card-title">{{recipe.title | truncate: 65}}</h4>
                 <div class="time">
                   <div class="time-col"><i class="sprite sprite-time"></i><span class="text">{{recipe.time}} мин</span></div>
-                  <div class="time-col"><i class="sprite sprite-uroven-slojnosti"></i><span class="text">{{recipe.complexity}}</span></div>
+                  <div class="time-col"><i class="sprite sprite-complexity"></i><span class="text">{{recipe.complexity}}</span></div>
                   <div class="time-col"><i class="sprite sprite-kaloriy"></i><span class="text">{{recipe.calories}} ккал</span></div>
                 </div>
                 <p class="card-text">
@@ -61,8 +61,8 @@
                 </p>
                 <div class="social clearfix">
                   <div class="social-col">
-                    <i class="sprite sprite-like-grey"></i>
-                    <i class="sprite sprite-like-grey-hover"></i>
+                    <i class="sprite sprite-like"></i>
+                    <i class="sprite sprite-like-hover"></i>
                     <span class="like-count">21</span>
                   </div>
                   <div class="social-col">
@@ -107,7 +107,7 @@
           <article class="main-article col-lg-3 main-article-big" *ngFor="let i of [1,2,3,4]">
             <a href="#">
               <img src="https://dummyimage.com/230x400/{{i}}/{{i}}.png" [alt]="">
-              <h3 class="title">Утинные ножки с овощами грудинкой и белой фасолью</h3>
+              <h3 class="title">Рецепты после похмелья</h3>
             </a>
           </article>
         </div>

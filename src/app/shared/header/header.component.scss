@@ -6,19 +6,36 @@
         height: 65px;
         width: 190px;
         float: left;
+        display: block;
         &:hover {
-            background-color: #47336c;
             cursor: pointer;
+            .main-h1 {
+                span {
+                    i {
+                        &:first-child {
+                            display: block;
+                        }  
+                        &:last-child {
+                            display: none;
+                        }
+                    }
+                }
+            }
         }
        .main-h1 {
            position: relative;
            margin: 0;
-           a {
+           span {
                position: absolute;
                top: 7px;
                left: 15px;
                i {
-
+                   &:first-child {
+                        display: none;
+                   }
+                   &:last-child {
+                        display: block;
+                   }
                }
            }
        }
@@ -29,9 +46,9 @@
         margin-left: 15px;
         text-transform: uppercase;
         a {
-            margin-left: 5px;
+            margin-left: 2px;
             color: #715b9d;
-            font-size: 0.9em;
+            font-size: 12px;
             &:hover {
                 color: #47336c;
                 text-decoration: none;

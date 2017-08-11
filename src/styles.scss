@@ -55,18 +55,31 @@ a {
                     min-height: 150px;
                     opacity: 0.65;
                     transition: 300ms ease-out;
+                    // -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
                 }
             }
         }
         .main-article-big {
             .title {
-                top: 57%;
+                top: 37%;
                 left: 50%;
                 width: 75%;
                 text-align: center;
                 text-transform: uppercase;
                 font-size: 29.8px;
                 font-weight: bold;
+                height: 0;
+                .label {
+                    display: block;
+                    font-size: 12px;
+                    font-weight: bold;
+                    line-height: 1.8;
+                }
+                .sprite {
+                    display: block;
+                    margin: auto;
+                    margin-top: 5px;
+                }
             }
         }
         .main-article-small {
@@ -80,7 +93,7 @@ a {
                     font-size: 16px;
                     text-transform: uppercase;
                     position: relative;
-                    top: -20px;
+                    top: -19px;
                     width: 90%;
                     transition: .3s ease;
                     display: inline-block;
@@ -88,9 +101,10 @@ a {
                         background-color: #FFF;
                         box-shadow: 0 0 0 #FFF, 0 0 0 #FFF;
                         -webkit-box-shadow: 3px 0 0 #FFF, -3px 0 0 #FFF;
-                        padding-top: 3px;
-                        padding-bottom: 1px;
-                        line-height: 1.3em;
+                        line-height: 1.2em;
+                        padding: 4px 4px;
+                        -webkit-box-decoration-break: clone;
+                        box-decoration-break: clone;
                     }
                 }
                 .tag-small {
@@ -99,15 +113,12 @@ a {
                     background-color: #1b1b1b;
                     text-transform: uppercase;
                     font-weight: 500;
-                    font-size: 0.8em;
+                    font-size: 14px;
                     transition: .5s ease;  
                     i {
                         position: relative;
                         top: 3px;
-                    }          
-                    &:hover {
-                        background-color: #34264f;
-                    }
+                    } 
                 }
             }
         }
@@ -203,7 +214,7 @@ a {
                     background-color: #FFF;
                     padding-bottom: 4px;
                     .card-title {
-                        font-size: 16px;
+                        font-size: 18px;
                         line-height: 1;
                         text-align: center;
                         color: #3d3d3d;
@@ -274,7 +285,8 @@ a {
                                 .like-count {
                                     position: relative;
                                     top: -6px;
-                                    color: #BDBDBD;
+                                    color: #9b9b9b;
+                                    font-size: 11px;
                                 }
                             }
                         }
@@ -305,7 +317,7 @@ a {
                     top: 0;
                     right: 0;
                     .card-title {
-                        height: 47px;
+                        height: 62px;
                     }
                 }
                 .author {
@@ -336,12 +348,13 @@ a {
     .hashtag-wrapper {
         .main-article  {
             .title {
-                top: 68%;
+                top: 70%;
                 font-family: Cambria;
                 font-size: 22px;
                 line-height: 1.36;
                 text-align: center;
                 color: #f0f0f0;
+                font-weight: 500;
             }
         }
     }
@@ -376,6 +389,12 @@ a {
     .main-content {
         .page-wrapper {
             margin-left: 54px;
+            .main-article-big {
+                .title {
+                    font-size: 25px;
+                    top: 28%;
+                }
+            }
         }
         .next-article-wrapper {
             margin-left: 58px;
@@ -386,7 +405,7 @@ a {
         .hashtag-wrapper {
             .main-article-big {
                 .title {
-                    top: 70%;
+                    top: 62%;
                 }
             }
         }

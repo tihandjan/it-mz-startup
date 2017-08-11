@@ -1,8 +1,8 @@
 <section class="right-sidenav" [@elementState]="state">
   <div class="right-sidenav-wrapper">
     <ul>
-      <li (click)="toggleMenu()"><i class="fa fa-user"></i></li>
-      <li><i class="fa fa-heart"></i></li>
+      <li (click)="toggleMenu()"><i class="sprite sprite-user"></i></li>
+      <li><i class="sprite sprite-heart"></i></li>
     </ul>
     <span *ngIf="!user_signed_in">
       <div class="registration-wrapper" [ngClass]="{active: registration}">
