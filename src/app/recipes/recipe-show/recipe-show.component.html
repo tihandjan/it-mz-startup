@@ -1,17 +1,72 @@
-<section class="main-content">
+<section class="main-content" *ngIf="recipe">
   <div class="page-wrapper clearfix">
     <div class="left-section">
       <div class="img-wrapper">
-        <img src="https://dummyimage.com/706x320/b8329d/fff.png" [alt]="">
+        <img [src]="recipe.image.show.url" [alt]="recipe.title">
         <div class="author-wrapper clearfix">
           <div class="author-name">
-            <div class="name">Жиробас Жир</div>
-            <div class="count">41 рецепт</div>
+            <div class="name">{{recipe.user.name}} {{recipe.user.surname}}</div>
+            <div class="count">{{recipe.user.recipes_count}} рецептов</div>
           </div>
           <div class="author-avatar">
-            <img src="https://dummyimage.com/320x320/34264f/fff.png" [alt]="">
+            <img src="assets/images/face-6.jpg" [alt]="">
           </div>
         </div>
+        <div class="actions clearfix">
+          <div class="left">
+            <i class="fa fa-heart-o"></i>
+            <div class="like">нравиться</div>
+            <div class="like-count">226</div>
+          </div>
+        </div>
+      </div>
+      <h1 class="show-title">{{recipe.title}}</h1>
+      <h2 class="show-summary">{{recipe.summary}}</h2>
+      <div class="show-metadata">
+        <div class="show-metadata-item">
+          <div class="circle">
+            <i class="sprite sprite-drop-recipe"></i>
+          </div>
+          <div class="label">{{recipe.porsion}} порции</div>
+        </div>
+        <div class="show-metadata-item">
+          <div class="circle">
+            <i class="sprite sprite-drop-recipe"></i>
+          </div>
+          <div class="label">{{recipe.time}} мин</div>
+        </div>
+        <div class="show-metadata-item">
+          <div class="circle">
+            <i class="sprite sprite-drop-recipe"></i>
+          </div>
+          <div class="label">{{recipe.calories}} ккал</div>
+        </div>
+        <div class="show-metadata-item">
+          <div class="circle">
+            <i class="sprite sprite-drop-recipe"></i>
+          </div>
+          <div class="label">{{recipe.complexity}}</div>
+        </div>
+      </div>
+      <div class="ingredients-wrapper">
+        <div class="ingredients-label">ингредиенты</div>
+        <ul class="ingredients-list">
+          <li class="ingredient-item" *ngFor="let ingredient of recipe.ingredients; let i = index">
+            <div class="ingredient-name">{{ingredient.name}}</div>
+            <div class="ingredient-line"></div>
+            <div class="ingredient-count">{{getIngredientData(ingredient.id).amount}} {{getIngredientData(ingredient.id).unit}}</div>
+          </li>
+        </ul>
+      </div>
+      <div class="ingredient-images-list">
+        <div class="img-wrapper" *ngFor="let ingredient of ingredientsWithImage().slice(0,8)">
+          <img [src]="ingredient.image.url" [alt]="ingredient.name" class="ingredient-image">
+        </div>
+      </div>
+      <div class="steps-title">РЕЦЕПТ ПРИГОТОВЛЕНИЯ</div>
+      <div class="print">
+        <i class="fa fa-print"></i>
+        <span>распечатать</span>
       </div>
     </div>
     <div class="right-section">

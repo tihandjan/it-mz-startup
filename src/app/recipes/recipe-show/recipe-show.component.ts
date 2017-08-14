@@ -1,3 +1,4 @@
+import { Ingredient } from '../../interfaces/ingredient';
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { Subject } from "rxjs/Rx";
@@ -43,6 +44,22 @@ export class RecipeShowComponent implements OnInit, OnDestroy {
         console.log(res)
       },
       err => console.log(err)
+    )
+  }
+
+  getIngredientData(id: number) {
+    return this.recipe['recipes_ingredients'].find(
+      ing => {
+        return ing['ingredient_id'] == id
+      }
+    )
+  }
+
+  ingredientsWithImage(): Ingredient[] {
+    return this.recipe['ingredients'].filter(
+      ing => {
+        return ing.image.url != null
+      }
     )
   }
 

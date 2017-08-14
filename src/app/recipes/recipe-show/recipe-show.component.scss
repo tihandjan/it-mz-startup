@@ -14,7 +14,6 @@
         width: 75%;
         min-height: 100vh;
         background-color: #efefef;
-        font-family: Cambria, Georgia, serif;
         .img-wrapper {
             background-color: #000;
             position: relative;
@@ -22,20 +21,20 @@
                 position: absolute;
                 right: 0;
                 top: 18px;
-                width: 178px;
+                width: 191px;
                 height: 50px;
-                background: rgba(0,0,0,0.6);
                 .author-name {
-                    text-align: center;
+                    text-align: right;
                     float: left;
                     width: 128px;
                     .name {
                         color: #FFF;
                         padding-top: 8px;
+                        font-size: 16px;
                     }
                     .count {
-                        color: #b086f6;
-                        font-size: 0.8em;
+                        color: #47346c;
+                        font-size: 11px;
                         margin-bottom: 8px;
                         margin-top: -4px;
                     }
@@ -44,10 +43,11 @@
                     position: relative;
                     top: 7px;
                     right: 14px;
-                    width: 35px;
-                    height: 35px;
+                    width: 38px;
+                    height: 38px;
                     float: right;
                     border-radius: 50%;
+                    border: 2px solid #FFF;
                     overflow: hidden;
                     img {
                         width: 100%;
@@ -57,6 +57,139 @@
             img {
                 opacity: 0.8;
                 width: 100%;
+            }
+            .actions {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 10px 22px;
+                color: #FFF;
+                background-color: rgba(26, 26, 26, 0.6);
+                .left {
+                    float: left;
+                    .fa {
+                        margin-right: 5px;
+                    }
+                    .like {
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        display: inline-block;
+                    }
+                    .like-count {
+                        font-size: 12px;
+                        color: #acacac;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .show-title {
+            font-size: 20.9px;
+            font-weight: bold;
+            text-align: center;
+            color: #47346c;
+            text-transform: uppercase;
+            margin: 21px 0 17px 0;
+        }
+        .show-summary {
+            font-size: 14px;
+            line-height: 1.14;
+            color: #5b5b5b;
+            margin-bottom: 12px;
+            padding: 0 21px;
+        }
+        .show-metadata {
+            display: flex;
+            justify-content: space-between;
+            width: 370px;
+            margin: auto;
+            margin-bottom: 38px;
+            .show-metadata-item {
+                .circle {
+                    position: relative;
+                    width: 35px;
+                    height: 35px;
+                    background-color: #999;
+                    border-radius: 50%;
+                    margin: auto;
+                    .sprite {
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+                    }
+                }
+                .label {
+                    font-size: 11px;
+                    text-transform: uppercase;
+                    color: #696969;
+                    text-align: center;
+                }
+            }
+        }
+        .ingredients-wrapper {
+            width: 480px;
+            margin: auto;
+            margin-bottom: 25px;
+            .ingredients-label {
+                font-family: MyriadPro;
+                font-size: 18.3px;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+                color: #333;
+            }
+            .ingredients-list {
+                list-style: none;
+                padding: 0;
+                .ingredient-item {
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: Cambria;
+                    color: #585858;
+                    font-size: 12px;
+                    .ingredient-name {
+                        text-transform: uppercase;
+                        white-space: nowrap;
+                    }
+                    .ingredient-line {
+                        width: 100%;
+                        height: 1px;
+                        background-color: #C4C4C4;
+                        margin: 12px 8px;
+                    }
+                    .ingredient-count {
+                        text-align: left;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+        .ingredient-images-list {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+            .ingredient-image {
+                width: 45px;
+            }
+        }
+        .steps-title {
+            font-family: MyriadPro;
+            font-size: 18.3px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+        .print {
+            font-size: 11px;
+            color: #696969;
+            text-transform: uppercase;
+            text-align: center;
+            .fa {
+                font-size: 18px;
+                position: relative;
+                top: 2px;
+                margin-right: 2px;
             }
         }
     }
