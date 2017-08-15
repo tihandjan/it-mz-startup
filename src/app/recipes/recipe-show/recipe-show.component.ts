@@ -5,6 +5,7 @@ import { Subject } from "rxjs/Rx";
 
 import { RecipeService } from "../../services/recipe";
 import { Recipe } from "../../interfaces/recipe";
+import { CommentsComponent } from "../../shared/comments/comments.component";
 
 import { routerAnimation } from "../../shared/animations/router-animation";
 
