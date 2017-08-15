@@ -68,6 +68,39 @@
         <i class="fa fa-print"></i>
         <span>распечатать</span>
       </div>
+      <div class="steps">
+        <div class="steps-list">
+          <div class="steps-item" *ngFor="let step of recipe.steps">
+            <div class="image-wrapper">
+              <img [src]="step.image.url" *ngIf="step.image.url">
+            </div>
+            <div class="step-content">
+              <p><span class="step-number">{{step.step}}</span>{{step.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="share-title">поделиться:</div>
+      <div class="share-btn-group">
+        <div class="share-btn-item">
+          <div class="share-btn"><i class="fa fa-vk"></i></div>
+          <div class="share-count">121</div>
+        </div>
+        <div class="share-btn-item">
+          <div class="share-btn"><i class="fa fa-odnoklassniki"></i></div>
+          <div class="share-count">121</div>
+        </div>
+        <div class="share-btn-item">
+          <div class="share-btn"><i class="fa fa-facebook"></i></div>
+          <div class="share-count">121</div>
+        </div>
+        <div class="share-btn-item">
+          <div class="share-btn"><i class="fa fa-google-plus"></i></div>
+          <div class="share-count">121</div>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="comments-title">комментарии: 6</div>
     </div>
     <div class="right-section">
       <article class="main-article main-article-small" *ngFor="let i of [1,2,3,4,5,6,7,8]">

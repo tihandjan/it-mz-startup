@@ -185,12 +185,111 @@
             color: #696969;
             text-transform: uppercase;
             text-align: center;
+            margin-bottom: 60px;
             .fa {
                 font-size: 18px;
                 position: relative;
                 top: 2px;
                 margin-right: 2px;
             }
+        }
+        .steps {
+            .steps-list {
+                padding: 8px;
+                margin-bottom: 30px;
+                .steps-item {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 26px;
+                    img {
+                        max-width: 326px;
+                        margin-right: 19px;
+                    }
+                    .step-content {
+                        width: 100%;
+                        p {
+                            font-size: 16px;
+                            line-height: 1.25;
+                            .step-number {
+                                position: relative;
+                                top: -2px;
+                                padding: 3px 7px;
+                                background-color: #141414;
+                                border-radius: 50%;
+                                margin-right: 7px;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: bold;      
+                                color: #fefefe;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .share-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #303030;
+            text-transform: uppercase;
+            padding: 0 13px;
+            margin-bottom: 12px;
+        }
+        .share-btn-group {
+            width: 190px;
+            margin: 0 0 65px 13px;
+            display: flex;
+            justify-content: space-between;
+            .share-btn-item {
+                display: flex;
+                justify-content: space-between;
+                width: 42px;
+                .share-btn {
+                    background-color: #141414;
+                    border-radius: 50%;
+                    width: 22px;
+                    height: 22px;
+                    .fa {
+                        color: #FFF;
+                        font-size: 12px;
+                        position: relative;
+                    }
+                    .fa-vk {
+                        left: 4px;
+                        top: -1px;
+                    }
+                    .fa-odnoklassniki {
+                        left: 7px;
+                        top: -1px;
+                    }
+                    .fa-facebook {
+                        left: 7px;
+                        top: -1px;
+                    }
+                    .fa-google-plus {
+                        left: 4px;
+                        top: -1px;
+                    }
+                }
+                .share-count {
+                    font-size: 10px;
+                    position: relative;
+                    top: 5px;
+                }
+            }
+        }
+        .line {
+            height: 1px;
+            margin: 0 8px 30px 8px;
+            background-color: #cccccc;
+        }
+        .comments-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #303030;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
         }
     }
     .right-section {
