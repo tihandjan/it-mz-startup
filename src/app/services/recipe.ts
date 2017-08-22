@@ -5,14 +5,12 @@ import { environment } from '../../environments/environment';
 import { Recipe } from '../interfaces/recipe';
 import { UserAuthService } from '../services/user-auth';
 import { AdminAuthService } from '../services/admin-auth';
-import { Angular2TokenService } from 'angular2-token';
 
 @Injectable()
 export class RecipeService {
   baseUrl: any = environment.root_url
   constructor(
     private http: Http,
-    private _tokenService: Angular2TokenService,
     private userAuth: UserAuthService,
     private adminAuth: AdminAuthService
   ) { }

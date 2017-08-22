@@ -5,7 +5,6 @@ import { Subject } from "rxjs/Rx";
 
 import { RecipeService } from "../../services/recipe";
 import { Recipe } from "../../interfaces/recipe";
-import { CommentsComponent } from "../../shared/comments/comments.component";
 
 import { routerAnimation } from "../../shared/animations/router-animation";
 
@@ -41,8 +40,7 @@ export class RecipeShowComponent implements OnInit, OnDestroy {
     )
     request.takeUntil(this.ngUnSubscribe).subscribe(
       res => {
-        this.recipe = res 
-        console.log(res)
+        this.recipe = res;
       },
       err => console.log(err)
     )

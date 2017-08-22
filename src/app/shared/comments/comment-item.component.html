@@ -1,0 +1,21 @@
+<div class="comments-item">
+    <div class="comment-left">
+        <div class="image-wrapper">
+            <img src="assets/images/face-6.jpg" alt="">
+        </div>
+    </div>
+    <div class="comment-right">
+        <div class="comment-heading">
+            <span class="username">{{comment.user.name}} {{comment.user.surname}}</span>
+            <span class="time">6 часов назад</span>
+        </div>
+        <div class="comment-body">{{comment.content}}</div>
+        <div class="comment-footer">
+            <div class="reply" (click)="replyComment()">Ответить</div>
+            <div class="likes">
+                <span class="likes-count">10</span>
+                <i class="fa fa-heart"></i>
+            </div>
+        </div>
+    </div>
+</div>

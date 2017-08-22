@@ -1,55 +1,23 @@
 <div class="comments-wrapper">
     <div class="comments-form">
-        <form>
-            <textarea rows="5" placeholder="Написать комментарий..." class="comments-control"></textarea>
-            <button class="btn send-comment-btn">отправить</button>
+        <div class="alert alert-danger custom-alert-danger" *ngIf="errors && errors.content">Сообщение {{errors.content[0]}}</div>
+        <form [formGroup]="commentForm" (ngSubmit)="createComment('recipes', recipeId)">
+            <textarea formControlName="content" rows="5" placeholder="Написать комментарий..." class="comments-control"></textarea>
+            <button [disabled]="!commentForm.valid" class="btn send-comment-btn">отправить</button>
         </form>
     </div>
     <div class="comments-list">
-        <div *ngFor="let something of [1,2,3,4]">
-            <div class="comments-item">
-                <div class="comment-left">
-                    <div class="image-wrapper">
-                        <img src="assets/images/face-6.jpg" alt="">
-                    </div>
-                </div>
-                <div class="comment-right">
-                    <div class="comment-heading">
-                        <span class="username">Игорь Тихоненко</span>
-                        <span class="time">6 часов назад</span>
-                    </div>
-                    <div class="comment-body">Выливаем получившееся пюре в кастрюлю, добавляем оливковое масло и ставим на огонь. Доводим до кипения и увариваем соус на среднем огне 20 минут. Далее добавляем соль, сахар, чеснок и травы и варим еще 5 минут. Соус готов.</div>
-                    <div class="comment-footer">
-                        <div class="reply">Ответить</div>
-                        <div class="likes">
-                            <span class="likes-count">10</span>
-                            <i class="fa fa-heart"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div *ngFor="let comment of comments">
+            <comment-item (reply)="replyComment($event)" [comment]="comment"></comment-item>
             <div class="comments-reply-list">
-                <div class="comments-item">
-                    <div class="comment-left">
-                        <div class="image-wrapper">
-                            <img src="assets/images/face-6.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="comment-right">
-                        <div class="comment-heading">
-                            <span class="username">Дженифер Лоуренс</span>
-                            <span class="time">6 часов назад</span>
-                        </div>
-                        <div class="comment-body">Марк-Игорь я хочу тебя,ты просто самый умный програмер не то что Антон</div>
-                        <div class="comment-footer">
-                            <div class="reply">Ответить</div>
-                            <div class="likes">
-                                <span class="likes-count">10</span>
-                                <i class="fa fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
+                <div class="comments-form">
+                    <form *ngIf="comment == commentable" [formGroup]="commentForm" (ngSubmit)="createComment('comments', comment.id)">
+                        <div class="alert alert-danger custom-alert-danger" *ngIf="subCommentErrors && subCommentErrors.content">Сообщение {{subCommentErrors.content[0]}}</div>
+                        <textarea formControlName="content" rows="5" placeholder="Написать комментарий..." class="comments-control"></textarea>
+                        <button [disabled]="!commentForm.valid" class="btn send-comment-btn">отправить</button>
+                    </form>
                 </div>
+                <comment-item (reply)="replyComment({commentable: comment})" *ngFor="let subCommet of comment.comments" [comment]="subCommet"></comment-item>
             </div>
         </div>
     </div>
