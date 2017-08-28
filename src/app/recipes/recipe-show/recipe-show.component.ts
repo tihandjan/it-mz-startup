@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { Subject } from "rxjs/Rx";
 
 import { RecipeService } from "../../services/recipe";
+import { VoteService } from "../../services/vote";
 import { Recipe } from "../../interfaces/recipe";
 
 import { routerAnimation } from "../../shared/animations/router-animation";
@@ -22,7 +23,8 @@ export class RecipeShowComponent implements OnInit, OnDestroy {
   ngUnSubscribe: Subject<void> = new Subject<void>();
   constructor(
     private recipeService: RecipeService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private voteService: VoteService,
   ) { }
 
   ngOnInit() {
@@ -59,6 +61,13 @@ export class RecipeShowComponent implements OnInit, OnDestroy {
       ing => {
         return ing.image.url != null
       }
+    )
+  }
+
+  vote(): void {
+    this.voteService.vote('recipes', this.recipe.id).subscribe(
+      res => console.log(res),
+      err => console.log(err)
     )
   }
 

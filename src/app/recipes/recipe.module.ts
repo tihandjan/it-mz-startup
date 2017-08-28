@@ -10,6 +10,7 @@ import { CategoriesComponent } from '../categories/categories.component';
 import { RecipeShowComponent } from './recipe-show/recipe-show.component';
 
 import { CategoryService } from "../services/category";
+import { VoteService } from "../services/vote";
 
 @NgModule({
     imports: [
@@ -21,6 +22,6 @@ import { CategoryService } from "../services/category";
     ],
     exports: [],
     declarations: [RecipeComponent, RecipesComponent, CategoriesComponent, RecipeShowComponent],
-    providers: [CategoryService],
+    providers: [CategoryService, VoteService],
 })
 export class RecipeModule { }
