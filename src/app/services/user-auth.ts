@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Angular2TokenService } from 'angular2-token';
 import { Observable, Subject } from 'rxjs/Rx';
-import { Response } from '@angular/http';
+import { Response, Headers, RequestOptions } from '@angular/http';
 
 import { environment } from '../../environments/environment';
 
@@ -42,13 +42,37 @@ export class UserAuthService {
         )
     }
 
-    get tokens() {
-        return {
-            accessToken: this.auth.currentAuthData['accessToken'],
-            client: this.auth.currentAuthData['client'],
-            uid: this.auth.currentAuthData['uid'],
-            expiry: this.auth.currentAuthData['expiry'],
-            tokenType: this.auth.currentAuthData['tokenType'],
-        }
+    get headers() {
+        let tokens;
+        if(this.auth.currentAuthData)
+            tokens = {
+                accessToken: this.auth.currentAuthData['accessToken'],
+                client: this.auth.currentAuthData['client'],
+                uid: this.auth.currentAuthData['uid'],
+                expiry: this.auth.currentAuthData['expiry'],
+                tokenType: this.auth.currentAuthData['tokenType'],
+            }
+        else
+            tokens = {
+                accessToken: null,
+                client: null,
+                uid: null,
+                expiry: null,
+                tokenType: null,
+            }
+        let headers = new Headers();
+        headers.append('Accept','application/json'); 
+        headers.append('access-token', tokens.accessToken); 
+        headers.append('client', tokens.client); 
+        headers.append('uid', tokens.uid); 
+        headers.append('expiry', tokens.expiry); 
+        headers.append('token-type', tokens.tokenType);
+        headers.append('content-type', 'application/json');
+        let requestOptions = new RequestOptions({headers: headers});
+        return requestOptions;
+    }
+
+    userSignedIn(): boolean {
+        return this.auth.userSignedIn();
     }
 }

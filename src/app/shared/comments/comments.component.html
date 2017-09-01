@@ -1,7 +1,7 @@
 <div class="comments-wrapper">
     <div class="comments-form">
         <div class="alert alert-danger custom-alert-danger" *ngIf="errors && errors.content">Сообщение {{errors.content[0]}}</div>
-        <form [formGroup]="commentForm" (ngSubmit)="createComment('recipes', recipeId)">
+        <form *ngIf="user_signed_in" [formGroup]="commentForm" (ngSubmit)="createComment('recipes', recipeId)">
             <textarea formControlName="content" rows="5" placeholder="Написать комментарий..." class="comments-control"></textarea>
             <button [disabled]="!commentForm.valid" class="btn send-comment-btn">отправить</button>
         </form>
@@ -11,7 +11,7 @@
             <comment-item (reply)="replyComment($event)" [comment]="comment"></comment-item>
             <div class="comments-reply-list">
                 <div class="comments-form">
-                    <form *ngIf="comment == commentable" [formGroup]="commentForm" (ngSubmit)="createComment('comments', comment.id)">
+                    <form *ngIf="comment == commentable && user_signed_in" [formGroup]="commentForm" (ngSubmit)="createComment('comments', comment.id)">
                         <div class="alert alert-danger custom-alert-danger" *ngIf="subCommentErrors && subCommentErrors.content">Сообщение {{subCommentErrors.content[0]}}</div>
                         <textarea formControlName="content" rows="5" placeholder="Написать комментарий..." class="comments-control"></textarea>
                         <button [disabled]="!commentForm.valid" class="btn send-comment-btn">отправить</button>

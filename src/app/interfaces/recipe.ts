@@ -17,6 +17,8 @@ export interface Recipe {
     category_id: number,
     sub_category_id: number,
     country_id: number,
+    likes: number,
+    liked: any,
     category: {
         id: number,
         name: string,

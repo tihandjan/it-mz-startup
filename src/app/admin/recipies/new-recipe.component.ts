@@ -91,7 +91,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     }
 
     createIngredient() {
-        this.ingredientService.createIngredient(this.ingredientForm.value, 'admin').subscribe(
+        this.ingredientService.createIngredient(this.ingredientForm.value).subscribe(
             res => {
                 this.ingredient_form_is_visible = false;
                 this.ingredientForm.reset();
@@ -104,7 +104,8 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     }
 
     createRecipe() {
-        this.recipeService.createRecipe(this.recipeForm.value, 'admin').subscribe(
+        this.recipeService.createRecipe(this.recipeForm.value
+        ).subscribe(
             res => {
                 true
             }, 

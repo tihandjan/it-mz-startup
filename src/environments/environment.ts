@@ -6,14 +6,10 @@
 export const environment = {
   production: false,
   base_url: {
-    apiBase: 'http://localhost:3000/api/v1',
+    apiBase: 'http://localhost:3000',
     signOutPath: 'auth/sign_out',
     signInPath: 'auth/sign_in',
-    validateTokenPath: 'auth/validate_token',
-    userTypes: [
-        { name: 'ADMIN', path: 'admin' },
-        { name: 'USER', path: 'user' }
-    ]
+    validateTokenPath: 'auth/validate_token'
   },
   root_url: 'http://localhost:3000/api/v1'
 };

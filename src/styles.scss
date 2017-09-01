@@ -20,6 +20,10 @@ a {
     }
 }
 
+.active {
+    display: inline-block !important;
+}
+
 .container-custom {
     background-color: #FFF;
     padding: 0;
@@ -272,13 +276,12 @@ a {
                             float: right;
                             font-size: 0.8em;
                             &:hover {
-                                i {
-                                    &:first-child {
-                                        display: none;
-                                    }
-                                    &:nth-child(2) {
-                                        display: inline-block;
-                                    }
+                                cursor: pointer;
+                                .like_1_ {
+                                    display: none;
+                                }
+                                .like-hover {
+                                    display: inline-block;
                                 }
                             }
                             i {
@@ -293,6 +296,20 @@ a {
                                     top: -6px;
                                     color: #9b9b9b;
                                     font-size: 11px;
+                                }
+                            }
+                        }
+                        .social-col-right-side {
+                            &:hover {
+                                i {
+                                    &:first-child {
+                                        display: none;
+                                    }
+                                }
+                                i {
+                                    &:last-child {
+                                        display: inline-block;
+                                    }
                                 }
                             }
                         }
@@ -314,6 +331,9 @@ a {
                 img {
                     float: left;
                     width: 50%;
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
                 .card-block {
                     border: 2px solid #f5f5f5;
@@ -324,6 +344,9 @@ a {
                     right: 0;
                     .card-title {
                         height: 62px;
+                        &:hover {
+                            cursor: pointer;
+                        }
                     }
                 }
                 .author {

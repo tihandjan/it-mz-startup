@@ -36,9 +36,9 @@
         </div>
 
         <div class="page-wrapper third-article-wrapper next-article-wrapper clearfix row" >
-          <a [routerLink]="['recipes', recipe.category.slug, recipe.slug]" class=" col-md-6" *ngFor="let recipe of recipes">
+          <a class=" col-md-6" *ngFor="let recipe of recipes">
             <article class="card card-side clearfix">
-              <img class="card-img-top" [src]="recipe.image.square.url" [alt]="recipe.title">
+              <img [routerLink]="['recipes', recipe.category.slug, recipe.slug]" class="card-img-top" [src]="recipe.image.square.url" [alt]="recipe.title">
               <div class="author clearfix">
                 <div class="img-wrapper pull-left">
                   <img src="https://dummyimage.com/55x55/7/fff.png" alt="">
@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="card-block">
-                <h4 class="card-title">{{recipe.title | truncate: 65}}</h4>
+                <h4 [routerLink]="['recipes', recipe.category.slug, recipe.slug]" class="card-title">{{recipe.title | truncate: 65}}</h4>
                 <div class="time">
                   <div class="time-col"><i class="sprite sprite-time"></i><span class="text">{{recipe.time}} мин</span></div>
                   <div class="time-col"><i class="sprite sprite-complexity"></i><span class="text">{{recipe.complexity}}</span></div>
@@ -61,19 +61,20 @@
                 </p>
                 <div class="social clearfix">
                   <div class="social-col">
-                    <i class="sprite sprite-like"></i>
-                    <i class="sprite sprite-like-hover"></i>
-                    <span class="like-count">21</span>
+                    <i (click)="upVote(recipe.id)" class="sprite sprite-like_1_" *ngIf="!recipe.liked"></i>
+                    <i (click)="upVote(recipe.id)" class="sprite sprite-like-hover" *ngIf="!recipe.liked"></i>
+                    <i @heart (click)="downVote(recipe.id)" class="sprite sprite-liked" *ngIf="recipe.liked"></i>
+                    <span class="like-count">{{recipe.likes}}</span>
                   </div>
-                  <div class="social-col">
+                  <div class="social-col social-col-right-side">
                     <i class="sprite sprite-facebook-small"></i>
                     <i class="sprite sprite-facebook-small-hover"></i>
                   </div>
-                  <div class="social-col">
+                  <div class="social-col social-col-right-side">
                     <i class="sprite sprite-odnoklassniki-small"></i>
                     <i class="sprite sprite-odnoklassniki-small-hover"></i>
                   </div>
-                  <div class="social-col">
+                  <div class="social-col social-col-right-side">
                     <i class="sprite sprite-vk-small"></i>
                     <i class="sprite sprite-vk-small-hover"></i>
                   </div>

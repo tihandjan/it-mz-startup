@@ -8,7 +8,6 @@ import {
 } from '@angular/animations';
 
 import { UserAuthService } from '../../services/user-auth';
-import { Angular2TokenService } from 'angular2-token';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -36,24 +35,21 @@ export class RightSidenavMenuComponent implements OnInit {
   loginErrors: any;
   user_signed_in: boolean;
   constructor(
-    private userAuth: UserAuthService,
-    private _auth: Angular2TokenService
+    private userAuth: UserAuthService
   ) {
     this.userRegForm = new FormGroup({
       'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
       'password': new FormControl('', Validators.required),
-      'passwordConfirmation': new FormControl('', [Validators.required]),
-      'userType': new FormControl('USER')
+      'passwordConfirmation': new FormControl('', [Validators.required])
     });
     this.userSignInForm = new FormGroup({
       'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
-      'password': new FormControl('', Validators.required),
-      'userType': new FormControl('USER')
+      'password': new FormControl('', Validators.required)
     })
   }
 
   ngOnInit() {
-    this.user_signed_in = this._auth.userSignedIn() && this._auth.currentUserType == 'USER'
+    this.user_signed_in = this.userAuth.userSignedIn()
   }
 
   toggleMenu() {
@@ -63,7 +59,8 @@ export class RightSidenavMenuComponent implements OnInit {
   userRegistration() {
     this.userAuth.userRegistration(this.userRegForm.value).subscribe(
       res => {
-        this.user_signed_in = true
+        this.user_signed_in = this.userAuth.userSignedIn();
+        location.reload();
       },
       err => {
         this.regErrors = err.json().errors;
@@ -75,7 +72,8 @@ export class RightSidenavMenuComponent implements OnInit {
   userSignIn() {
     this.userAuth.userLogIn(this.userSignInForm.value).subscribe(
       res => {
-        this.user_signed_in = true
+        this.user_signed_in = this.userAuth.userSignedIn();
+        location.reload();
       },
       err => {
         this.loginErrors = err.json().errors;        
@@ -87,7 +85,8 @@ export class RightSidenavMenuComponent implements OnInit {
   logOut() {
     this.userAuth.userLogOut().subscribe(
       res => {
-        this.user_signed_in = false 
+        this.user_signed_in = false
+        location.reload();
       } ,
       err => console.log(err)
     )

@@ -69,8 +69,12 @@
                 background-color: rgba(26, 26, 26, 0.6);
                 .left {
                     float: left;
-                    .fa {
+                    .sprite {
                         margin-right: 5px;
+                        vertical-align: middle;
+                        &:hover {
+                            cursor: pointer;
+                        }
                     }
                     .like {
                         font-size: 12px;
@@ -119,6 +123,11 @@
                         top: 10px;
                         left: 10px;
                     }
+                }
+                .sprite {
+                    vertical-align: middle;
+                    position: relative;
+                    top: 4px;   
                 }
                 .label {
                     font-size: 11px;
@@ -180,6 +189,7 @@
             font-weight: bold;
             text-align: center;
             color: #333;
+            margin-bottom: 2px;
         }
         .print {
             font-size: 11px;
@@ -187,11 +197,8 @@
             text-transform: uppercase;
             text-align: center;
             margin-bottom: 60px;
-            .fa {
-                font-size: 18px;
-                position: relative;
-                top: 2px;
-                margin-right: 2px;
+            .sprite {
+                vertical-align: middle;
             }
         }
         .steps {
@@ -246,30 +253,12 @@
                 justify-content: space-between;
                 width: 42px;
                 .share-btn {
-                    background-color: #141414;
-                    border-radius: 50%;
                     width: 22px;
                     height: 22px;
-                    .fa {
-                        color: #FFF;
-                        font-size: 12px;
-                        position: relative;
-                    }
-                    .fa-vk {
-                        left: 4px;
-                        top: -1px;
-                    }
-                    .fa-odnoklassniki {
-                        left: 7px;
-                        top: -1px;
-                    }
-                    .fa-facebook {
-                        left: 7px;
-                        top: -1px;
-                    }
-                    .fa-google-plus {
-                        left: 4px;
-                        top: -1px;
+                    transition: opacity 150ms ease-out; 
+                    &:hover {
+                        opacity: 0.7;
+                        cursor: pointer;
                     }
                 }
                 .share-count {
@@ -291,6 +280,12 @@
             text-transform: uppercase;
             text-align: center;
             margin-bottom: 30px;
+        }
+        .comments-unauthorized {
+            font-size: 16px;
+            color: #303030;
+            text-align: center;
+            margin-top: -31px;
         }
     }
     .right-section {

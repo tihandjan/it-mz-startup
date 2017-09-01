@@ -13,8 +13,10 @@
         <div class="comment-footer">
             <div class="reply" (click)="replyComment()">Ответить</div>
             <div class="likes">
-                <span class="likes-count">10</span>
-                <i class="fa fa-heart"></i>
+                <span class="likes-count">{{comment.likes}}</span>
+                <i (click)="upVote()" class="sprite sprite-like_1_" *ngIf="!comment.liked"></i>
+                <i class="sprite sprite-likecoments-hover"></i>
+                <i @heart (click)="downVote()" class="sprite sprite-liked" *ngIf="comment.liked"></i>
             </div>
         </div>
     </div>

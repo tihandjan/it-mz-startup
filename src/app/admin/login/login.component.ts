@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AdminAuthService } from '../../services/admin-auth';
+import { Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errors: boolean = false;
   constructor(
-    private auth: AdminAuthService,
+    private authAdmin: AdminAuthService,
+    private auth: Angular2TokenService,
     private router: Router
   ) {
     this.loginForm = new FormGroup({
@@ -24,17 +26,19 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.auth.isAdmin()) {
+    if(this.auth.currentUserType == "ADMIN") {
       this.router.navigate(['/admin/dashboard'])
     }
   }
 
   logIn() {
-    this.auth.adminLogIn(this.loginForm.value).subscribe(
+    this.authAdmin.adminLogIn(this.loginForm.value).subscribe(
       res => {
           if(res.status == 200) {
             this.errors = false;
-            location.reload();
+            console.log(res)
+            // location.reload();
+            this.router.navigate(['/'])
           }
       },
       err => {
@@ -45,7 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   logOut() {
-    this.auth.adminLogOut().subscribe(
+    this.authAdmin.adminLogOut().subscribe(
       res => this.router.navigate(['/']),
       err => console.log(err)
     )

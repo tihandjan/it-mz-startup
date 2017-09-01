@@ -3,14 +3,16 @@ import {
   OnInit,
   OnDestroy
  } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
 import { Subject } from "rxjs/Rx";
 
 import { Recipe } from '../models/recipe';
 import { Article } from '../models/article';
 
 import { RecipeService } from "../services/recipe";
+import { VoteService } from "../services/vote";
+import { UserAuthService } from "../services/user-auth";
 import { btnTriggerFilter, showElements } from "./animations";
+import { heartAnimation } from "../shared/animations/icons-animations";
 
 @Component({
   selector: 'app-main',
@@ -18,7 +20,8 @@ import { btnTriggerFilter, showElements } from "./animations";
   styleUrls: ['./main.component.scss'],
   animations: [
     btnTriggerFilter,
-    showElements
+    showElements,
+    heartAnimation
   ]
 })
 export class MainComponent implements OnInit, OnDestroy {
@@ -31,20 +34,16 @@ export class MainComponent implements OnInit, OnDestroy {
   top_recipe_second_line;
   ngUnsabscribe: Subject<void> = new Subject<void>();
   recipes;
-  top_article = {
-      title: 'Ceg из горбуши с анчоусами под сладким соусом',
-      summary: 'summary',
-      image_big: 'https://dummyimage.com/467x350/000/000.png',
-      image_long: 'https://dummyimage.com/467x230/000/000.png',
-      image_small: 'https://dummyimage.com/230x230/000/000.png'
-    };
+  user_signed_in: boolean;
   constructor(
-    private auth: Angular2TokenService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private auth: UserAuthService,
+    private voteService: VoteService
   ) { }
 
   ngOnInit() {
     this.getRecipes();
+    this.user_signed_in = this.auth.userSignedIn();
   }
 
   ngOnDestroy() {
@@ -87,6 +86,32 @@ export class MainComponent implements OnInit, OnDestroy {
       default:
         break;
     }
+  }
+
+  upVote(id: number): void {
+    let recipe;
+    if(this.user_signed_in)
+      this.voteService.vote('recipes', id).subscribe(
+        res => {
+          recipe = this.recipes.find(r => r.id == id);
+          recipe.likes = res;
+          recipe.liked = true;
+        },
+        err => console.log(err)
+      )
+  }
+
+  downVote(id: number): void {
+    let recipe;
+    if(this.user_signed_in)
+      this.voteService.vote('recipes', id).subscribe(
+        res => {
+          recipe = this.recipes.find(r => r.id == id);
+          recipe.likes = res;
+          recipe.liked = false;
+        },
+        err => console.log(err)
+      )
   }
 
 }

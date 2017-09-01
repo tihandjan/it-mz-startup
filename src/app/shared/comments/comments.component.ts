@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Validators, FormControl, FormGroup } from "@angular/forms";
-import { Angular2TokenService } from 'angular2-token';
+import { UserAuthService } from "../../services/user-auth";
 import { Subject } from "rxjs/Rx";
 
 import { CommentService } from "../../services/comment";
@@ -18,10 +18,11 @@ export class CommentsComponent implements OnInit, OnDestroy {
     errors: any;
     subCommentErrors: any;
     unSubscribe: Subject<void> = new Subject<void>();
+    user_signed_in: boolean;
     @Input() recipeId: number;
     constructor(
         private commentService: CommentService,
-        private auth: Angular2TokenService
+        private auth: UserAuthService
     ) { }
 
     ngOnInit() {
@@ -29,6 +30,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
             'content': new FormControl('', Validators.required)
         });
         this.getComments();
+        this.user_signed_in = this.auth.userSignedIn();
     }
 
     ngOnDestroy() {
@@ -37,7 +39,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
     }
 
     createComment(commentableType, commentableId): void {
-        this.commentService.createComment(this.commentForm.value, this.auth.currentUserType, commentableType, commentableId)
+        this.commentService.createComment(this.commentForm.value, commentableType, commentableId)
             .subscribe(
                 res => {
                     this.errors = undefined;

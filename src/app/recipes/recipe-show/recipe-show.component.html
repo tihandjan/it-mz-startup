@@ -14,9 +14,10 @@
         </div>
         <div class="actions clearfix">
           <div class="left">
-            <i (click)="vote()" class="fa fa-heart-o"></i>
+            <i (click)="upVote()" class="sprite sprite-like" *ngIf="!recipe.liked"></i>
+            <i @heart (click)="downVote()" class="sprite sprite-like-active" *ngIf="recipe.liked"></i>
             <div class="like">нравиться</div>
-            <div class="like-count">226</div>
+            <div class="like-count">{{recipe.likes}}</div>
           </div>
         </div>
       </div>
@@ -24,21 +25,15 @@
       <h2 class="show-summary">{{recipe.summary}}</h2>
       <div class="show-metadata">
         <div class="show-metadata-item">
-          <div class="circle">
-            <i class="sprite sprite-drop-recipe"></i>
-          </div>
+          <i class="sprite sprite-porciyi"></i>
           <div class="label">{{recipe.porsion}} порции</div>
         </div>
         <div class="show-metadata-item">
-          <div class="circle">
-            <i class="sprite sprite-drop-recipe"></i>
-          </div>
+          <i class="sprite sprite-time-show"></i>
           <div class="label">{{recipe.time}} мин</div>
         </div>
         <div class="show-metadata-item">
-          <div class="circle">
-            <i class="sprite sprite-drop-recipe"></i>
-          </div>
+          <i class="sprite sprite-calories"></i>
           <div class="label">{{recipe.calories}} ккал</div>
         </div>
         <div class="show-metadata-item">
@@ -65,7 +60,7 @@
       </div>
       <div class="steps-title">РЕЦЕПТ ПРИГОТОВЛЕНИЯ</div>
       <div class="print">
-        <i class="fa fa-print"></i>
+        <i class="sprite sprite-printer"></i>
         <span>распечатать</span>
       </div>
       <div class="steps">
@@ -83,24 +78,25 @@
       <div class="share-title">поделиться:</div>
       <div class="share-btn-group">
         <div class="share-btn-item">
-          <div class="share-btn"><i class="fa fa-vk"></i></div>
+          <div class="share-btn"><i class="sprite sprite-vk"></i></div>
           <div class="share-count">121</div>
         </div>
         <div class="share-btn-item">
-          <div class="share-btn"><i class="fa fa-odnoklassniki"></i></div>
+          <div class="share-btn"><i class="sprite sprite-ok-hover"></i></div>
           <div class="share-count">121</div>
         </div>
         <div class="share-btn-item">
-          <div class="share-btn"><i class="fa fa-facebook"></i></div>
+          <div class="share-btn"><i class="sprite sprite-fb"></i></div>
           <div class="share-count">121</div>
         </div>
         <div class="share-btn-item">
-          <div class="share-btn"><i class="fa fa-google-plus"></i></div>
+          <div class="share-btn"><i class="sprite sprite-google-show"></i></div>
           <div class="share-count">121</div>
         </div>
       </div>
       <div class="line"></div>
       <div class="comments-title">комментарии</div>
+      <div class="comments-unauthorized" *ngIf="!user_signed_in">Что бы оставить комментарий войдите или зарегистрируйтесь</div>
       <app-comments [recipeId]="recipe.id"></app-comments>
     </div>
     <div class="right-section">
