@@ -24,6 +24,7 @@ import { heartAnimation } from "../../shared/animations/icons-animations";
 export class RecipeShowComponent implements OnInit, OnDestroy {
   @HostBinding('@routerState') routerAnimation = true;
   recipe;
+  recipes;
   ngUnSubscribe: Subject<void> = new Subject<void>();
   user_signed_in: boolean;
   constructor(
@@ -50,7 +51,17 @@ export class RecipeShowComponent implements OnInit, OnDestroy {
     request.takeUntil(this.ngUnSubscribe).subscribe(
       res => {
         this.recipe = res;
+        this.getRecipesByCondition();
       },
+      err => console.log(err)
+    )
+  }
+
+  getRecipesByCondition(): void {
+    this.recipeService.getRecipesByCondition(this.recipe['category_id'])
+    .takeUntil(this.ngUnSubscribe)
+    .subscribe(
+      res => this.recipes = res,
       err => console.log(err)
     )
   }

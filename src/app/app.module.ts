@@ -13,13 +13,11 @@ import { UserAuthService } from './services/user-auth';
 import { RecipeService } from './services/recipe';
 import { VoteService } from "./services/vote";
 import { Angular2TokenService } from 'angular2-token';
-import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    TruncatePipe
   ],
   imports: [
     BrowserModule,

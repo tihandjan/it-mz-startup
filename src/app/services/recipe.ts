@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx'
 import { environment } from '../../environments/environment';
 import { Recipe } from '../interfaces/recipe';
@@ -28,8 +28,20 @@ export class RecipeService {
     .catch(this.handleError)
   }
 
+  getRecipesByCondition(category_id): Observable<Recipe[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    let headers;
+    params.set('category_id', category_id)
+    headers = this.userAuth.headers.params = params;
+    return this.http.get(this.baseUrl + '/recipes/by_condition', params)
+      .map(
+        (res: Response) => <Recipe[]>res.json()
+      )
+      .catch(this.handleError)
+  }
+
   createRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post(this.baseUrl + '/recipes', JSON.stringify(recipe), this.userAuth.headers).map(
+    return this.http.post(this.baseUrl + '/recipes', JSON.stringify(recipe), this.userAuth.headers.params).map(
       (response: Response) => response.json()
     )
   }

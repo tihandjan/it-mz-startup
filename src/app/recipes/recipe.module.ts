@@ -21,7 +21,12 @@ import { VoteService } from "../services/vote";
         ReactiveFormsModule,
     ],
     exports: [],
-    declarations: [RecipeComponent, RecipesComponent, CategoriesComponent, RecipeShowComponent],
+    declarations: [
+        RecipeComponent, 
+        RecipesComponent, 
+        CategoriesComponent, 
+        RecipeShowComponent
+    ],
     providers: [CategoryService, VoteService],
 })
 export class RecipeModule { }

@@ -16,6 +16,8 @@ import { UserAuthService } from '../services/user-auth';
 import { CommentService } from '../services/comment';
 import { Angular2TokenService } from 'angular2-token';
 
+import { TruncatePipe } from '../pipes/truncate.pipe';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -31,6 +33,7 @@ import { Angular2TokenService } from 'angular2-token';
         HeaderComponent,
         CommentItemComponent,
         CommentsComponent,
+        TruncatePipe,
     ],
     declarations: [
         LeftSidenavMenuComponent,
@@ -39,6 +42,7 @@ import { Angular2TokenService } from 'angular2-token';
         HeaderComponent,
         CommentItemComponent,
         CommentsComponent,
+        TruncatePipe,
     ],
     providers: [AdminAuthService, Angular2TokenService, UserAuthService, CommentService],
 })

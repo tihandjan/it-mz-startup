@@ -109,5 +109,62 @@
       </article>
     </div>
   </div>
+  <h5 class="similar-recipe-title">Похожие рецепты</h5>
+  <div class="page-wrapper page-wrapper-bottom">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-card" *ngFor="let recipe of recipes">
+          <div class="card card-vertical">
+            <div [routerLink]="['/recipes', recipe.category.slug, recipe.slug]" class="image-wrapper">
+              <img class="card-img-top" [src]="recipe.image.square.url" [alt]="recipe.title">
+              <div class="author clearfix">
+                <div class="img-wrapper pull-left">
+                  <img src="https://dummyimage.com/55x55/7/fff.png" alt="">
+                </div>
+                <div class="author-name pull-right">
+                  Igor Tikhonenko
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h4 [routerLink]="['recipes', recipe.category.slug, recipe.slug]" class="card-title">{{ recipe.title | truncate: 65 }}</h4>
+              <div class="time">
+                <div class="time-col"><i class="sprite sprite-time"></i><span class="text">{{recipe.time}} мин</span></div>
+                <div class="time-col"><i class="sprite sprite-complexity"></i><span class="text">{{recipe.complexity}}</span></div>
+                <div class="time-col"><i class="sprite sprite-kaloriy"></i><span class="text">{{recipe.calories}} ккал</span></div>
+              </div>
+              <p class="card-text">
+                <span *ngFor="let ing of recipe.ingredients; let i = index;">
+                  <span *ngIf="i <= 15">{{ ing.name }}{{ i + 1 >= recipe.ingredients.length ? '' : ', ' }}</span>
+                </span>
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="social clearfix">
+                <div class="social-col">
+                  <i (click)="upVote(recipe.id)" class="sprite sprite-like_1_" *ngIf="!recipe.liked"></i>
+                  <i (click)="upVote(recipe.id)" class="sprite sprite-like-hover" *ngIf="!recipe.liked"></i>
+                  <i @heart (click)="downVote(recipe.id)" class="sprite sprite-liked" *ngIf="recipe.liked"></i>
+                  <span class="like-count">{{recipe.likes}}</span>
+                </div>
+                <div class="social-col social-col-right-side">
+                  <i class="sprite sprite-facebook-small"></i>
+                  <i class="sprite sprite-facebook-small-hover"></i>
+                </div>
+                <div class="social-col social-col-right-side">
+                  <i class="sprite sprite-odnoklassniki-small"></i>
+                  <i class="sprite sprite-odnoklassniki-small-hover"></i>
+                </div>
+                <div class="social-col social-col-right-side">
+                  <i class="sprite sprite-vk-small"></i>
+                  <i class="sprite sprite-vk-small-hover"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 

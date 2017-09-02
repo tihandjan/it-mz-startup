@@ -405,6 +405,138 @@ a {
     }
 }
 
+// ****************** CARDS ******************
+
+.card-vertical {
+    border-radius: 0;
+    border: 2px solid #f2f2f2;
+    .image-wrapper {
+        position: relative;
+        .card-img-top {
+            width: 100%;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            margin-right: -1px -1px 0 -1px;
+        }
+        .author {
+            position: absolute;
+            left: 13px;
+            bottom: 8px;
+            width: 120px;
+            .img-wrapper {
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                border: 2px solid #FFF;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                }
+            }
+            .author-name {
+                color: #FFF;
+                font-size: 0.8em;
+                position: relative;
+                top: 4px;
+            }
+        }
+    }
+    .card-body {
+        .card-title {
+            font-size: 18px;
+            line-height: 1;
+            text-align: center;
+            color: #3d3d3d;
+            padding: 15px 10px 0px;
+            height: 90px;
+            margin: 0;
+        }
+        .time {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 4px;
+            margin-right: 4px;
+            margin-bottom: 15px;
+            .time-col {
+                color: #006666;
+                font-size: 11px;
+                padding: 1px;
+                padding-bottom: 3px;
+                border: 1px solid #e8e8e8;
+                border-radius: 15px;
+                width: 66px;
+                text-align: center;
+                i {
+                    position: relative;
+                    top: 3px;
+                    margin-right: 2px;
+                }
+            }
+        }
+        .card-text {
+            height: 67px;
+            font-size: 12px;
+            line-height: 1.17;
+            text-align: left;
+            color: #5b5b5b;
+            padding: 0 5px;
+        }
+    }
+    .card-footer {
+        padding: 0;
+        border-top: 0;
+        background-color: #FFF;
+        .social {
+            padding: 6px 11px 0 11px;
+            border-top: 2px solid #f5f5f5;
+            .social-col {
+                float: right;
+                font-size: 0.8em;
+                &:hover {
+                    cursor: pointer;
+                    .like_1_ {
+                        display: none;
+                    }
+                    .like-hover {
+                        display: inline-block;
+                    }
+                }
+                i {
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                }
+                &:first-child {
+                    float: left;
+                    .like-count {
+                        position: relative;
+                        top: -6px;
+                        color: #9b9b9b;
+                        font-size: 11px;
+                    }
+                }
+            }
+            .social-col-right-side {
+                &:hover {
+                    i {
+                        &:first-child {
+                            display: none;
+                        }
+                    }
+                    i {
+                        &:last-child {
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// ****************** CARDS END ******************
+
 /*********************Main Page end************************/
 
 /******************Mobile******************/
