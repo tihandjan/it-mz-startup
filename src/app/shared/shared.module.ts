@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -44,6 +44,6 @@ import { TruncatePipe } from '../pipes/truncate.pipe';
         CommentsComponent,
         TruncatePipe,
     ],
-    providers: [AdminAuthService, Angular2TokenService, UserAuthService, CommentService],
+    providers: [AdminAuthService, Angular2TokenService, UserAuthService, CommentService, { provide: LOCALE_ID, useValue: "ru-RU" },],
 })
 export class SharedModule { }

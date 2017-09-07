@@ -82,23 +82,37 @@ export class RecipeShowComponent implements OnInit, OnDestroy {
     )
   }
 
-  upVote(): void {
+  upVote(id: number): void {
+    let recipe;
     if(this.auth.userSignedIn())
-      this.voteService.vote('recipes', this.recipe.id).subscribe(
+      this.voteService.vote('recipes', id || this.recipe.id).subscribe(
         res => {
-          this.recipe.likes = res;
-          this.recipe.liked = true;
+          if(id) {
+            recipe = this.recipes.find(r => r.id == id);
+            recipe.likes = res;
+            recipe.liked = true;
+          } else {
+            this.recipe.likes = res;
+            this.recipe.liked = true;
+          }
         },
         err => console.log(err)
       )
   }
 
-  downVote(): void {
+  downVote(id: number): void {
+    let recipe;
     if(this.auth.userSignedIn())
-      this.voteService.vote('recipes', this.recipe.id).subscribe(
+      this.voteService.vote('recipes', id || this.recipe.id).subscribe(
         res => {
-          this.recipe.likes = res;
-          this.recipe.liked = false;
+          if(id) {
+            recipe = this.recipes.find(r => r.id == id);
+            recipe.likes = res;
+            recipe.liked = false;
+          } else {
+            this.recipe.likes = res;
+            this.recipe.liked = false;
+          }
         },
         err => console.log(err)
       )

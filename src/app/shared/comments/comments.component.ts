@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChange } from '@angular/core';
 import { Validators, FormControl, FormGroup } from "@angular/forms";
 import { UserAuthService } from "../../services/user-auth";
 import { Subject } from "rxjs/Rx";
@@ -11,7 +11,7 @@ import { Comment } from "../../interfaces/comment";
     templateUrl: './comments.component.html',
     styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent implements OnInit, OnDestroy {
+export class CommentsComponent implements OnInit, OnDestroy, OnChanges {
     commentable: any = undefined;
     commentForm: FormGroup;
     comments;
@@ -29,13 +29,17 @@ export class CommentsComponent implements OnInit, OnDestroy {
         this.commentForm = new FormGroup({
             'content': new FormControl('', Validators.required)
         });
-        this.getComments();
+        this.getComments(this.recipeId);
         this.user_signed_in = this.auth.userSignedIn();
     }
 
     ngOnDestroy() {
         this.unSubscribe.next();
         this.unSubscribe.complete();
+    }
+
+    ngOnChanges(changes: {[recipeId: string]: SimpleChange}) {
+        this.getComments(changes.recipeId.currentValue);
     }
 
     createComment(commentableType, commentableId): void {
@@ -71,8 +75,8 @@ export class CommentsComponent implements OnInit, OnDestroy {
         this.subCommentErrors = undefined;
     }
 
-    getComments(): void {
-        this.commentService.getComments('recipes', this.recipeId)
+    getComments(id: number): void {
+        this.commentService.getComments('recipes', id)
             .takeUntil(this.unSubscribe)
             .subscribe(
                 res => {

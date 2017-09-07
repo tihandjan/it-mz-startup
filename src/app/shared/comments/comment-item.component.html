@@ -7,7 +7,7 @@
     <div class="comment-right">
         <div class="comment-heading">
             <span class="username">{{comment.user.name}} {{comment.user.surname}}</span>
-            <span class="time">6 часов назад</span>
+            <span class="time">{{comment.created_at | date}}</span>
         </div>
         <div class="comment-body">{{comment.content}}</div>
         <div class="comment-footer">

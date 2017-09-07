@@ -75,4 +75,8 @@ export class UserAuthService {
     userSignedIn(): boolean {
         return this.auth.userSignedIn();
     }
+
+    isUserAdmin(): boolean {
+        return true;
+    }
 }

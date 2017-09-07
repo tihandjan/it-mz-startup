@@ -30,10 +30,9 @@ export class RecipeService {
 
   getRecipesByCondition(category_id): Observable<Recipe[]> {
     let params: URLSearchParams = new URLSearchParams();
-    let headers;
     params.set('category_id', category_id)
-    headers = this.userAuth.headers.params = params;
-    return this.http.get(this.baseUrl + '/recipes/by_condition', params)
+    this.userAuth.headers.params = params;
+    return this.http.get(this.baseUrl + '/recipes/by_condition', this.userAuth.headers)
       .map(
         (res: Response) => <Recipe[]>res.json()
       )
@@ -41,7 +40,7 @@ export class RecipeService {
   }
 
   createRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post(this.baseUrl + '/recipes', JSON.stringify(recipe), this.userAuth.headers.params).map(
+    return this.http.post(this.baseUrl + '/recipes', JSON.stringify(recipe), this.userAuth.headers).map(
       (response: Response) => response.json()
     )
   }

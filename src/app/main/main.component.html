@@ -1,4 +1,4 @@
-<a class="btn btn-primary" [routerLink]="['/admin/dashboard']" style="border-radius: 0;position:absolute;right:0;top:0" *ngIf="auth.userSignedIn() && auth.currentUserType == 'ADMIN'">Admin</a>
+<a class="btn btn-primary" [routerLink]="['/admin/dashboard']" style="border-radius: 0;position:absolute;right:0;top:0" *ngIf="auth.userSignedIn()">Admin</a>
 <div class="container container-custom">
   <app-header></app-header>
     <app-left-sidenav-menu></app-left-sidenav-menu>
