@@ -417,6 +417,9 @@ a {
             border-top-right-radius: 0;
             border-top-left-radius: 0;
             margin-right: -1px -1px 0 -1px;
+            &:hover {
+                cursor: pointer;
+            }
         }
         .author {
             position: absolute;
@@ -450,6 +453,9 @@ a {
             padding: 15px 10px 0px;
             height: 90px;
             margin: 0;
+            &:hover {
+                cursor: pointer;
+            }
         }
         .time {
             display: flex;
