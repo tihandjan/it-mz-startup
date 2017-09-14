@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy, HostBinding } from '@a
 import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Subject } from "rxjs/Subject";
+import { Router } from "@angular/router";
 
 import { Recipe } from '../../interfaces/recipe';
 import { Category } from '../../interfaces/category';
@@ -52,6 +53,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         private ingredientService: IngredientService,
         private categoryService: CategoryService,
         private countryService: CountryService,
+        private route: Router
     ) { }
 
     ngOnInit() {
@@ -107,14 +109,14 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
         this.recipeService.createRecipe(this.recipeForm.value
         ).subscribe(
             res => {
-                true
+                this.route.navigate(['/recipes/', res.category.slug, res.slug])
             }, 
             err => {
                 this.errors = err.json();
                 console.log(this.errors)
             },
             () => {
-                // this.recipeForm.reset();
+                this.recipeForm.reset();
                 this.errors = '';
             }
         )

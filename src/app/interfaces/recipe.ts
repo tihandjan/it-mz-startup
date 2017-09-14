@@ -23,5 +23,9 @@ export interface Recipe {
         id: number,
         name: string,
         slug: string,
+    },
+    country: {
+        id: number,
+        name: string,
     }
 }

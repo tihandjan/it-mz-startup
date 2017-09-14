@@ -1,9 +1,16 @@
-import { Component, OnInit, ChangeDetectorRef, HostBinding } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, HostBinding, OnDestroy } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { Subject } from "rxjs/Subject";
+
+import { Category } from '../../interfaces/category';
+import { SubCategory } from '../../interfaces/sub_category';
+import { Country } from '../../interfaces/country';
 
 import { RecipeService } from '../../services/recipe';
+import { CategoryService } from '../../services/category';
+import { CountryService } from '../../services/country';
 
 import { slideElement } from './animations'
 import { routerAnimation } from "../../shared/animations/router-animation";
@@ -17,7 +24,7 @@ import { routerAnimation } from "../../shared/animations/router-animation";
         routerAnimation
     ]
 })
-export class EditRecipeComponent implements OnInit {
+export class EditRecipeComponent implements OnInit, OnDestroy {
     @HostBinding('@routerState') routerAnimation = true
     recipe;
     recipeForm: FormGroup;
@@ -25,12 +32,25 @@ export class EditRecipeComponent implements OnInit {
     formGroupNumber: any = undefined;
     public filePreviewPath: SafeUrl;
     errors: any;
+    categories: Category[];
+    countries: Country[];
+    sub_categories: SubCategory[];
+    selected_category_name: string;
+    private ngUnsubscribe: Subject<void> = new Subject<void>();
+
     constructor(
         private changeDetectorRef: ChangeDetectorRef,
         private recipeService: RecipeService,
         private router: ActivatedRoute,
-        private route: Router
+        private route: Router,
+        private categoryService: CategoryService,
+        private countryService: CountryService,
     ) { }
+
+    ngOnDestroy() {
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
+    }
 
     ngOnInit() {
         this.recipeForm = new FormGroup({
@@ -64,7 +84,7 @@ export class EditRecipeComponent implements OnInit {
             (param: Params) => this.recipeService.getRecipe(param['slug'])
         )
 
-        request.subscribe(
+        request.takeUntil(this.ngUnsubscribe).subscribe(
             res => {
                 this.recipe = res;
                 this.recipeForm.get('title').setValue(res.title);
@@ -74,6 +94,9 @@ export class EditRecipeComponent implements OnInit {
                 this.recipeForm.get('publish').setValue(res.publish);
                 this.recipeForm.get('porsion').setValue(res.porsion);
                 this.filePreviewPath = res.image.thumb.url;
+                this.getCountries(res.country.id);
+                this.getCategories(res.category.id);
+
             },
             err => console.log(err)
         )
@@ -95,6 +118,51 @@ export class EditRecipeComponent implements OnInit {
                 this.errors = '';
             }
         )
+    }
+
+    onCategoryChange(event): void {
+        let data;
+        if(typeof(event) == 'number') {
+            data = this.findCategoryById(event);
+        } else {
+            data = this.findCategoryById(event.target.value);
+        }
+        this.sub_categories = data[0]['sub_categories'];
+        this.selected_category_name = data[0].name;
+    }
+
+    findCategoryById(id: number): Category[] {
+        return this.categories.filter(
+            cat => cat.id == id
+        )
+    }
+
+    getCategories(id: number): void {
+        this.categoryService.getCategories()
+        .takeUntil(this.ngUnsubscribe)
+        .subscribe(
+            res => {
+                {
+                    this.categories = res;
+                    this.recipeForm.get('category_id').setValue(id);
+                    this.onCategoryChange(id);
+                    this.recipeForm.get('sub_category_id').setValue(this.recipe.sub_category_id)
+                };
+            },
+            err => console.log(err)
+        )
+    }
+
+    getCountries(id): void {
+        this.countryService.getCountry()
+            .takeUntil(this.ngUnsubscribe)
+            .subscribe(
+                (res: Country[]) => {
+                    this.countries = res;
+                    this.recipeForm.get('country_id').setValue(id);
+                },
+                err => console.log(err)
+            )
     }
 
     //******image upload *********/
