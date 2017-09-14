@@ -1,1 +1,264 @@
-<h1>Hello</h1>
+<div class="content">
+    <div class="container-fluid new-recipe-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" [routerLink]="['/admin/recipies']">Назад к списку</button>
+                </div>
+                <form *ngIf="recipe" [formGroup]="recipeForm" (ngSubmit)="editRecipe()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="first">название рецепта</label>
+                                    <label class="second">обязательно</label>
+                                </div>
+                                <input type="text" formControlName="title" class="form-control">
+                                <label class="tip-label">Впишите название рецепта, например: Tушенный кролик с картофелем</label>
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.title">
+                                <span >Title {{ errors.title[0] }}</span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="first">история к рецепту - описание</label>
+                                    <label class="second"><span class="no">не </span>обязательно</label>
+                                </div>
+                                <input type="text" class="form-control" formControlName="summary">
+                                <label class="tip-label">Опишите краткое содержание блюда</label>
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.summary">
+                                <span >Summary {{ errors.summary[0] }}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="first">добавить фотографию блюда</label>
+                                    <label class="second">обязательно</label>
+                                </div>
+                                <div class="image-container" (click)="input.click()">
+                                    <img [src]="filePreviewPath" width="100%" *ngIf="filePreviewPath" />
+                                    <i class="fa fa-camera-retro" [ngClass]="{'transp-cam': filePreviewPath}"></i>
+                                </div>
+                                <input type="file" (change)="fileChange(input)" #input class="form-control hidden" />
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.image">
+                                <span >Image {{ errors.image[0] }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!--<div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="second">обязательно</label>
+                                </div>
+                                <select class="form-control" formControlName="category_id" (change)="onCategoryChange($event)">
+                                    <option disabled>Выберите категорию</option>
+                                    <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
+                                </select>
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.category_id">
+                                <span >{{ errors.category_id[0] }}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="first" *ngIf="selected_category_name">"{{selected_category_name}}"</label>
+                                    <label class="second"><span class="no">не </span>обязательно</label>
+                                </div>
+                                <select class="form-control" formControlName="sub_category_id">
+                                    <option *ngIf="!selected_category_name">Вид блюда</option>
+                                    <option *ngFor="let sub_cat of sub_categories" value="{{sub_cat.id}}">{{sub_cat.name}}</option>
+                                </select>
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.sub_category_id">
+                                <span >{{ errors.sub_category_id[0] }}</span>
+                            </div>
+                        </div>-->
+
+                        <!--<div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="second"><span class="no">не </span>обязательно</label>
+                                </div>
+                                <select class="form-control" formControlName="country_id">
+                                    <option>Кухня какой страны</option>
+                                    <option *ngFor="let country of countries" value="{{country.id}}">{{country.name}}</option>
+                                </select>
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.country_id">
+                                <span >{{ errors.country[0] }}</span>
+                            </div>
+                        </div>-->
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="second">обязательно</label>
+                                </div>
+                                <label for="time" class="dark-label">Время приготовления</label>
+                                <div class="small-input-wrapper">
+                                    <input type="number" class="form-control-short" formControlName="time"> 
+                                    <span class="tip">Минут</span>
+                                </div>                                
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.time">
+                                <span >Time {{ errors.time[0] }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="second">обязательно</label>
+                                </div>
+                                <label for="porsion" class="dark-label">Количество порций</label>
+                                <div class="small-input-wrapper">
+                                    <input type="number" id="porsion" formControlName="porsion" class="form-control-short">
+                                    <span class="tip">Порций</span>
+                                </div> 
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.porsion">
+                                <span >Porsion {{ errors.porsion[0] }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="label-group clearfix">
+                                    <label class="second">обязательно</label>
+                                </div>
+                                <select class="form-control" formControlName="complexity">
+                                    <option>Сложность готовки</option>
+                                    <option value="легко">Легко</option>
+                                    <option value="средне">Средне</option>
+                                    <option value="сложно">Сложно</option>
+                                </select>
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.complexity">
+                                <span >{{ errors.complexity[0] }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-group clearfix">
+                            <label class="first">дата публикации</label>
+                            <label class="second">обязательно</label>
+                        </div>
+                        <input type="date" class="form-control" formControlName="publish">
+                    </div>
+                    <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.publish">
+                        <span >Time {{ errors.publish[0] }}</span>
+                    </div>
+                    
+                    <!--<div class="label-group clearfix">
+                        <label class="first">ингредиенты</label>
+                        <label class="second">обязательно</label>
+                    </div>
+                    <label class="tip-label">пожалуйста, выбирайте ингредиенты из списка, добавляйте новый ингредиент, только если он не обнаружен в списке, не указывайте в качестве ингредиентов названия готовых блюд.</label>
+                    <div formArrayName='recipes_ingredients'>
+                        <div @slideStateTrigger *ngFor="let ri of recipeForm.get('recipes_ingredients').controls; let i = index">
+                            <div class="form-group form-group-ingredients" formGroupName="{{i}}">
+                                <ng-select
+                                    class="form-control-select"
+                                    [items]="ingredients_for_select"
+                                    (data)="refreshValue($event, i)"
+                                    placeholder="Укажите ингредиент">
+                                </ng-select>
+                                <input type="number" class="form-control form-control-amount" formControlName="amount" placeholder="Количество">
+                                <select formControlName="unit" class="form-control">
+                                    <option value="грамм">грамм</option>
+                                    <option value="пучок">пучок</option>
+                                    <option value="банка">банка</option>
+                                </select>
+                                <div class="btn btn-danger" (click)="onRemoveRecipeIngredient(i)">Удалить</div>
+                            </div>
+                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors['recipes_ingredients']">
+                                <span >Ingredient {{ errors['recipes_ingredients'][0] }}</span>
+                            </div>
+                        </div>
+                    </div>-->
+                    
+                    <!--<form [formGroup]="ingredientForm" @slideStateTrigger *ngIf='ingredient_form_is_visible'>
+                        <label class="tip-label">Указывайте жиры, белки, углеводы и калории в расчете на один грамм.</label>
+                        <div class="form-group form-group-ingredients">
+                            <input type="text" formControlName="name" class="form-control" placeholder="Название">
+                            <input type="number" formControlName="fats" class="form-control" placeholder="Жиры">
+                            <input type="number" formControlName="proteins" class="form-control" placeholder="Белки">
+                            <input type="number" formControlName="carbohydrates" class="form-control" placeholder="Углеводы">
+                            <input type="number" formControlName="calories" class="form-control" placeholder="Калории">
+                            <input type="file" (change)="fileChange(inp, 'ingr')" #inp class="form-control">
+                        </div>
+                        <div @slideStateTrigger class="alert alert-danger" *ngIf="ingredients_errors && ingredients_errors.name">
+                            <span >Имя {{ ingredients_errors.name[0] }}</span>
+                        </div>
+                        <div class="form-group">
+                            <div class="btn btn-danger" (click)="ingredientForm.reset();ingredient_form_is_visible = false;ingredients_errors = undefined">Отмена</div>
+                            <div class="btn btn-success" (click)="createIngredient()">Добавить</div>
+                        </div>
+                    </form>
+                    <div @slideStateTrigger class="alert alert-success" *ngIf="new_ingredient_name">
+                        <span >Теперь, добавленный ингредиент "{{new_ingredient_name}}" может быть найден в списке и добавлен к рецепту</span>
+                    </div>
+                    <div class="form-group ingredients-btn-group">
+                        <div class="btn btn-info" (click)='onAddRecipeIngredient()'>Добавить еще ингредиент</div>
+                        <div class="btn btn-info" (click)='ingredient_form_is_visible = true;new_ingredient_name = undefined'>Создать новый ингредиент</div>
+                    </div>-->
+
+                    <div class="label-group steps-label-group clearfix">
+                        <label class="first">способ приготовления</label>
+                    </div>
+
+                    <!--<div formArrayName="steps">
+                        <div @slideStateTrigger *ngFor="let st of recipeForm.get('steps').controls;let i = index">
+                            <div class="form-group">
+                                <div class="label-group steps-label-group clearfix">
+                                    <label class="first">шаг {{i + 1}}</label>
+                                </div>
+                                <div class="steps-container row" formGroupName="{{i}}">
+                                    <div class="form-group col-md-4">
+                                        <div class="label-group clearfix">
+                                            <label class="first">фото</label>
+                                            <label class="second"><span class="no">не </span>обязательно</label>
+                                        </div>
+                                        <input type="file" (change)="fileChange(input, i)" #input class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <div class="label-group clearfix">
+                                            <label class="first">способ приготовления</label>
+                                            <label class="second">обязательно</label>
+                                        </div>
+                                        <div>
+                                            <input type="number" formControlName="step" class="hidden">
+                                            <textarea formControlName="content" class="form-control form-control-textarea" rows="5"></textarea>
+                                        </div>
+                                        <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors['steps.content']">
+                                            <span >Content {{ errors['steps.content'][0] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <div class="btn btn-danger pull-right" (click)="onRemoveStep(i)">Удалить шаг</div>
+                                    <div class="btn btn-info pull-right step-btn" *ngIf="recipeForm.get('steps').controls.length == i + 1" (click)="onAddStep(i + 2)">Добавить еще шаг</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="btn btn-info pull-right step-btn" *ngIf="recipeForm.get('steps').controls.length == 0" (click)="onAddStep(i + 2)">Добавить еще шаг</div>
+                        </div>
+                    </div>-->
+
+                    <div class="form-group">
+                        <button type="submit" [disabled]="!recipeForm.valid" [hidden]="submiting"  class="btn btn-primary btn-submit">Опубликовать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
