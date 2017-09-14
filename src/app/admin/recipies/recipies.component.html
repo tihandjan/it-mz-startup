@@ -23,7 +23,7 @@
                             <td>{{ recipe.title }}</td>
                             <td>{{ recipe.user?.name }}</td>
                             <td><img [src]="recipe.image.square.url" alt=""></td>
-                            <td>@mdo</td>
+                            <td><a [routerLink]="['/admin', 'recipies', recipe.slug, 'edit']">Edit</a></td>
                             <td>@mdo</td>
                             <td>@mdo</td>
                         </tr>

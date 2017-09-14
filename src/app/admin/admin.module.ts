@@ -18,7 +18,7 @@ import { TablesComponent } from './tables/tables.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { RecipiesComponent } from './recipies/recipies.component';
 import { NewRecipeComponent } from './recipies/new-recipe.component';
-
+import { EditRecipeComponent } from "./recipies/edit-recipe.component";
 import { AdminComponent } from './admin.component';
 
 @NgModule({
@@ -34,7 +34,8 @@ import { AdminComponent } from './admin.component';
         TablesComponent,
         NotificationsComponent,
         RecipiesComponent,
-        NewRecipeComponent
+        NewRecipeComponent,
+        EditRecipeComponent,
     ],
     providers: [Angular2TokenService, AdminGuard, AdminAuthService, IngredientService, CategoryService, CountryService],
 })
