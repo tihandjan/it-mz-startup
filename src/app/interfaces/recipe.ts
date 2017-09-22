@@ -27,5 +27,20 @@ export interface Recipe {
     country: {
         id: number,
         name: string,
-    }
+    },
+    ingredients: [{
+        id: number,
+        name: string,
+        image: string,
+        calories: number,
+        fats: number,
+        proteins: number,
+        carbohydrates: number,   
+    }],
+    recipes_ingredients: [{
+        id: number,
+        amount: number,
+        ingredient_id: number,
+        unit: string,
+    }]
 }

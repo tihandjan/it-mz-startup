@@ -26,6 +26,12 @@ export class IngredientService {
     )
   }
 
+  removeRecipesIngredient(id: number) {
+    return this.http.delete(this.url + '/recipes_ingredients/' + id, this.userAuth.headers).map(
+      res => res
+    )
+  }
+
   private handleError (error: Response | any) {
   // In a real world app, we might use a remote logging infrastructure
   let errMsg: string;

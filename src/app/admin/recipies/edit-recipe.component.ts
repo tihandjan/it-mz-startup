@@ -11,6 +11,7 @@ import { Country } from '../../interfaces/country';
 import { RecipeService } from '../../services/recipe';
 import { CategoryService } from '../../services/category';
 import { CountryService } from '../../services/country';
+import { IngredientService } from '../../services/ingredient';
 
 import { slideElement } from './animations'
 import { routerAnimation } from "../../shared/animations/router-animation";
@@ -18,7 +19,7 @@ import { routerAnimation } from "../../shared/animations/router-animation";
 @Component({
     selector: 'app-edit-recipe',
     templateUrl: './edit-recipe.component.html',
-    styleUrls: ['./recipies.component.scss'],
+    styleUrls: ['./recipies.component.scss', '../shared.css'],
     animations: [
         slideElement,
         routerAnimation
@@ -37,6 +38,10 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
     sub_categories: SubCategory[];
     selected_category_name: string;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
+    ingredients;
+    ingredients_for_select: Array<object>;
+    recipes_ingredients;
+    ingredient_removed: boolean = false;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef,
@@ -45,6 +50,7 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
         private route: Router,
         private categoryService: CategoryService,
         private countryService: CountryService,
+        private ingredientService: IngredientService,
     ) { }
 
     ngOnDestroy() {
@@ -65,7 +71,6 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
             'sub_category_id': new FormControl('Вид блюда'),
             'country_id': new FormControl('Кухня какой страны'),
             'steps': new FormArray([]),
-            'recipes_ingredients': new FormArray([])
         });
 
         this.ingredientForm = new FormGroup({
@@ -75,8 +80,10 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
             'carbohydrates': new FormControl(null),
             'calories': new FormControl(null),
             'image': new FormControl(''),
-        })
+        });
+
         this.getRecipe();
+        this.getIngredients();
     }
 
     getRecipe(): void {
@@ -96,7 +103,7 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
                 this.filePreviewPath = res.image.thumb.url;
                 this.getCountries(res.country.id);
                 this.getCategories(res.category.id);
-
+                this.recipes_ingredients = res['recipes_ingredients']
             },
             err => console.log(err)
         )
@@ -135,6 +142,10 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
         return this.categories.filter(
             cat => cat.id == id
         )
+    }
+
+    public refreshValue(value:any, index:number):void {
+        (<FormArray>this.recipeForm.get('recipes_ingredients')).controls[index].get('ingredient_id').setValue(value.id)
     }
 
     getCategories(id: number): void {
@@ -215,5 +226,46 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(file);
     }
      //******image upload end *********/
+
+     getIngredients(): void {
+        this.ingredientService.getIngredients()
+            .takeUntil(this.ngUnsubscribe)
+            .subscribe(
+                response => {
+                    this.ingredients = response;
+                    this.ingredients_for_select = response.map(
+                        res => {
+                            return {id: res.id, text: res.name}
+                        }
+                    );
+                },
+                error => console.log(error)
+        )
+    }
+
+    onRemoveRecipeIngredient(id: number): void {
+        let conf = confirm('Вы правда хотите удалить этот ингредиент?')
+        if(conf)
+            this.ingredientService.removeRecipesIngredient(id).subscribe(
+                res => {
+                    if(res.status == 204)
+                      this.recipes_ingredients = this.recipes_ingredients.filter(ing =>{
+                          return ing.id !== id
+                      });
+                      this.ingredient_removed = true;
+                      setTimeout(()=> {
+                          this.ingredient_removed = false;
+                      }, 2500);
+                },
+                err => console.log('Шо то не то!!!АСТАНАВИТЕСЬ!!!')
+            )
+    }
+
+    getIngName(id: number) {
+        let ing = this.ingredients.find(ing => {
+            return ing.id == id
+        })
+        return ing.name;
+    }
 
 }

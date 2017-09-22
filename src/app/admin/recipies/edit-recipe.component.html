@@ -156,64 +156,30 @@
                     <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors.publish">
                         <span >Time {{ errors.publish[0] }}</span>
                     </div>
-                    
-                    <!--<div class="label-group clearfix">
+
+                    <div class="form-group clearfix">
+                        <div (click)="ingred_wrap ? ingred_wrap = false : ingred_wrap = true;steps_wrap = false" class="btn btn-{{ ingred_wrap ? 'warning' : 'primary' }} pull-left">{{ ingred_wrap ? 'Убрать' : 'Редактировать' }} ингредиенты этого рецепта</div>
+                        <div (click)="steps_wrap ? steps_wrap = false : steps_wrap = true;ingred_wrap = false" class="btn btn-{{ steps_wrap ? 'warning' : 'primary' }} pull-right">{{ steps_wrap ? 'Убрать' : 'Редактировать' }} шаги этого рецепта</div>
+                    </div>
+                    <div class="label-group clearfix" *ngIf="ingred_wrap">
                         <label class="first">ингредиенты</label>
                         <label class="second">обязательно</label>
                     </div>
-                    <label class="tip-label">пожалуйста, выбирайте ингредиенты из списка, добавляйте новый ингредиент, только если он не обнаружен в списке, не указывайте в качестве ингредиентов названия готовых блюд.</label>
-                    <div formArrayName='recipes_ingredients'>
-                        <div @slideStateTrigger *ngFor="let ri of recipeForm.get('recipes_ingredients').controls; let i = index">
-                            <div class="form-group form-group-ingredients" formGroupName="{{i}}">
-                                <ng-select
-                                    class="form-control-select"
-                                    [items]="ingredients_for_select"
-                                    (data)="refreshValue($event, i)"
-                                    placeholder="Укажите ингредиент">
-                                </ng-select>
-                                <input type="number" class="form-control form-control-amount" formControlName="amount" placeholder="Количество">
-                                <select formControlName="unit" class="form-control">
-                                    <option value="грамм">грамм</option>
-                                    <option value="пучок">пучок</option>
-                                    <option value="банка">банка</option>
-                                </select>
-                                <div class="btn btn-danger" (click)="onRemoveRecipeIngredient(i)">Удалить</div>
-                            </div>
-                            <div @slideStateTrigger class="alert alert-danger" *ngIf="errors && errors['recipes_ingredients']">
-                                <span >Ingredient {{ errors['recipes_ingredients'][0] }}</span>
+                    <div *ngIf="ingred_wrap">
+                        <div @slideStateTrigger *ngFor="let ing of recipes_ingredients; let i = index">
+                            <div class="form-group form-group-ingredients">                                
+                                <input type="text" value="{{getIngName(ing.ingredient_id)}}" class="form-control form-control-amount" disabled placeholder="Количество">
+                                <div class="btn btn-danger" (click)="onRemoveRecipeIngredient(ing.id)">Удалить</div>
                             </div>
                         </div>
-                    </div>-->
-                    
-                    <!--<form [formGroup]="ingredientForm" @slideStateTrigger *ngIf='ingredient_form_is_visible'>
-                        <label class="tip-label">Указывайте жиры, белки, углеводы и калории в расчете на один грамм.</label>
-                        <div class="form-group form-group-ingredients">
-                            <input type="text" formControlName="name" class="form-control" placeholder="Название">
-                            <input type="number" formControlName="fats" class="form-control" placeholder="Жиры">
-                            <input type="number" formControlName="proteins" class="form-control" placeholder="Белки">
-                            <input type="number" formControlName="carbohydrates" class="form-control" placeholder="Углеводы">
-                            <input type="number" formControlName="calories" class="form-control" placeholder="Калории">
-                            <input type="file" (change)="fileChange(inp, 'ingr')" #inp class="form-control">
+                        <div @slideStateTrigger class="alert alert-success" *ngIf="ingredient_removed">
+                            <span >Ингредиент успешно удален</span>
                         </div>
-                        <div @slideStateTrigger class="alert alert-danger" *ngIf="ingredients_errors && ingredients_errors.name">
-                            <span >Имя {{ ingredients_errors.name[0] }}</span>
-                        </div>
-                        <div class="form-group">
-                            <div class="btn btn-danger" (click)="ingredientForm.reset();ingredient_form_is_visible = false;ingredients_errors = undefined">Отмена</div>
-                            <div class="btn btn-success" (click)="createIngredient()">Добавить</div>
-                        </div>
-                    </form>
-                    <div @slideStateTrigger class="alert alert-success" *ngIf="new_ingredient_name">
-                        <span >Теперь, добавленный ингредиент "{{new_ingredient_name}}" может быть найден в списке и добавлен к рецепту</span>
                     </div>
-                    <div class="form-group ingredients-btn-group">
-                        <div class="btn btn-info" (click)='onAddRecipeIngredient()'>Добавить еще ингредиент</div>
-                        <div class="btn btn-info" (click)='ingredient_form_is_visible = true;new_ingredient_name = undefined'>Создать новый ингредиент</div>
-                    </div>-->
 
-                    <div class="label-group steps-label-group clearfix">
+                    <!--<div class="label-group steps-label-group clearfix">
                         <label class="first">способ приготовления</label>
-                    </div>
+                    </div>-->
 
                     <!--<div formArrayName="steps">
                         <div @slideStateTrigger *ngFor="let st of recipeForm.get('steps').controls;let i = index">
