@@ -46,6 +46,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     countries: Country[];
     sub_categories: SubCategory[];
     selected_category_name: string;
+    recipeBtnDisabled: boolean = false;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef, 
@@ -106,6 +107,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
     }
 
     createRecipe() {
+        this.recipeBtnDisabled = true;
         this.recipeService.createRecipe(this.recipeForm.value
         ).subscribe(
             res => {
@@ -118,6 +120,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             () => {
                 this.recipeForm.reset();
                 this.errors = '';
+                this.recipeBtnDisabled = false;
             }
         )
     }

@@ -2,14 +2,14 @@ import { trigger, style, transition, animate, keyframes } from "@angular/animati
 
 export const fadeInTrigger = trigger('showTrigger',[
     transition(':enter', [
-        animate('400ms ease-out', keyframes([
+        animate('550ms ease-out', keyframes([
             style({
                 transform: 'translateX(-100%)',
                 opacity: 0,
                 offset: 0
             })
             ,style({
-                transform: 'translateX(15%)',
+                transform: 'translateX(21%)',
                 opacity: 0.5,
                 offset: 0.55
             })

@@ -18,7 +18,8 @@ import { AnimationEvent } from "@angular/animations";
 export class RecipiesComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   recipies: Recipe[];
-  displayedRecipies: Recipe[] = []
+  displayedRecipies: Recipe[] = [];
+  loading: boolean = true;
 
   constructor(
     private recipeService: RecipeService
@@ -40,6 +41,7 @@ export class RecipiesComponent implements OnInit, OnDestroy {
           res => {
             this.recipies = res;
             this.displayedRecipies.push(res[0]);
+            this.loading = false;
           },
           error => console.log(error)
         )

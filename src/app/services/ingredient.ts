@@ -1,8 +1,10 @@
+import { RecipesComponent } from '../recipes/recipes/recipes.component';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { Observable } from "rxjs/Rx";
 import { Ingredient } from "../interfaces/ingredient";
+import { RecipeIngredient } from "../interfaces/recipe_ingredient";
 import { UserAuthService } from "../services/user-auth";
 
 @Injectable()
@@ -23,6 +25,12 @@ export class IngredientService {
   createIngredient(ingredient: Ingredient): Observable<Ingredient> {
     return this.http.post(this.url + '/ingredients', JSON.stringify(ingredient), this.userAuth.headers).map(
       (res: Response) => <Ingredient>res.json()
+    )
+  }
+
+  addRecipeIngredient(ingredient: RecipeIngredient): Observable<RecipeIngredient> {
+    return this.http.post(this.url + '/recipes_ingredients/', JSON.stringify(ingredient), this.userAuth.headers).map(
+      res => <RecipeIngredient>res.json()
     )
   }
 

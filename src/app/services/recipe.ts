@@ -3,6 +3,7 @@ import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx'
 import { environment } from '../../environments/environment';
 import { Recipe } from '../interfaces/recipe';
+import { Step } from '../interfaces/step';
 import { UserAuthService } from '../services/user-auth';
 
 @Injectable()
@@ -48,6 +49,18 @@ export class RecipeService {
   editRecipe(recipe: Recipe, slug): Observable<Recipe> {
     return this.http.put(this.baseUrl + '/recipes/' + slug, JSON.stringify(recipe), this.userAuth.headers).map(
       (response: Response) => response.json()
+    )
+  }
+
+  addRecipeStep(step: Step): Observable<Step> {
+    return this.http.post(this.baseUrl + '/steps/', JSON.stringify(step), this.userAuth.headers).map(
+      res => <Step>res.json()
+    )
+  }
+
+  removeRecipeStep(id: number) {
+    return this.http.delete(this.baseUrl + '/steps/' + id, this.userAuth.headers).map(
+      res => res
     )
   }
 

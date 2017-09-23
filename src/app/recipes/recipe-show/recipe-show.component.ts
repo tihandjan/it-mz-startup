@@ -74,14 +74,6 @@ export class RecipeShowComponent implements OnInit, OnDestroy {
     )
   }
 
-  ingredientsWithImage(): Ingredient[] {
-    return this.recipe['ingredients'].filter(
-      ing => {
-        return ing.image.url != null
-      }
-    )
-  }
-
   upVote(id: number): void {
     let recipe;
     if(this.auth.userSignedIn())

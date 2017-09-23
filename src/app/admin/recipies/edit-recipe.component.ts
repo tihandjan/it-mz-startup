@@ -30,6 +30,7 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
     recipe;
     recipeForm: FormGroup;
     ingredientForm: FormGroup;
+    stepForm: FormGroup;
     formGroupNumber: any = undefined;
     public filePreviewPath: SafeUrl;
     errors: any;
@@ -42,6 +43,15 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
     ingredients_for_select: Array<object>;
     recipes_ingredients;
     ingredient_removed: boolean = false;
+    step_removed: boolean = false;
+    ingredientFormVisible: boolean = false;
+    stepFormVisible: boolean = false
+    ingredient_errors: any;
+    step_errors: any;
+    recipe_steps;
+    stepBtnDisabled: boolean = false;
+    ingredientBtnDisabled: boolean = false;
+    recipeBtnDisabled: boolean = false;
 
     constructor(
         private changeDetectorRef: ChangeDetectorRef,
@@ -70,17 +80,21 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
             'category_id': new FormControl('Выберите категорию'),
             'sub_category_id': new FormControl('Вид блюда'),
             'country_id': new FormControl('Кухня какой страны'),
-            'steps': new FormArray([]),
         });
 
         this.ingredientForm = new FormGroup({
-            'name': new FormControl('', Validators.required),
-            'fats': new FormControl(null),
-            'proteins': new FormControl(null),
-            'carbohydrates': new FormControl(null),
-            'calories': new FormControl(null),
-            'image': new FormControl(''),
+            'amount': new FormControl(null, Validators.required),
+            'unit': new FormControl('грамм', Validators.required),
+            'ingredient_id': new FormControl(null, Validators.required),
+            'recipe_id': new FormControl(null)
         });
+
+        this.stepForm = new FormGroup({
+            'content': new FormControl(null, Validators.required),
+            'step': new FormControl(null, Validators.required),
+            'image': new FormControl(null),
+            'recipe_id': new FormControl(null),
+        })
 
         this.getRecipe();
         this.getIngredients();
@@ -103,7 +117,8 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
                 this.filePreviewPath = res.image.thumb.url;
                 this.getCountries(res.country.id);
                 this.getCategories(res.category.id);
-                this.recipes_ingredients = res['recipes_ingredients']
+                this.recipes_ingredients = res['recipes_ingredients'];
+                this.recipe_steps = res['steps'];
             },
             err => console.log(err)
         )
@@ -111,6 +126,7 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
     }
 
     editRecipe(): void {
+        this.recipeBtnDisabled = true;
         if(this.recipeForm.get('image').value.length == 0) {
             this.recipeForm.removeControl('image')
         }
@@ -123,6 +139,7 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
             },
             () => {
                 this.errors = '';
+                this.recipeBtnDisabled = false;
             }
         )
     }
@@ -145,7 +162,7 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
     }
 
     public refreshValue(value:any, index:number):void {
-        (<FormArray>this.recipeForm.get('recipes_ingredients')).controls[index].get('ingredient_id').setValue(value.id)
+        this.ingredientForm.get('ingredient_id').setValue(value.id);
     }
 
     getCategories(id: number): void {
@@ -181,12 +198,8 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
         this.recipeForm.get('image').setValue(result)
     }
 
-    addImageToNestedForm(result) {
-        (<FormArray>this.recipeForm.get('steps')).controls[this.formGroupNumber].get('image').setValue(result);
-    }
-
-    addImageToIngredient(result) {
-        this.ingredientForm.get('image').setValue(result);
+    addImageToStep(result) {
+        this.stepForm.get('image').setValue(result);
     }
 
     fileChange(input, index){
@@ -217,10 +230,8 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
             callback(reader.result);
             if (this.formGroupNumber == undefined) {
                 this.addImageToForm(reader.result);
-            } else if(this.formGroupNumber == 'ingr') {
-                this.addImageToIngredient(reader.result);
-            } else {
-                this.addImageToNestedForm(reader.result);
+            } else if(this.formGroupNumber == 'step') {
+                this.addImageToStep(reader.result);
             }
         }
         reader.readAsDataURL(file);
@@ -261,11 +272,65 @@ export class EditRecipeComponent implements OnInit, OnDestroy {
             )
     }
 
+    onRemoveRecipeStep(id: number): void {
+        let conf = confirm('Вы правда хотите удалить этот шаг?')
+        if(conf)
+            this.recipeService.removeRecipeStep(id).subscribe(
+                res => {
+                    if(res.status == 204)
+                      this.recipe_steps = this.recipe_steps.filter(step =>{
+                          return step.id !== id
+                      });
+                      this.step_removed = true;
+                      setTimeout(()=> {
+                          this.step_removed = false;
+                      }, 2500);
+                },
+                err => console.log('Шо то не то!!!АСТАНАВИТЕСЬ!!!')
+            )
+    }
+
     getIngName(id: number) {
         let ing = this.ingredients.find(ing => {
             return ing.id == id
         })
         return ing.name;
+    }
+
+    onAddRecipeIngredient(): void {
+        this.ingredientFormVisible = !this.ingredientFormVisible;
+    }
+
+    addIngredient(): void {
+        this.ingredientForm.get('recipe_id').setValue(this.recipe.id);
+        this.ingredientBtnDisabled = true;
+        this.ingredientService.addRecipeIngredient(this.ingredientForm.value).subscribe(
+            res => {
+                this.recipes_ingredients.push(res);
+                this.ingredientFormVisible = false;
+                this.ingredientForm.reset();
+            },
+            err => this.ingredient_errors = err.json(),
+            ()=> this.ingredientBtnDisabled = false
+        )
+    }
+
+    onAddRecipeStep(): void {
+        this.stepFormVisible = !this.stepFormVisible;
+    }
+
+    addStep(): void {
+        this.stepForm.get('recipe_id').setValue(this.recipe.id);
+        this.stepBtnDisabled = true;
+        this.recipeService.addRecipeStep(this.stepForm.value).subscribe(
+            res => {
+                this.recipe_steps.push(res);
+                this.stepFormVisible = false;
+                this.stepForm.reset();
+            },
+            err => this.step_errors = err.json(),
+            ()=> this.stepBtnDisabled = false
+        )
     }
 
 }

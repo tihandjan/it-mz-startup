@@ -42,5 +42,11 @@ export interface Recipe {
         amount: number,
         ingredient_id: number,
         unit: string,
+    }],
+    steps: [{
+        id: number,
+        step: number,
+        content: string,
+        image:string,
     }]
 }

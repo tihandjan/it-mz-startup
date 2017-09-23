@@ -255,7 +255,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" [disabled]="!recipeForm.valid" [hidden]="submiting"  class="btn btn-primary btn-submit">Опубликовать</button>
+                        <button type="submit" [disabled]="!recipeForm.valid || recipeBtnDisabled" [hidden]="submiting"  class="btn btn-primary btn-submit">Опубликовать</button>
                     </div>
                 </form>
             </div>
@@ -263,3 +263,6 @@
     </div>
 </div>
 
+<div class="spinner-container" *ngIf="recipeBtnDisabled">
+    <div class="spinner"></div>
+</div>

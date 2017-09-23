@@ -35,6 +35,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ngUnsabscribe: Subject<void> = new Subject<void>();
   recipes;
   user_signed_in: boolean;
+  loading: boolean = true;
   constructor(
     private recipeService: RecipeService,
     private auth: UserAuthService,
@@ -59,7 +60,8 @@ export class MainComponent implements OnInit, OnDestroy {
            res => {
              this.top_recipe = res.slice(0, 2);
              this.top_recipe_second_line = res.slice(2, 5);
-             this.recipes = res.slice(5, 13)
+             this.recipes = res.slice(5, 13);
+             this.loading = false;
            }
          )
   }
