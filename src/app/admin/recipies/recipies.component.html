@@ -5,27 +5,27 @@
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-primary" [routerLink]="['new']">Создать рецепт</button>
                 </div>
-                <table class="table">
+                <table class="table text-center">
                     <thead class="thead-inverse">
                         <tr>
-                            <th>#</th>
-                            <th>Заголовок</th>
-                            <th>Автор</th>
-                            <th>Картинка</th>
-                            <th>Одобрить</th>
-                            <th>Редактировать</th>
-                            <th>Удалить</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">Картинка</th>
+                            <th class="text-center">Заголовок</th>
+                            <th class="text-center">Автор</th>
+                            <th class="text-center">Одобрить</th>
+                            <th class="text-center">Редактировать</th>
+                            <th class="text-center">Удалить</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr @showTrigger (@showTrigger.done)="onAnimationDone($event, i)" *ngFor="let recipe of displayedRecipies; let i = index">
                             <th scope="row">{{recipe.id}}</th>
-                            <td>{{ recipe.title }}</td>
-                            <td>{{ recipe.user?.name }}</td>
                             <td><img [src]="recipe.image.square.url" alt=""></td>
-                            <td><a [routerLink]="['/admin', 'recipies', recipe.slug, 'edit']">Edit</a></td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
+                            <td><a [routerLink]="['/recipes', recipe.category.slug, recipe.slug]">{{ recipe.title }}</a></td>
+                            <td>{{ recipe.user?.name }}</td>
+                            <td><a (click)="approveToggle(recipe.id)" *ngIf="!recipe.approved" class="btn btn-success">Одобрить</a><a (click)="approveToggle(recipe.id)" *ngIf="recipe.approved" class="btn btn-warning">Не одобрять</a></td>
+                            <td><a class="btn btn-info" [routerLink]="['/admin', 'recipies', recipe.slug, 'edit']">Редактировать</a></td>
+                            <td><a class="btn btn-danger" (click)="removeRecipe(recipe.id)">Удалить</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -35,5 +35,5 @@
 </div>
 
 <div *ngIf="loading" class="spinner-container">
-    <div class="spinner"></div>
+    <div style="left: 53%" class="spinner"></div>
 </div>

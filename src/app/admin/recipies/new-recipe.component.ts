@@ -63,7 +63,7 @@ export class NewRecipeComponent implements OnInit, OnDestroy {
             'summary': new FormControl('', Validators.required),
             'time': new FormControl('', Validators.required),
             'complexity': new FormControl('Сложность готовки', Validators.required),
-            'publish': new FormControl('', Validators.required),
+            'publish': new FormControl(new Date().toISOString().substring(0, 10), Validators.required),
             'porsion': new FormControl('', Validators.required),
             'image': new FormControl('', Validators.required),
             'category_id': new FormControl('Выберите категорию', Validators.required),

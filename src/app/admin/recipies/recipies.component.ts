@@ -53,4 +53,27 @@ export class RecipiesComponent implements OnInit, OnDestroy {
     }
   }
 
+  removeRecipe(id: number): void {
+    let answer = prompt('Если вы действительно хотите удалить этот рецепт введите' + "(" + id + ")");
+    if( parseInt(answer) == id)
+      this.recipeService.removeRecipe(id).subscribe(
+        res => {
+          if(res.status == 204)
+            this.displayedRecipies = this.displayedRecipies.filter(recipe =>{
+              return recipe.id !== id;
+            });
+        }
+      )
+  }
+
+  approveToggle(id: number): void {
+    this.recipeService.approveToggle(id).subscribe(
+      res => {
+        let index = this.displayedRecipies.findIndex(recipe => recipe.id == id);
+        this.displayedRecipies[index].approved = res.approved;
+      }, 
+      err => console.log('АСТАНАВИТЕСЬ!!!')
+    )
+  }
+
 }

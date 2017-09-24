@@ -62,13 +62,13 @@ $spinner-loops: infinite;             // infinite (be careful, save the batterie
 }
 
 .spinner {
-    top: 0;
-    bottom: 0;
     margin: auto;
     position: fixed;
     z-index: 101;
-    left: 0;
-    right: 0;
+    top: 0-15%;
+    left: 47%;
+    right: 50%;
+    bottom: 0;
     box-sizing: border-box;
     background-clip: padding-box;
     width: $spinner-size;

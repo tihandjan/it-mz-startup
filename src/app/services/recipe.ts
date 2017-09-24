@@ -1,3 +1,4 @@
+import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx'
@@ -61,6 +62,18 @@ export class RecipeService {
   removeRecipeStep(id: number) {
     return this.http.delete(this.baseUrl + '/steps/' + id, this.userAuth.headers).map(
       res => res
+    )
+  }
+
+  removeRecipe(id: number) {
+    return this.http.delete(this.baseUrl + '/recipes/' + id, this.userAuth.headers).map(
+      res => res
+    )
+  }
+
+  approveToggle(id: number): Observable<Recipe> {
+    return this.http.put(this.baseUrl + '/recipes/' + id + '/approve/', this.userAuth.headers).map(
+      res => <Recipe>res.json()
     )
   }
 
